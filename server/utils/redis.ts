@@ -1,7 +1,8 @@
-import { createClient, type RedisClientType } from "redis";
+import { createClient } from "redis";
+import { config } from "./config";
 
 export const connectToRedis = async ()  => {
-    const client = createClient({ url: "redis://localhost:6379/0" });
+    const client = createClient({ url: config.redis.uri });
   
     client.on("error", (err) => {
       console.error("❌ Redis error:", err);

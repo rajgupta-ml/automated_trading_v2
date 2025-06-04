@@ -21,5 +21,8 @@ export const config = {
 
     jwt : {
         secret : process.env.JWT_SECRET || (() => {throw new Error("Missing JWT_SECRET in env")})(),
+    },
+    redis : {
+        uri : process.env.REDIS_URI || (() => {throw new Error("Missing REDIS_URI in env")})(),
     }
 }
