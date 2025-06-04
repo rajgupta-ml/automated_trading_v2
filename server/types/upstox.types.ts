@@ -1,0 +1,24 @@
+export type Instrument = {
+    weekly: boolean;
+    segment: string;
+    name: string;
+    exchange: string;
+    expiry: number;
+    instrument_type: "PE" | "CE" | "FO" | "EQ";
+    asset_symbol: string;
+    underlying_symbol: string;
+    instrument_key: string;
+    lot_size: number;
+    freeze_quantity: number;
+    exchange_token: string;
+    minimum_lot: number;
+    asset_key: string;
+    underlying_key: string;
+    tick_size: number;
+    asset_type: "INDEX" | "STOCK";
+    underlying_type: "INDEX" | "STOCK";
+    trading_symbol: string;
+    strike_price: number;
+    qty_multiplier: number;
+  };
+  
