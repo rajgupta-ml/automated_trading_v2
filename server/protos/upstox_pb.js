@@ -1,16 +1,17 @@
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
-"use strict";
+'use strict';
 
-var $protobuf = require("protobufjs/minimal");
+var $protobuf = require('protobufjs/minimal');
 
 // Common aliases
-var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+var $Reader = $protobuf.Reader,
+    $Writer = $protobuf.Writer,
+    $util = $protobuf.util;
 
 // Exported root namespace
-var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
+var $root = $protobuf.roots['default'] || ($protobuf.roots['default'] = {});
 
-$root.com = (function() {
-
+$root.com = (function () {
     /**
      * Namespace com.
      * @exports com
@@ -18,8 +19,7 @@ $root.com = (function() {
      */
     var com = {};
 
-    com.upstox = (function() {
-
+    com.upstox = (function () {
         /**
          * Namespace upstox.
          * @memberof com
@@ -27,8 +27,7 @@ $root.com = (function() {
          */
         var upstox = {};
 
-        upstox.marketdatafeeder = (function() {
-
+        upstox.marketdatafeeder = (function () {
             /**
              * Namespace marketdatafeeder.
              * @memberof com.upstox
@@ -36,8 +35,7 @@ $root.com = (function() {
              */
             var marketdatafeeder = {};
 
-            marketdatafeeder.rpc = (function() {
-
+            marketdatafeeder.rpc = (function () {
                 /**
                  * Namespace rpc.
                  * @memberof com.upstox.marketdatafeeder
@@ -45,8 +43,7 @@ $root.com = (function() {
                  */
                 var rpc = {};
 
-                rpc.proto = (function() {
-
+                rpc.proto = (function () {
                     /**
                      * Namespace proto.
                      * @memberof com.upstox.marketdatafeeder.rpc
@@ -54,8 +51,7 @@ $root.com = (function() {
                      */
                     var proto = {};
 
-                    proto.LTPC = (function() {
-
+                    proto.LTPC = (function () {
                         /**
                          * Properties of a LTPC.
                          * @memberof com.upstox.marketdatafeeder.rpc.proto
@@ -76,7 +72,11 @@ $root.com = (function() {
                          */
                         function LTPC(properties) {
                             if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                for (
+                                    var keys = Object.keys(properties), i = 0;
+                                    i < keys.length;
+                                    ++i
+                                )
                                     if (properties[keys[i]] != null)
                                         this[keys[i]] = properties[keys[i]];
                         }
@@ -95,7 +95,9 @@ $root.com = (function() {
                          * @memberof com.upstox.marketdatafeeder.rpc.proto.LTPC
                          * @instance
                          */
-                        LTPC.prototype.ltt = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+                        LTPC.prototype.ltt = $util.Long
+                            ? $util.Long.fromBits(0, 0, false)
+                            : 0;
 
                         /**
                          * LTPC ltq.
@@ -103,7 +105,9 @@ $root.com = (function() {
                          * @memberof com.upstox.marketdatafeeder.rpc.proto.LTPC
                          * @instance
                          */
-                        LTPC.prototype.ltq = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+                        LTPC.prototype.ltq = $util.Long
+                            ? $util.Long.fromBits(0, 0, false)
+                            : 0;
 
                         /**
                          * LTPC cp.
@@ -135,16 +139,35 @@ $root.com = (function() {
                          * @returns {$protobuf.Writer} Writer
                          */
                         LTPC.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.ltp != null && Object.hasOwnProperty.call(message, "ltp"))
-                                writer.uint32(/* id 1, wireType 1 =*/9).double(message.ltp);
-                            if (message.ltt != null && Object.hasOwnProperty.call(message, "ltt"))
-                                writer.uint32(/* id 2, wireType 0 =*/16).int64(message.ltt);
-                            if (message.ltq != null && Object.hasOwnProperty.call(message, "ltq"))
-                                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.ltq);
-                            if (message.cp != null && Object.hasOwnProperty.call(message, "cp"))
-                                writer.uint32(/* id 4, wireType 1 =*/33).double(message.cp);
+                            if (!writer) writer = $Writer.create();
+                            if (
+                                message.ltp != null &&
+                                Object.hasOwnProperty.call(message, 'ltp')
+                            )
+                                writer
+                                    .uint32(/* id 1, wireType 1 =*/ 9)
+                                    .double(message.ltp);
+                            if (
+                                message.ltt != null &&
+                                Object.hasOwnProperty.call(message, 'ltt')
+                            )
+                                writer
+                                    .uint32(/* id 2, wireType 0 =*/ 16)
+                                    .int64(message.ltt);
+                            if (
+                                message.ltq != null &&
+                                Object.hasOwnProperty.call(message, 'ltq')
+                            )
+                                writer
+                                    .uint32(/* id 3, wireType 0 =*/ 24)
+                                    .int64(message.ltq);
+                            if (
+                                message.cp != null &&
+                                Object.hasOwnProperty.call(message, 'cp')
+                            )
+                                writer
+                                    .uint32(/* id 4, wireType 1 =*/ 33)
+                                    .double(message.cp);
                             return writer;
                         };
 
@@ -157,7 +180,10 @@ $root.com = (function() {
                          * @param {$protobuf.Writer} [writer] Writer to encode to
                          * @returns {$protobuf.Writer} Writer
                          */
-                        LTPC.encodeDelimited = function encodeDelimited(message, writer) {
+                        LTPC.encodeDelimited = function encodeDelimited(
+                            message,
+                            writer,
+                        ) {
                             return this.encode(message, writer).ldelim();
                         };
 
@@ -175,31 +201,35 @@ $root.com = (function() {
                         LTPC.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.com.upstox.marketdatafeeder.rpc.proto.LTPC();
+                            var end =
+                                    length === undefined
+                                        ? reader.len
+                                        : reader.pos + length,
+                                message =
+                                    new $root.com.upstox.marketdatafeeder.rpc.proto.LTPC();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
-                                if (tag === error)
-                                    break;
+                                if (tag === error) break;
                                 switch (tag >>> 3) {
-                                case 1: {
+                                    case 1: {
                                         message.ltp = reader.double();
                                         break;
                                     }
-                                case 2: {
+                                    case 2: {
                                         message.ltt = reader.int64();
                                         break;
                                     }
-                                case 3: {
+                                    case 3: {
                                         message.ltq = reader.int64();
                                         break;
                                     }
-                                case 4: {
+                                    case 4: {
                                         message.cp = reader.double();
                                         break;
                                     }
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
                                 }
                             }
                             return message;
@@ -215,7 +245,9 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        LTPC.decodeDelimited = function decodeDelimited(reader) {
+                        LTPC.decodeDelimited = function decodeDelimited(
+                            reader,
+                        ) {
                             if (!(reader instanceof $Reader))
                                 reader = new $Reader(reader);
                             return this.decode(reader, reader.uint32());
@@ -230,20 +262,46 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         LTPC.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.ltp != null && message.hasOwnProperty("ltp"))
-                                if (typeof message.ltp !== "number")
-                                    return "ltp: number expected";
-                            if (message.ltt != null && message.hasOwnProperty("ltt"))
-                                if (!$util.isInteger(message.ltt) && !(message.ltt && $util.isInteger(message.ltt.low) && $util.isInteger(message.ltt.high)))
-                                    return "ltt: integer|Long expected";
-                            if (message.ltq != null && message.hasOwnProperty("ltq"))
-                                if (!$util.isInteger(message.ltq) && !(message.ltq && $util.isInteger(message.ltq.low) && $util.isInteger(message.ltq.high)))
-                                    return "ltq: integer|Long expected";
-                            if (message.cp != null && message.hasOwnProperty("cp"))
-                                if (typeof message.cp !== "number")
-                                    return "cp: number expected";
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
+                            if (
+                                message.ltp != null &&
+                                message.hasOwnProperty('ltp')
+                            )
+                                if (typeof message.ltp !== 'number')
+                                    return 'ltp: number expected';
+                            if (
+                                message.ltt != null &&
+                                message.hasOwnProperty('ltt')
+                            )
+                                if (
+                                    !$util.isInteger(message.ltt) &&
+                                    !(
+                                        message.ltt &&
+                                        $util.isInteger(message.ltt.low) &&
+                                        $util.isInteger(message.ltt.high)
+                                    )
+                                )
+                                    return 'ltt: integer|Long expected';
+                            if (
+                                message.ltq != null &&
+                                message.hasOwnProperty('ltq')
+                            )
+                                if (
+                                    !$util.isInteger(message.ltq) &&
+                                    !(
+                                        message.ltq &&
+                                        $util.isInteger(message.ltq.low) &&
+                                        $util.isInteger(message.ltq.high)
+                                    )
+                                )
+                                    return 'ltq: integer|Long expected';
+                            if (
+                                message.cp != null &&
+                                message.hasOwnProperty('cp')
+                            )
+                                if (typeof message.cp !== 'number')
+                                    return 'cp: number expected';
                             return null;
                         };
 
@@ -256,29 +314,43 @@ $root.com = (function() {
                          * @returns {com.upstox.marketdatafeeder.rpc.proto.LTPC} LTPC
                          */
                         LTPC.fromObject = function fromObject(object) {
-                            if (object instanceof $root.com.upstox.marketdatafeeder.rpc.proto.LTPC)
+                            if (
+                                object instanceof
+                                $root.com.upstox.marketdatafeeder.rpc.proto.LTPC
+                            )
                                 return object;
-                            var message = new $root.com.upstox.marketdatafeeder.rpc.proto.LTPC();
+                            var message =
+                                new $root.com.upstox.marketdatafeeder.rpc.proto.LTPC();
                             if (object.ltp != null)
                                 message.ltp = Number(object.ltp);
                             if (object.ltt != null)
                                 if ($util.Long)
-                                    (message.ltt = $util.Long.fromValue(object.ltt)).unsigned = false;
-                                else if (typeof object.ltt === "string")
+                                    (message.ltt = $util.Long.fromValue(
+                                        object.ltt,
+                                    )).unsigned = false;
+                                else if (typeof object.ltt === 'string')
                                     message.ltt = parseInt(object.ltt, 10);
-                                else if (typeof object.ltt === "number")
+                                else if (typeof object.ltt === 'number')
                                     message.ltt = object.ltt;
-                                else if (typeof object.ltt === "object")
-                                    message.ltt = new $util.LongBits(object.ltt.low >>> 0, object.ltt.high >>> 0).toNumber();
+                                else if (typeof object.ltt === 'object')
+                                    message.ltt = new $util.LongBits(
+                                        object.ltt.low >>> 0,
+                                        object.ltt.high >>> 0,
+                                    ).toNumber();
                             if (object.ltq != null)
                                 if ($util.Long)
-                                    (message.ltq = $util.Long.fromValue(object.ltq)).unsigned = false;
-                                else if (typeof object.ltq === "string")
+                                    (message.ltq = $util.Long.fromValue(
+                                        object.ltq,
+                                    )).unsigned = false;
+                                else if (typeof object.ltq === 'string')
                                     message.ltq = parseInt(object.ltq, 10);
-                                else if (typeof object.ltq === "number")
+                                else if (typeof object.ltq === 'number')
                                     message.ltq = object.ltq;
-                                else if (typeof object.ltq === "object")
-                                    message.ltq = new $util.LongBits(object.ltq.low >>> 0, object.ltq.high >>> 0).toNumber();
+                                else if (typeof object.ltq === 'object')
+                                    message.ltq = new $util.LongBits(
+                                        object.ltq.low >>> 0,
+                                        object.ltq.high >>> 0,
+                                    ).toNumber();
                             if (object.cp != null)
                                 message.cp = Number(object.cp);
                             return message;
@@ -294,37 +366,92 @@ $root.com = (function() {
                          * @returns {Object.<string,*>} Plain object
                          */
                         LTPC.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
+                            if (!options) options = {};
                             var object = {};
                             if (options.defaults) {
                                 object.ltp = 0;
                                 if ($util.Long) {
                                     var long = new $util.Long(0, 0, false);
-                                    object.ltt = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    object.ltt =
+                                        options.longs === String
+                                            ? long.toString()
+                                            : options.longs === Number
+                                              ? long.toNumber()
+                                              : long;
                                 } else
-                                    object.ltt = options.longs === String ? "0" : 0;
+                                    object.ltt =
+                                        options.longs === String ? '0' : 0;
                                 if ($util.Long) {
                                     var long = new $util.Long(0, 0, false);
-                                    object.ltq = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    object.ltq =
+                                        options.longs === String
+                                            ? long.toString()
+                                            : options.longs === Number
+                                              ? long.toNumber()
+                                              : long;
                                 } else
-                                    object.ltq = options.longs === String ? "0" : 0;
+                                    object.ltq =
+                                        options.longs === String ? '0' : 0;
                                 object.cp = 0;
                             }
-                            if (message.ltp != null && message.hasOwnProperty("ltp"))
-                                object.ltp = options.json && !isFinite(message.ltp) ? String(message.ltp) : message.ltp;
-                            if (message.ltt != null && message.hasOwnProperty("ltt"))
-                                if (typeof message.ltt === "number")
-                                    object.ltt = options.longs === String ? String(message.ltt) : message.ltt;
+                            if (
+                                message.ltp != null &&
+                                message.hasOwnProperty('ltp')
+                            )
+                                object.ltp =
+                                    options.json && !isFinite(message.ltp)
+                                        ? String(message.ltp)
+                                        : message.ltp;
+                            if (
+                                message.ltt != null &&
+                                message.hasOwnProperty('ltt')
+                            )
+                                if (typeof message.ltt === 'number')
+                                    object.ltt =
+                                        options.longs === String
+                                            ? String(message.ltt)
+                                            : message.ltt;
                                 else
-                                    object.ltt = options.longs === String ? $util.Long.prototype.toString.call(message.ltt) : options.longs === Number ? new $util.LongBits(message.ltt.low >>> 0, message.ltt.high >>> 0).toNumber() : message.ltt;
-                            if (message.ltq != null && message.hasOwnProperty("ltq"))
-                                if (typeof message.ltq === "number")
-                                    object.ltq = options.longs === String ? String(message.ltq) : message.ltq;
+                                    object.ltt =
+                                        options.longs === String
+                                            ? $util.Long.prototype.toString.call(
+                                                  message.ltt,
+                                              )
+                                            : options.longs === Number
+                                              ? new $util.LongBits(
+                                                    message.ltt.low >>> 0,
+                                                    message.ltt.high >>> 0,
+                                                ).toNumber()
+                                              : message.ltt;
+                            if (
+                                message.ltq != null &&
+                                message.hasOwnProperty('ltq')
+                            )
+                                if (typeof message.ltq === 'number')
+                                    object.ltq =
+                                        options.longs === String
+                                            ? String(message.ltq)
+                                            : message.ltq;
                                 else
-                                    object.ltq = options.longs === String ? $util.Long.prototype.toString.call(message.ltq) : options.longs === Number ? new $util.LongBits(message.ltq.low >>> 0, message.ltq.high >>> 0).toNumber() : message.ltq;
-                            if (message.cp != null && message.hasOwnProperty("cp"))
-                                object.cp = options.json && !isFinite(message.cp) ? String(message.cp) : message.cp;
+                                    object.ltq =
+                                        options.longs === String
+                                            ? $util.Long.prototype.toString.call(
+                                                  message.ltq,
+                                              )
+                                            : options.longs === Number
+                                              ? new $util.LongBits(
+                                                    message.ltq.low >>> 0,
+                                                    message.ltq.high >>> 0,
+                                                ).toNumber()
+                                              : message.ltq;
+                            if (
+                                message.cp != null &&
+                                message.hasOwnProperty('cp')
+                            )
+                                object.cp =
+                                    options.json && !isFinite(message.cp)
+                                        ? String(message.cp)
+                                        : message.cp;
                             return object;
                         };
 
@@ -336,7 +463,10 @@ $root.com = (function() {
                          * @returns {Object.<string,*>} JSON object
                          */
                         LTPC.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            return this.constructor.toObject(
+                                this,
+                                $protobuf.util.toJSONOptions,
+                            );
                         };
 
                         /**
@@ -349,16 +479,18 @@ $root.com = (function() {
                          */
                         LTPC.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
                             if (typeUrlPrefix === undefined) {
-                                typeUrlPrefix = "type.googleapis.com";
+                                typeUrlPrefix = 'type.googleapis.com';
                             }
-                            return typeUrlPrefix + "/com.upstox.marketdatafeeder.rpc.proto.LTPC";
+                            return (
+                                typeUrlPrefix +
+                                '/com.upstox.marketdatafeeder.rpc.proto.LTPC'
+                            );
                         };
 
                         return LTPC;
                     })();
 
-                    proto.MarketLevel = (function() {
-
+                    proto.MarketLevel = (function () {
                         /**
                          * Properties of a MarketLevel.
                          * @memberof com.upstox.marketdatafeeder.rpc.proto
@@ -377,7 +509,11 @@ $root.com = (function() {
                         function MarketLevel(properties) {
                             this.bidAskQuote = [];
                             if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                for (
+                                    var keys = Object.keys(properties), i = 0;
+                                    i < keys.length;
+                                    ++i
+                                )
                                     if (properties[keys[i]] != null)
                                         this[keys[i]] = properties[keys[i]];
                         }
@@ -412,11 +548,22 @@ $root.com = (function() {
                          * @returns {$protobuf.Writer} Writer
                          */
                         MarketLevel.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.bidAskQuote != null && message.bidAskQuote.length)
-                                for (var i = 0; i < message.bidAskQuote.length; ++i)
-                                    $root.com.upstox.marketdatafeeder.rpc.proto.Quote.encode(message.bidAskQuote[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (!writer) writer = $Writer.create();
+                            if (
+                                message.bidAskQuote != null &&
+                                message.bidAskQuote.length
+                            )
+                                for (
+                                    var i = 0;
+                                    i < message.bidAskQuote.length;
+                                    ++i
+                                )
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.Quote.encode(
+                                        message.bidAskQuote[i],
+                                        writer
+                                            .uint32(/* id 1, wireType 2 =*/ 10)
+                                            .fork(),
+                                    ).ldelim();
                             return writer;
                         };
 
@@ -429,7 +576,10 @@ $root.com = (function() {
                          * @param {$protobuf.Writer} [writer] Writer to encode to
                          * @returns {$protobuf.Writer} Writer
                          */
-                        MarketLevel.encodeDelimited = function encodeDelimited(message, writer) {
+                        MarketLevel.encodeDelimited = function encodeDelimited(
+                            message,
+                            writer,
+                        ) {
                             return this.encode(message, writer).ldelim();
                         };
 
@@ -444,24 +594,42 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        MarketLevel.decode = function decode(reader, length, error) {
+                        MarketLevel.decode = function decode(
+                            reader,
+                            length,
+                            error,
+                        ) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.com.upstox.marketdatafeeder.rpc.proto.MarketLevel();
+                            var end =
+                                    length === undefined
+                                        ? reader.len
+                                        : reader.pos + length,
+                                message =
+                                    new $root.com.upstox.marketdatafeeder.rpc.proto.MarketLevel();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
-                                if (tag === error)
-                                    break;
+                                if (tag === error) break;
                                 switch (tag >>> 3) {
-                                case 1: {
-                                        if (!(message.bidAskQuote && message.bidAskQuote.length))
+                                    case 1: {
+                                        if (
+                                            !(
+                                                message.bidAskQuote &&
+                                                message.bidAskQuote.length
+                                            )
+                                        )
                                             message.bidAskQuote = [];
-                                        message.bidAskQuote.push($root.com.upstox.marketdatafeeder.rpc.proto.Quote.decode(reader, reader.uint32()));
+                                        message.bidAskQuote.push(
+                                            $root.com.upstox.marketdatafeeder.rpc.proto.Quote.decode(
+                                                reader,
+                                                reader.uint32(),
+                                            ),
+                                        );
                                         break;
                                     }
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
                                 }
                             }
                             return message;
@@ -477,7 +645,9 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        MarketLevel.decodeDelimited = function decodeDelimited(reader) {
+                        MarketLevel.decodeDelimited = function decodeDelimited(
+                            reader,
+                        ) {
                             if (!(reader instanceof $Reader))
                                 reader = new $Reader(reader);
                             return this.decode(reader, reader.uint32());
@@ -492,15 +662,24 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         MarketLevel.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.bidAskQuote != null && message.hasOwnProperty("bidAskQuote")) {
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
+                            if (
+                                message.bidAskQuote != null &&
+                                message.hasOwnProperty('bidAskQuote')
+                            ) {
                                 if (!Array.isArray(message.bidAskQuote))
-                                    return "bidAskQuote: array expected";
-                                for (var i = 0; i < message.bidAskQuote.length; ++i) {
-                                    var error = $root.com.upstox.marketdatafeeder.rpc.proto.Quote.verify(message.bidAskQuote[i]);
-                                    if (error)
-                                        return "bidAskQuote." + error;
+                                    return 'bidAskQuote: array expected';
+                                for (
+                                    var i = 0;
+                                    i < message.bidAskQuote.length;
+                                    ++i
+                                ) {
+                                    var error =
+                                        $root.com.upstox.marketdatafeeder.rpc.proto.Quote.verify(
+                                            message.bidAskQuote[i],
+                                        );
+                                    if (error) return 'bidAskQuote.' + error;
                                 }
                             }
                             return null;
@@ -515,17 +694,36 @@ $root.com = (function() {
                          * @returns {com.upstox.marketdatafeeder.rpc.proto.MarketLevel} MarketLevel
                          */
                         MarketLevel.fromObject = function fromObject(object) {
-                            if (object instanceof $root.com.upstox.marketdatafeeder.rpc.proto.MarketLevel)
+                            if (
+                                object instanceof
+                                $root.com.upstox.marketdatafeeder.rpc.proto
+                                    .MarketLevel
+                            )
                                 return object;
-                            var message = new $root.com.upstox.marketdatafeeder.rpc.proto.MarketLevel();
+                            var message =
+                                new $root.com.upstox.marketdatafeeder.rpc.proto.MarketLevel();
                             if (object.bidAskQuote) {
                                 if (!Array.isArray(object.bidAskQuote))
-                                    throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.MarketLevel.bidAskQuote: array expected");
+                                    throw TypeError(
+                                        '.com.upstox.marketdatafeeder.rpc.proto.MarketLevel.bidAskQuote: array expected',
+                                    );
                                 message.bidAskQuote = [];
-                                for (var i = 0; i < object.bidAskQuote.length; ++i) {
-                                    if (typeof object.bidAskQuote[i] !== "object")
-                                        throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.MarketLevel.bidAskQuote: object expected");
-                                    message.bidAskQuote[i] = $root.com.upstox.marketdatafeeder.rpc.proto.Quote.fromObject(object.bidAskQuote[i]);
+                                for (
+                                    var i = 0;
+                                    i < object.bidAskQuote.length;
+                                    ++i
+                                ) {
+                                    if (
+                                        typeof object.bidAskQuote[i] !==
+                                        'object'
+                                    )
+                                        throw TypeError(
+                                            '.com.upstox.marketdatafeeder.rpc.proto.MarketLevel.bidAskQuote: object expected',
+                                        );
+                                    message.bidAskQuote[i] =
+                                        $root.com.upstox.marketdatafeeder.rpc.proto.Quote.fromObject(
+                                            object.bidAskQuote[i],
+                                        );
                                 }
                             }
                             return message;
@@ -540,16 +738,29 @@ $root.com = (function() {
                          * @param {$protobuf.IConversionOptions} [options] Conversion options
                          * @returns {Object.<string,*>} Plain object
                          */
-                        MarketLevel.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
+                        MarketLevel.toObject = function toObject(
+                            message,
+                            options,
+                        ) {
+                            if (!options) options = {};
                             var object = {};
                             if (options.arrays || options.defaults)
                                 object.bidAskQuote = [];
-                            if (message.bidAskQuote && message.bidAskQuote.length) {
+                            if (
+                                message.bidAskQuote &&
+                                message.bidAskQuote.length
+                            ) {
                                 object.bidAskQuote = [];
-                                for (var j = 0; j < message.bidAskQuote.length; ++j)
-                                    object.bidAskQuote[j] = $root.com.upstox.marketdatafeeder.rpc.proto.Quote.toObject(message.bidAskQuote[j], options);
+                                for (
+                                    var j = 0;
+                                    j < message.bidAskQuote.length;
+                                    ++j
+                                )
+                                    object.bidAskQuote[j] =
+                                        $root.com.upstox.marketdatafeeder.rpc.proto.Quote.toObject(
+                                            message.bidAskQuote[j],
+                                            options,
+                                        );
                             }
                             return object;
                         };
@@ -562,7 +773,10 @@ $root.com = (function() {
                          * @returns {Object.<string,*>} JSON object
                          */
                         MarketLevel.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            return this.constructor.toObject(
+                                this,
+                                $protobuf.util.toJSONOptions,
+                            );
                         };
 
                         /**
@@ -573,18 +787,22 @@ $root.com = (function() {
                          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                          * @returns {string} The default type url
                          */
-                        MarketLevel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        MarketLevel.getTypeUrl = function getTypeUrl(
+                            typeUrlPrefix,
+                        ) {
                             if (typeUrlPrefix === undefined) {
-                                typeUrlPrefix = "type.googleapis.com";
+                                typeUrlPrefix = 'type.googleapis.com';
                             }
-                            return typeUrlPrefix + "/com.upstox.marketdatafeeder.rpc.proto.MarketLevel";
+                            return (
+                                typeUrlPrefix +
+                                '/com.upstox.marketdatafeeder.rpc.proto.MarketLevel'
+                            );
                         };
 
                         return MarketLevel;
                     })();
 
-                    proto.MarketOHLC = (function() {
-
+                    proto.MarketOHLC = (function () {
                         /**
                          * Properties of a MarketOHLC.
                          * @memberof com.upstox.marketdatafeeder.rpc.proto
@@ -603,7 +821,11 @@ $root.com = (function() {
                         function MarketOHLC(properties) {
                             this.ohlc = [];
                             if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                for (
+                                    var keys = Object.keys(properties), i = 0;
+                                    i < keys.length;
+                                    ++i
+                                )
                                     if (properties[keys[i]] != null)
                                         this[keys[i]] = properties[keys[i]];
                         }
@@ -638,11 +860,15 @@ $root.com = (function() {
                          * @returns {$protobuf.Writer} Writer
                          */
                         MarketOHLC.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
+                            if (!writer) writer = $Writer.create();
                             if (message.ohlc != null && message.ohlc.length)
                                 for (var i = 0; i < message.ohlc.length; ++i)
-                                    $root.com.upstox.marketdatafeeder.rpc.proto.OHLC.encode(message.ohlc[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.OHLC.encode(
+                                        message.ohlc[i],
+                                        writer
+                                            .uint32(/* id 1, wireType 2 =*/ 10)
+                                            .fork(),
+                                    ).ldelim();
                             return writer;
                         };
 
@@ -655,7 +881,10 @@ $root.com = (function() {
                          * @param {$protobuf.Writer} [writer] Writer to encode to
                          * @returns {$protobuf.Writer} Writer
                          */
-                        MarketOHLC.encodeDelimited = function encodeDelimited(message, writer) {
+                        MarketOHLC.encodeDelimited = function encodeDelimited(
+                            message,
+                            writer,
+                        ) {
                             return this.encode(message, writer).ldelim();
                         };
 
@@ -670,24 +899,42 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        MarketOHLC.decode = function decode(reader, length, error) {
+                        MarketOHLC.decode = function decode(
+                            reader,
+                            length,
+                            error,
+                        ) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC();
+                            var end =
+                                    length === undefined
+                                        ? reader.len
+                                        : reader.pos + length,
+                                message =
+                                    new $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
-                                if (tag === error)
-                                    break;
+                                if (tag === error) break;
                                 switch (tag >>> 3) {
-                                case 1: {
-                                        if (!(message.ohlc && message.ohlc.length))
+                                    case 1: {
+                                        if (
+                                            !(
+                                                message.ohlc &&
+                                                message.ohlc.length
+                                            )
+                                        )
                                             message.ohlc = [];
-                                        message.ohlc.push($root.com.upstox.marketdatafeeder.rpc.proto.OHLC.decode(reader, reader.uint32()));
+                                        message.ohlc.push(
+                                            $root.com.upstox.marketdatafeeder.rpc.proto.OHLC.decode(
+                                                reader,
+                                                reader.uint32(),
+                                            ),
+                                        );
                                         break;
                                     }
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
                                 }
                             }
                             return message;
@@ -703,7 +950,9 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        MarketOHLC.decodeDelimited = function decodeDelimited(reader) {
+                        MarketOHLC.decodeDelimited = function decodeDelimited(
+                            reader,
+                        ) {
                             if (!(reader instanceof $Reader))
                                 reader = new $Reader(reader);
                             return this.decode(reader, reader.uint32());
@@ -718,15 +967,20 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         MarketOHLC.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.ohlc != null && message.hasOwnProperty("ohlc")) {
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
+                            if (
+                                message.ohlc != null &&
+                                message.hasOwnProperty('ohlc')
+                            ) {
                                 if (!Array.isArray(message.ohlc))
-                                    return "ohlc: array expected";
+                                    return 'ohlc: array expected';
                                 for (var i = 0; i < message.ohlc.length; ++i) {
-                                    var error = $root.com.upstox.marketdatafeeder.rpc.proto.OHLC.verify(message.ohlc[i]);
-                                    if (error)
-                                        return "ohlc." + error;
+                                    var error =
+                                        $root.com.upstox.marketdatafeeder.rpc.proto.OHLC.verify(
+                                            message.ohlc[i],
+                                        );
+                                    if (error) return 'ohlc.' + error;
                                 }
                             }
                             return null;
@@ -741,17 +995,29 @@ $root.com = (function() {
                          * @returns {com.upstox.marketdatafeeder.rpc.proto.MarketOHLC} MarketOHLC
                          */
                         MarketOHLC.fromObject = function fromObject(object) {
-                            if (object instanceof $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC)
+                            if (
+                                object instanceof
+                                $root.com.upstox.marketdatafeeder.rpc.proto
+                                    .MarketOHLC
+                            )
                                 return object;
-                            var message = new $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC();
+                            var message =
+                                new $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC();
                             if (object.ohlc) {
                                 if (!Array.isArray(object.ohlc))
-                                    throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.ohlc: array expected");
+                                    throw TypeError(
+                                        '.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.ohlc: array expected',
+                                    );
                                 message.ohlc = [];
                                 for (var i = 0; i < object.ohlc.length; ++i) {
-                                    if (typeof object.ohlc[i] !== "object")
-                                        throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.ohlc: object expected");
-                                    message.ohlc[i] = $root.com.upstox.marketdatafeeder.rpc.proto.OHLC.fromObject(object.ohlc[i]);
+                                    if (typeof object.ohlc[i] !== 'object')
+                                        throw TypeError(
+                                            '.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.ohlc: object expected',
+                                        );
+                                    message.ohlc[i] =
+                                        $root.com.upstox.marketdatafeeder.rpc.proto.OHLC.fromObject(
+                                            object.ohlc[i],
+                                        );
                                 }
                             }
                             return message;
@@ -766,16 +1032,22 @@ $root.com = (function() {
                          * @param {$protobuf.IConversionOptions} [options] Conversion options
                          * @returns {Object.<string,*>} Plain object
                          */
-                        MarketOHLC.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
+                        MarketOHLC.toObject = function toObject(
+                            message,
+                            options,
+                        ) {
+                            if (!options) options = {};
                             var object = {};
                             if (options.arrays || options.defaults)
                                 object.ohlc = [];
                             if (message.ohlc && message.ohlc.length) {
                                 object.ohlc = [];
                                 for (var j = 0; j < message.ohlc.length; ++j)
-                                    object.ohlc[j] = $root.com.upstox.marketdatafeeder.rpc.proto.OHLC.toObject(message.ohlc[j], options);
+                                    object.ohlc[j] =
+                                        $root.com.upstox.marketdatafeeder.rpc.proto.OHLC.toObject(
+                                            message.ohlc[j],
+                                            options,
+                                        );
                             }
                             return object;
                         };
@@ -788,7 +1060,10 @@ $root.com = (function() {
                          * @returns {Object.<string,*>} JSON object
                          */
                         MarketOHLC.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            return this.constructor.toObject(
+                                this,
+                                $protobuf.util.toJSONOptions,
+                            );
                         };
 
                         /**
@@ -799,18 +1074,22 @@ $root.com = (function() {
                          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                          * @returns {string} The default type url
                          */
-                        MarketOHLC.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        MarketOHLC.getTypeUrl = function getTypeUrl(
+                            typeUrlPrefix,
+                        ) {
                             if (typeUrlPrefix === undefined) {
-                                typeUrlPrefix = "type.googleapis.com";
+                                typeUrlPrefix = 'type.googleapis.com';
                             }
-                            return typeUrlPrefix + "/com.upstox.marketdatafeeder.rpc.proto.MarketOHLC";
+                            return (
+                                typeUrlPrefix +
+                                '/com.upstox.marketdatafeeder.rpc.proto.MarketOHLC'
+                            );
                         };
 
                         return MarketOHLC;
                     })();
 
-                    proto.Quote = (function() {
-
+                    proto.Quote = (function () {
                         /**
                          * Properties of a Quote.
                          * @memberof com.upstox.marketdatafeeder.rpc.proto
@@ -833,7 +1112,11 @@ $root.com = (function() {
                          */
                         function Quote(properties) {
                             if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                for (
+                                    var keys = Object.keys(properties), i = 0;
+                                    i < keys.length;
+                                    ++i
+                                )
                                     if (properties[keys[i]] != null)
                                         this[keys[i]] = properties[keys[i]];
                         }
@@ -908,20 +1191,49 @@ $root.com = (function() {
                          * @returns {$protobuf.Writer} Writer
                          */
                         Quote.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.bq != null && Object.hasOwnProperty.call(message, "bq"))
-                                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.bq);
-                            if (message.bp != null && Object.hasOwnProperty.call(message, "bp"))
-                                writer.uint32(/* id 2, wireType 1 =*/17).double(message.bp);
-                            if (message.bno != null && Object.hasOwnProperty.call(message, "bno"))
-                                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.bno);
-                            if (message.aq != null && Object.hasOwnProperty.call(message, "aq"))
-                                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.aq);
-                            if (message.ap != null && Object.hasOwnProperty.call(message, "ap"))
-                                writer.uint32(/* id 5, wireType 1 =*/41).double(message.ap);
-                            if (message.ano != null && Object.hasOwnProperty.call(message, "ano"))
-                                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.ano);
+                            if (!writer) writer = $Writer.create();
+                            if (
+                                message.bq != null &&
+                                Object.hasOwnProperty.call(message, 'bq')
+                            )
+                                writer
+                                    .uint32(/* id 1, wireType 0 =*/ 8)
+                                    .int32(message.bq);
+                            if (
+                                message.bp != null &&
+                                Object.hasOwnProperty.call(message, 'bp')
+                            )
+                                writer
+                                    .uint32(/* id 2, wireType 1 =*/ 17)
+                                    .double(message.bp);
+                            if (
+                                message.bno != null &&
+                                Object.hasOwnProperty.call(message, 'bno')
+                            )
+                                writer
+                                    .uint32(/* id 3, wireType 0 =*/ 24)
+                                    .int32(message.bno);
+                            if (
+                                message.aq != null &&
+                                Object.hasOwnProperty.call(message, 'aq')
+                            )
+                                writer
+                                    .uint32(/* id 4, wireType 0 =*/ 32)
+                                    .int32(message.aq);
+                            if (
+                                message.ap != null &&
+                                Object.hasOwnProperty.call(message, 'ap')
+                            )
+                                writer
+                                    .uint32(/* id 5, wireType 1 =*/ 41)
+                                    .double(message.ap);
+                            if (
+                                message.ano != null &&
+                                Object.hasOwnProperty.call(message, 'ano')
+                            )
+                                writer
+                                    .uint32(/* id 6, wireType 0 =*/ 48)
+                                    .int32(message.ano);
                             return writer;
                         };
 
@@ -934,7 +1246,10 @@ $root.com = (function() {
                          * @param {$protobuf.Writer} [writer] Writer to encode to
                          * @returns {$protobuf.Writer} Writer
                          */
-                        Quote.encodeDelimited = function encodeDelimited(message, writer) {
+                        Quote.encodeDelimited = function encodeDelimited(
+                            message,
+                            writer,
+                        ) {
                             return this.encode(message, writer).ldelim();
                         };
 
@@ -952,39 +1267,43 @@ $root.com = (function() {
                         Quote.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.com.upstox.marketdatafeeder.rpc.proto.Quote();
+                            var end =
+                                    length === undefined
+                                        ? reader.len
+                                        : reader.pos + length,
+                                message =
+                                    new $root.com.upstox.marketdatafeeder.rpc.proto.Quote();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
-                                if (tag === error)
-                                    break;
+                                if (tag === error) break;
                                 switch (tag >>> 3) {
-                                case 1: {
+                                    case 1: {
                                         message.bq = reader.int32();
                                         break;
                                     }
-                                case 2: {
+                                    case 2: {
                                         message.bp = reader.double();
                                         break;
                                     }
-                                case 3: {
+                                    case 3: {
                                         message.bno = reader.int32();
                                         break;
                                     }
-                                case 4: {
+                                    case 4: {
                                         message.aq = reader.int32();
                                         break;
                                     }
-                                case 5: {
+                                    case 5: {
                                         message.ap = reader.double();
                                         break;
                                     }
-                                case 6: {
+                                    case 6: {
                                         message.ano = reader.int32();
                                         break;
                                     }
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
                                 }
                             }
                             return message;
@@ -1000,7 +1319,9 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Quote.decodeDelimited = function decodeDelimited(reader) {
+                        Quote.decodeDelimited = function decodeDelimited(
+                            reader,
+                        ) {
                             if (!(reader instanceof $Reader))
                                 reader = new $Reader(reader);
                             return this.decode(reader, reader.uint32());
@@ -1015,26 +1336,44 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         Quote.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.bq != null && message.hasOwnProperty("bq"))
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
+                            if (
+                                message.bq != null &&
+                                message.hasOwnProperty('bq')
+                            )
                                 if (!$util.isInteger(message.bq))
-                                    return "bq: integer expected";
-                            if (message.bp != null && message.hasOwnProperty("bp"))
-                                if (typeof message.bp !== "number")
-                                    return "bp: number expected";
-                            if (message.bno != null && message.hasOwnProperty("bno"))
+                                    return 'bq: integer expected';
+                            if (
+                                message.bp != null &&
+                                message.hasOwnProperty('bp')
+                            )
+                                if (typeof message.bp !== 'number')
+                                    return 'bp: number expected';
+                            if (
+                                message.bno != null &&
+                                message.hasOwnProperty('bno')
+                            )
                                 if (!$util.isInteger(message.bno))
-                                    return "bno: integer expected";
-                            if (message.aq != null && message.hasOwnProperty("aq"))
+                                    return 'bno: integer expected';
+                            if (
+                                message.aq != null &&
+                                message.hasOwnProperty('aq')
+                            )
                                 if (!$util.isInteger(message.aq))
-                                    return "aq: integer expected";
-                            if (message.ap != null && message.hasOwnProperty("ap"))
-                                if (typeof message.ap !== "number")
-                                    return "ap: number expected";
-                            if (message.ano != null && message.hasOwnProperty("ano"))
+                                    return 'aq: integer expected';
+                            if (
+                                message.ap != null &&
+                                message.hasOwnProperty('ap')
+                            )
+                                if (typeof message.ap !== 'number')
+                                    return 'ap: number expected';
+                            if (
+                                message.ano != null &&
+                                message.hasOwnProperty('ano')
+                            )
                                 if (!$util.isInteger(message.ano))
-                                    return "ano: integer expected";
+                                    return 'ano: integer expected';
                             return null;
                         };
 
@@ -1047,17 +1386,20 @@ $root.com = (function() {
                          * @returns {com.upstox.marketdatafeeder.rpc.proto.Quote} Quote
                          */
                         Quote.fromObject = function fromObject(object) {
-                            if (object instanceof $root.com.upstox.marketdatafeeder.rpc.proto.Quote)
+                            if (
+                                object instanceof
+                                $root.com.upstox.marketdatafeeder.rpc.proto
+                                    .Quote
+                            )
                                 return object;
-                            var message = new $root.com.upstox.marketdatafeeder.rpc.proto.Quote();
-                            if (object.bq != null)
-                                message.bq = object.bq | 0;
+                            var message =
+                                new $root.com.upstox.marketdatafeeder.rpc.proto.Quote();
+                            if (object.bq != null) message.bq = object.bq | 0;
                             if (object.bp != null)
                                 message.bp = Number(object.bp);
                             if (object.bno != null)
                                 message.bno = object.bno | 0;
-                            if (object.aq != null)
-                                message.aq = object.aq | 0;
+                            if (object.aq != null) message.aq = object.aq | 0;
                             if (object.ap != null)
                                 message.ap = Number(object.ap);
                             if (object.ano != null)
@@ -1075,8 +1417,7 @@ $root.com = (function() {
                          * @returns {Object.<string,*>} Plain object
                          */
                         Quote.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
+                            if (!options) options = {};
                             var object = {};
                             if (options.defaults) {
                                 object.bq = 0;
@@ -1086,17 +1427,41 @@ $root.com = (function() {
                                 object.ap = 0;
                                 object.ano = 0;
                             }
-                            if (message.bq != null && message.hasOwnProperty("bq"))
+                            if (
+                                message.bq != null &&
+                                message.hasOwnProperty('bq')
+                            )
                                 object.bq = message.bq;
-                            if (message.bp != null && message.hasOwnProperty("bp"))
-                                object.bp = options.json && !isFinite(message.bp) ? String(message.bp) : message.bp;
-                            if (message.bno != null && message.hasOwnProperty("bno"))
+                            if (
+                                message.bp != null &&
+                                message.hasOwnProperty('bp')
+                            )
+                                object.bp =
+                                    options.json && !isFinite(message.bp)
+                                        ? String(message.bp)
+                                        : message.bp;
+                            if (
+                                message.bno != null &&
+                                message.hasOwnProperty('bno')
+                            )
                                 object.bno = message.bno;
-                            if (message.aq != null && message.hasOwnProperty("aq"))
+                            if (
+                                message.aq != null &&
+                                message.hasOwnProperty('aq')
+                            )
                                 object.aq = message.aq;
-                            if (message.ap != null && message.hasOwnProperty("ap"))
-                                object.ap = options.json && !isFinite(message.ap) ? String(message.ap) : message.ap;
-                            if (message.ano != null && message.hasOwnProperty("ano"))
+                            if (
+                                message.ap != null &&
+                                message.hasOwnProperty('ap')
+                            )
+                                object.ap =
+                                    options.json && !isFinite(message.ap)
+                                        ? String(message.ap)
+                                        : message.ap;
+                            if (
+                                message.ano != null &&
+                                message.hasOwnProperty('ano')
+                            )
                                 object.ano = message.ano;
                             return object;
                         };
@@ -1109,7 +1474,10 @@ $root.com = (function() {
                          * @returns {Object.<string,*>} JSON object
                          */
                         Quote.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            return this.constructor.toObject(
+                                this,
+                                $protobuf.util.toJSONOptions,
+                            );
                         };
 
                         /**
@@ -1122,16 +1490,18 @@ $root.com = (function() {
                          */
                         Quote.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
                             if (typeUrlPrefix === undefined) {
-                                typeUrlPrefix = "type.googleapis.com";
+                                typeUrlPrefix = 'type.googleapis.com';
                             }
-                            return typeUrlPrefix + "/com.upstox.marketdatafeeder.rpc.proto.Quote";
+                            return (
+                                typeUrlPrefix +
+                                '/com.upstox.marketdatafeeder.rpc.proto.Quote'
+                            );
                         };
 
                         return Quote;
                     })();
 
-                    proto.OptionGreeks = (function() {
-
+                    proto.OptionGreeks = (function () {
                         /**
                          * Properties of an OptionGreeks.
                          * @memberof com.upstox.marketdatafeeder.rpc.proto
@@ -1156,7 +1526,11 @@ $root.com = (function() {
                          */
                         function OptionGreeks(properties) {
                             if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                for (
+                                    var keys = Object.keys(properties), i = 0;
+                                    i < keys.length;
+                                    ++i
+                                )
                                     if (properties[keys[i]] != null)
                                         this[keys[i]] = properties[keys[i]];
                         }
@@ -1247,24 +1621,63 @@ $root.com = (function() {
                          * @returns {$protobuf.Writer} Writer
                          */
                         OptionGreeks.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.op != null && Object.hasOwnProperty.call(message, "op"))
-                                writer.uint32(/* id 1, wireType 1 =*/9).double(message.op);
-                            if (message.up != null && Object.hasOwnProperty.call(message, "up"))
-                                writer.uint32(/* id 2, wireType 1 =*/17).double(message.up);
-                            if (message.iv != null && Object.hasOwnProperty.call(message, "iv"))
-                                writer.uint32(/* id 3, wireType 1 =*/25).double(message.iv);
-                            if (message.delta != null && Object.hasOwnProperty.call(message, "delta"))
-                                writer.uint32(/* id 4, wireType 1 =*/33).double(message.delta);
-                            if (message.theta != null && Object.hasOwnProperty.call(message, "theta"))
-                                writer.uint32(/* id 5, wireType 1 =*/41).double(message.theta);
-                            if (message.gamma != null && Object.hasOwnProperty.call(message, "gamma"))
-                                writer.uint32(/* id 6, wireType 1 =*/49).double(message.gamma);
-                            if (message.vega != null && Object.hasOwnProperty.call(message, "vega"))
-                                writer.uint32(/* id 7, wireType 1 =*/57).double(message.vega);
-                            if (message.rho != null && Object.hasOwnProperty.call(message, "rho"))
-                                writer.uint32(/* id 8, wireType 1 =*/65).double(message.rho);
+                            if (!writer) writer = $Writer.create();
+                            if (
+                                message.op != null &&
+                                Object.hasOwnProperty.call(message, 'op')
+                            )
+                                writer
+                                    .uint32(/* id 1, wireType 1 =*/ 9)
+                                    .double(message.op);
+                            if (
+                                message.up != null &&
+                                Object.hasOwnProperty.call(message, 'up')
+                            )
+                                writer
+                                    .uint32(/* id 2, wireType 1 =*/ 17)
+                                    .double(message.up);
+                            if (
+                                message.iv != null &&
+                                Object.hasOwnProperty.call(message, 'iv')
+                            )
+                                writer
+                                    .uint32(/* id 3, wireType 1 =*/ 25)
+                                    .double(message.iv);
+                            if (
+                                message.delta != null &&
+                                Object.hasOwnProperty.call(message, 'delta')
+                            )
+                                writer
+                                    .uint32(/* id 4, wireType 1 =*/ 33)
+                                    .double(message.delta);
+                            if (
+                                message.theta != null &&
+                                Object.hasOwnProperty.call(message, 'theta')
+                            )
+                                writer
+                                    .uint32(/* id 5, wireType 1 =*/ 41)
+                                    .double(message.theta);
+                            if (
+                                message.gamma != null &&
+                                Object.hasOwnProperty.call(message, 'gamma')
+                            )
+                                writer
+                                    .uint32(/* id 6, wireType 1 =*/ 49)
+                                    .double(message.gamma);
+                            if (
+                                message.vega != null &&
+                                Object.hasOwnProperty.call(message, 'vega')
+                            )
+                                writer
+                                    .uint32(/* id 7, wireType 1 =*/ 57)
+                                    .double(message.vega);
+                            if (
+                                message.rho != null &&
+                                Object.hasOwnProperty.call(message, 'rho')
+                            )
+                                writer
+                                    .uint32(/* id 8, wireType 1 =*/ 65)
+                                    .double(message.rho);
                             return writer;
                         };
 
@@ -1277,7 +1690,10 @@ $root.com = (function() {
                          * @param {$protobuf.Writer} [writer] Writer to encode to
                          * @returns {$protobuf.Writer} Writer
                          */
-                        OptionGreeks.encodeDelimited = function encodeDelimited(message, writer) {
+                        OptionGreeks.encodeDelimited = function encodeDelimited(
+                            message,
+                            writer,
+                        ) {
                             return this.encode(message, writer).ldelim();
                         };
 
@@ -1292,50 +1708,58 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        OptionGreeks.decode = function decode(reader, length, error) {
+                        OptionGreeks.decode = function decode(
+                            reader,
+                            length,
+                            error,
+                        ) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks();
+                            var end =
+                                    length === undefined
+                                        ? reader.len
+                                        : reader.pos + length,
+                                message =
+                                    new $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
-                                if (tag === error)
-                                    break;
+                                if (tag === error) break;
                                 switch (tag >>> 3) {
-                                case 1: {
+                                    case 1: {
                                         message.op = reader.double();
                                         break;
                                     }
-                                case 2: {
+                                    case 2: {
                                         message.up = reader.double();
                                         break;
                                     }
-                                case 3: {
+                                    case 3: {
                                         message.iv = reader.double();
                                         break;
                                     }
-                                case 4: {
+                                    case 4: {
                                         message.delta = reader.double();
                                         break;
                                     }
-                                case 5: {
+                                    case 5: {
                                         message.theta = reader.double();
                                         break;
                                     }
-                                case 6: {
+                                    case 6: {
                                         message.gamma = reader.double();
                                         break;
                                     }
-                                case 7: {
+                                    case 7: {
                                         message.vega = reader.double();
                                         break;
                                     }
-                                case 8: {
+                                    case 8: {
                                         message.rho = reader.double();
                                         break;
                                     }
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
                                 }
                             }
                             return message;
@@ -1351,7 +1775,9 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        OptionGreeks.decodeDelimited = function decodeDelimited(reader) {
+                        OptionGreeks.decodeDelimited = function decodeDelimited(
+                            reader,
+                        ) {
                             if (!(reader instanceof $Reader))
                                 reader = new $Reader(reader);
                             return this.decode(reader, reader.uint32());
@@ -1366,32 +1792,56 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         OptionGreeks.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.op != null && message.hasOwnProperty("op"))
-                                if (typeof message.op !== "number")
-                                    return "op: number expected";
-                            if (message.up != null && message.hasOwnProperty("up"))
-                                if (typeof message.up !== "number")
-                                    return "up: number expected";
-                            if (message.iv != null && message.hasOwnProperty("iv"))
-                                if (typeof message.iv !== "number")
-                                    return "iv: number expected";
-                            if (message.delta != null && message.hasOwnProperty("delta"))
-                                if (typeof message.delta !== "number")
-                                    return "delta: number expected";
-                            if (message.theta != null && message.hasOwnProperty("theta"))
-                                if (typeof message.theta !== "number")
-                                    return "theta: number expected";
-                            if (message.gamma != null && message.hasOwnProperty("gamma"))
-                                if (typeof message.gamma !== "number")
-                                    return "gamma: number expected";
-                            if (message.vega != null && message.hasOwnProperty("vega"))
-                                if (typeof message.vega !== "number")
-                                    return "vega: number expected";
-                            if (message.rho != null && message.hasOwnProperty("rho"))
-                                if (typeof message.rho !== "number")
-                                    return "rho: number expected";
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
+                            if (
+                                message.op != null &&
+                                message.hasOwnProperty('op')
+                            )
+                                if (typeof message.op !== 'number')
+                                    return 'op: number expected';
+                            if (
+                                message.up != null &&
+                                message.hasOwnProperty('up')
+                            )
+                                if (typeof message.up !== 'number')
+                                    return 'up: number expected';
+                            if (
+                                message.iv != null &&
+                                message.hasOwnProperty('iv')
+                            )
+                                if (typeof message.iv !== 'number')
+                                    return 'iv: number expected';
+                            if (
+                                message.delta != null &&
+                                message.hasOwnProperty('delta')
+                            )
+                                if (typeof message.delta !== 'number')
+                                    return 'delta: number expected';
+                            if (
+                                message.theta != null &&
+                                message.hasOwnProperty('theta')
+                            )
+                                if (typeof message.theta !== 'number')
+                                    return 'theta: number expected';
+                            if (
+                                message.gamma != null &&
+                                message.hasOwnProperty('gamma')
+                            )
+                                if (typeof message.gamma !== 'number')
+                                    return 'gamma: number expected';
+                            if (
+                                message.vega != null &&
+                                message.hasOwnProperty('vega')
+                            )
+                                if (typeof message.vega !== 'number')
+                                    return 'vega: number expected';
+                            if (
+                                message.rho != null &&
+                                message.hasOwnProperty('rho')
+                            )
+                                if (typeof message.rho !== 'number')
+                                    return 'rho: number expected';
                             return null;
                         };
 
@@ -1404,9 +1854,14 @@ $root.com = (function() {
                          * @returns {com.upstox.marketdatafeeder.rpc.proto.OptionGreeks} OptionGreeks
                          */
                         OptionGreeks.fromObject = function fromObject(object) {
-                            if (object instanceof $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks)
+                            if (
+                                object instanceof
+                                $root.com.upstox.marketdatafeeder.rpc.proto
+                                    .OptionGreeks
+                            )
                                 return object;
-                            var message = new $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks();
+                            var message =
+                                new $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks();
                             if (object.op != null)
                                 message.op = Number(object.op);
                             if (object.up != null)
@@ -1435,9 +1890,11 @@ $root.com = (function() {
                          * @param {$protobuf.IConversionOptions} [options] Conversion options
                          * @returns {Object.<string,*>} Plain object
                          */
-                        OptionGreeks.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
+                        OptionGreeks.toObject = function toObject(
+                            message,
+                            options,
+                        ) {
+                            if (!options) options = {};
                             var object = {};
                             if (options.defaults) {
                                 object.op = 0;
@@ -1449,22 +1906,70 @@ $root.com = (function() {
                                 object.vega = 0;
                                 object.rho = 0;
                             }
-                            if (message.op != null && message.hasOwnProperty("op"))
-                                object.op = options.json && !isFinite(message.op) ? String(message.op) : message.op;
-                            if (message.up != null && message.hasOwnProperty("up"))
-                                object.up = options.json && !isFinite(message.up) ? String(message.up) : message.up;
-                            if (message.iv != null && message.hasOwnProperty("iv"))
-                                object.iv = options.json && !isFinite(message.iv) ? String(message.iv) : message.iv;
-                            if (message.delta != null && message.hasOwnProperty("delta"))
-                                object.delta = options.json && !isFinite(message.delta) ? String(message.delta) : message.delta;
-                            if (message.theta != null && message.hasOwnProperty("theta"))
-                                object.theta = options.json && !isFinite(message.theta) ? String(message.theta) : message.theta;
-                            if (message.gamma != null && message.hasOwnProperty("gamma"))
-                                object.gamma = options.json && !isFinite(message.gamma) ? String(message.gamma) : message.gamma;
-                            if (message.vega != null && message.hasOwnProperty("vega"))
-                                object.vega = options.json && !isFinite(message.vega) ? String(message.vega) : message.vega;
-                            if (message.rho != null && message.hasOwnProperty("rho"))
-                                object.rho = options.json && !isFinite(message.rho) ? String(message.rho) : message.rho;
+                            if (
+                                message.op != null &&
+                                message.hasOwnProperty('op')
+                            )
+                                object.op =
+                                    options.json && !isFinite(message.op)
+                                        ? String(message.op)
+                                        : message.op;
+                            if (
+                                message.up != null &&
+                                message.hasOwnProperty('up')
+                            )
+                                object.up =
+                                    options.json && !isFinite(message.up)
+                                        ? String(message.up)
+                                        : message.up;
+                            if (
+                                message.iv != null &&
+                                message.hasOwnProperty('iv')
+                            )
+                                object.iv =
+                                    options.json && !isFinite(message.iv)
+                                        ? String(message.iv)
+                                        : message.iv;
+                            if (
+                                message.delta != null &&
+                                message.hasOwnProperty('delta')
+                            )
+                                object.delta =
+                                    options.json && !isFinite(message.delta)
+                                        ? String(message.delta)
+                                        : message.delta;
+                            if (
+                                message.theta != null &&
+                                message.hasOwnProperty('theta')
+                            )
+                                object.theta =
+                                    options.json && !isFinite(message.theta)
+                                        ? String(message.theta)
+                                        : message.theta;
+                            if (
+                                message.gamma != null &&
+                                message.hasOwnProperty('gamma')
+                            )
+                                object.gamma =
+                                    options.json && !isFinite(message.gamma)
+                                        ? String(message.gamma)
+                                        : message.gamma;
+                            if (
+                                message.vega != null &&
+                                message.hasOwnProperty('vega')
+                            )
+                                object.vega =
+                                    options.json && !isFinite(message.vega)
+                                        ? String(message.vega)
+                                        : message.vega;
+                            if (
+                                message.rho != null &&
+                                message.hasOwnProperty('rho')
+                            )
+                                object.rho =
+                                    options.json && !isFinite(message.rho)
+                                        ? String(message.rho)
+                                        : message.rho;
                             return object;
                         };
 
@@ -1476,7 +1981,10 @@ $root.com = (function() {
                          * @returns {Object.<string,*>} JSON object
                          */
                         OptionGreeks.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            return this.constructor.toObject(
+                                this,
+                                $protobuf.util.toJSONOptions,
+                            );
                         };
 
                         /**
@@ -1487,18 +1995,22 @@ $root.com = (function() {
                          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                          * @returns {string} The default type url
                          */
-                        OptionGreeks.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        OptionGreeks.getTypeUrl = function getTypeUrl(
+                            typeUrlPrefix,
+                        ) {
                             if (typeUrlPrefix === undefined) {
-                                typeUrlPrefix = "type.googleapis.com";
+                                typeUrlPrefix = 'type.googleapis.com';
                             }
-                            return typeUrlPrefix + "/com.upstox.marketdatafeeder.rpc.proto.OptionGreeks";
+                            return (
+                                typeUrlPrefix +
+                                '/com.upstox.marketdatafeeder.rpc.proto.OptionGreeks'
+                            );
                         };
 
                         return OptionGreeks;
                     })();
 
-                    proto.ExtendedFeedDetails = (function() {
-
+                    proto.ExtendedFeedDetails = (function () {
                         /**
                          * Properties of an ExtendedFeedDetails.
                          * @memberof com.upstox.marketdatafeeder.rpc.proto
@@ -1537,7 +2049,11 @@ $root.com = (function() {
                          */
                         function ExtendedFeedDetails(properties) {
                             if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                for (
+                                    var keys = Object.keys(properties), i = 0;
+                                    i < keys.length;
+                                    ++i
+                                )
                                     if (properties[keys[i]] != null)
                                         this[keys[i]] = properties[keys[i]];
                         }
@@ -1564,7 +2080,9 @@ $root.com = (function() {
                          * @memberof com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails
                          * @instance
                          */
-                        ExtendedFeedDetails.prototype.vtt = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+                        ExtendedFeedDetails.prototype.vtt = $util.Long
+                            ? $util.Long.fromBits(0, 0, false)
+                            : 0;
 
                         /**
                          * ExtendedFeedDetails oi.
@@ -1668,7 +2186,9 @@ $root.com = (function() {
                          * @memberof com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails
                          * @instance
                          */
-                        ExtendedFeedDetails.prototype.mbpBuy = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+                        ExtendedFeedDetails.prototype.mbpBuy = $util.Long
+                            ? $util.Long.fromBits(0, 0, false)
+                            : 0;
 
                         /**
                          * ExtendedFeedDetails mbpSell.
@@ -1676,7 +2196,9 @@ $root.com = (function() {
                          * @memberof com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails
                          * @instance
                          */
-                        ExtendedFeedDetails.prototype.mbpSell = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+                        ExtendedFeedDetails.prototype.mbpSell = $util.Long
+                            ? $util.Long.fromBits(0, 0, false)
+                            : 0;
 
                         /**
                          * ExtendedFeedDetails tv.
@@ -1684,7 +2206,9 @@ $root.com = (function() {
                          * @memberof com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails
                          * @instance
                          */
-                        ExtendedFeedDetails.prototype.tv = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+                        ExtendedFeedDetails.prototype.tv = $util.Long
+                            ? $util.Long.fromBits(0, 0, false)
+                            : 0;
 
                         /**
                          * ExtendedFeedDetails dhoi.
@@ -1726,7 +2250,9 @@ $root.com = (function() {
                          * @param {com.upstox.marketdatafeeder.rpc.proto.IExtendedFeedDetails=} [properties] Properties to set
                          * @returns {com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails} ExtendedFeedDetails instance
                          */
-                        ExtendedFeedDetails.create = function create(properties) {
+                        ExtendedFeedDetails.create = function create(
+                            properties,
+                        ) {
                             return new ExtendedFeedDetails(properties);
                         };
 
@@ -1739,53 +2265,165 @@ $root.com = (function() {
                          * @param {$protobuf.Writer} [writer] Writer to encode to
                          * @returns {$protobuf.Writer} Writer
                          */
-                        ExtendedFeedDetails.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.atp != null && Object.hasOwnProperty.call(message, "atp"))
-                                writer.uint32(/* id 1, wireType 1 =*/9).double(message.atp);
-                            if (message.cp != null && Object.hasOwnProperty.call(message, "cp"))
-                                writer.uint32(/* id 2, wireType 1 =*/17).double(message.cp);
-                            if (message.vtt != null && Object.hasOwnProperty.call(message, "vtt"))
-                                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.vtt);
-                            if (message.oi != null && Object.hasOwnProperty.call(message, "oi"))
-                                writer.uint32(/* id 4, wireType 1 =*/33).double(message.oi);
-                            if (message.changeOi != null && Object.hasOwnProperty.call(message, "changeOi"))
-                                writer.uint32(/* id 5, wireType 1 =*/41).double(message.changeOi);
-                            if (message.lastClose != null && Object.hasOwnProperty.call(message, "lastClose"))
-                                writer.uint32(/* id 6, wireType 1 =*/49).double(message.lastClose);
-                            if (message.tbq != null && Object.hasOwnProperty.call(message, "tbq"))
-                                writer.uint32(/* id 7, wireType 1 =*/57).double(message.tbq);
-                            if (message.tsq != null && Object.hasOwnProperty.call(message, "tsq"))
-                                writer.uint32(/* id 8, wireType 1 =*/65).double(message.tsq);
-                            if (message.close != null && Object.hasOwnProperty.call(message, "close"))
-                                writer.uint32(/* id 9, wireType 1 =*/73).double(message.close);
-                            if (message.lc != null && Object.hasOwnProperty.call(message, "lc"))
-                                writer.uint32(/* id 10, wireType 1 =*/81).double(message.lc);
-                            if (message.uc != null && Object.hasOwnProperty.call(message, "uc"))
-                                writer.uint32(/* id 11, wireType 1 =*/89).double(message.uc);
-                            if (message.yh != null && Object.hasOwnProperty.call(message, "yh"))
-                                writer.uint32(/* id 12, wireType 1 =*/97).double(message.yh);
-                            if (message.yl != null && Object.hasOwnProperty.call(message, "yl"))
-                                writer.uint32(/* id 13, wireType 1 =*/105).double(message.yl);
-                            if (message.fp != null && Object.hasOwnProperty.call(message, "fp"))
-                                writer.uint32(/* id 14, wireType 1 =*/113).double(message.fp);
-                            if (message.fv != null && Object.hasOwnProperty.call(message, "fv"))
-                                writer.uint32(/* id 15, wireType 0 =*/120).int32(message.fv);
-                            if (message.mbpBuy != null && Object.hasOwnProperty.call(message, "mbpBuy"))
-                                writer.uint32(/* id 16, wireType 0 =*/128).int64(message.mbpBuy);
-                            if (message.mbpSell != null && Object.hasOwnProperty.call(message, "mbpSell"))
-                                writer.uint32(/* id 17, wireType 0 =*/136).int64(message.mbpSell);
-                            if (message.tv != null && Object.hasOwnProperty.call(message, "tv"))
-                                writer.uint32(/* id 18, wireType 0 =*/144).int64(message.tv);
-                            if (message.dhoi != null && Object.hasOwnProperty.call(message, "dhoi"))
-                                writer.uint32(/* id 19, wireType 1 =*/153).double(message.dhoi);
-                            if (message.dloi != null && Object.hasOwnProperty.call(message, "dloi"))
-                                writer.uint32(/* id 20, wireType 1 =*/161).double(message.dloi);
-                            if (message.sp != null && Object.hasOwnProperty.call(message, "sp"))
-                                writer.uint32(/* id 21, wireType 1 =*/169).double(message.sp);
-                            if (message.poi != null && Object.hasOwnProperty.call(message, "poi"))
-                                writer.uint32(/* id 22, wireType 1 =*/177).double(message.poi);
+                        ExtendedFeedDetails.encode = function encode(
+                            message,
+                            writer,
+                        ) {
+                            if (!writer) writer = $Writer.create();
+                            if (
+                                message.atp != null &&
+                                Object.hasOwnProperty.call(message, 'atp')
+                            )
+                                writer
+                                    .uint32(/* id 1, wireType 1 =*/ 9)
+                                    .double(message.atp);
+                            if (
+                                message.cp != null &&
+                                Object.hasOwnProperty.call(message, 'cp')
+                            )
+                                writer
+                                    .uint32(/* id 2, wireType 1 =*/ 17)
+                                    .double(message.cp);
+                            if (
+                                message.vtt != null &&
+                                Object.hasOwnProperty.call(message, 'vtt')
+                            )
+                                writer
+                                    .uint32(/* id 3, wireType 0 =*/ 24)
+                                    .int64(message.vtt);
+                            if (
+                                message.oi != null &&
+                                Object.hasOwnProperty.call(message, 'oi')
+                            )
+                                writer
+                                    .uint32(/* id 4, wireType 1 =*/ 33)
+                                    .double(message.oi);
+                            if (
+                                message.changeOi != null &&
+                                Object.hasOwnProperty.call(message, 'changeOi')
+                            )
+                                writer
+                                    .uint32(/* id 5, wireType 1 =*/ 41)
+                                    .double(message.changeOi);
+                            if (
+                                message.lastClose != null &&
+                                Object.hasOwnProperty.call(message, 'lastClose')
+                            )
+                                writer
+                                    .uint32(/* id 6, wireType 1 =*/ 49)
+                                    .double(message.lastClose);
+                            if (
+                                message.tbq != null &&
+                                Object.hasOwnProperty.call(message, 'tbq')
+                            )
+                                writer
+                                    .uint32(/* id 7, wireType 1 =*/ 57)
+                                    .double(message.tbq);
+                            if (
+                                message.tsq != null &&
+                                Object.hasOwnProperty.call(message, 'tsq')
+                            )
+                                writer
+                                    .uint32(/* id 8, wireType 1 =*/ 65)
+                                    .double(message.tsq);
+                            if (
+                                message.close != null &&
+                                Object.hasOwnProperty.call(message, 'close')
+                            )
+                                writer
+                                    .uint32(/* id 9, wireType 1 =*/ 73)
+                                    .double(message.close);
+                            if (
+                                message.lc != null &&
+                                Object.hasOwnProperty.call(message, 'lc')
+                            )
+                                writer
+                                    .uint32(/* id 10, wireType 1 =*/ 81)
+                                    .double(message.lc);
+                            if (
+                                message.uc != null &&
+                                Object.hasOwnProperty.call(message, 'uc')
+                            )
+                                writer
+                                    .uint32(/* id 11, wireType 1 =*/ 89)
+                                    .double(message.uc);
+                            if (
+                                message.yh != null &&
+                                Object.hasOwnProperty.call(message, 'yh')
+                            )
+                                writer
+                                    .uint32(/* id 12, wireType 1 =*/ 97)
+                                    .double(message.yh);
+                            if (
+                                message.yl != null &&
+                                Object.hasOwnProperty.call(message, 'yl')
+                            )
+                                writer
+                                    .uint32(/* id 13, wireType 1 =*/ 105)
+                                    .double(message.yl);
+                            if (
+                                message.fp != null &&
+                                Object.hasOwnProperty.call(message, 'fp')
+                            )
+                                writer
+                                    .uint32(/* id 14, wireType 1 =*/ 113)
+                                    .double(message.fp);
+                            if (
+                                message.fv != null &&
+                                Object.hasOwnProperty.call(message, 'fv')
+                            )
+                                writer
+                                    .uint32(/* id 15, wireType 0 =*/ 120)
+                                    .int32(message.fv);
+                            if (
+                                message.mbpBuy != null &&
+                                Object.hasOwnProperty.call(message, 'mbpBuy')
+                            )
+                                writer
+                                    .uint32(/* id 16, wireType 0 =*/ 128)
+                                    .int64(message.mbpBuy);
+                            if (
+                                message.mbpSell != null &&
+                                Object.hasOwnProperty.call(message, 'mbpSell')
+                            )
+                                writer
+                                    .uint32(/* id 17, wireType 0 =*/ 136)
+                                    .int64(message.mbpSell);
+                            if (
+                                message.tv != null &&
+                                Object.hasOwnProperty.call(message, 'tv')
+                            )
+                                writer
+                                    .uint32(/* id 18, wireType 0 =*/ 144)
+                                    .int64(message.tv);
+                            if (
+                                message.dhoi != null &&
+                                Object.hasOwnProperty.call(message, 'dhoi')
+                            )
+                                writer
+                                    .uint32(/* id 19, wireType 1 =*/ 153)
+                                    .double(message.dhoi);
+                            if (
+                                message.dloi != null &&
+                                Object.hasOwnProperty.call(message, 'dloi')
+                            )
+                                writer
+                                    .uint32(/* id 20, wireType 1 =*/ 161)
+                                    .double(message.dloi);
+                            if (
+                                message.sp != null &&
+                                Object.hasOwnProperty.call(message, 'sp')
+                            )
+                                writer
+                                    .uint32(/* id 21, wireType 1 =*/ 169)
+                                    .double(message.sp);
+                            if (
+                                message.poi != null &&
+                                Object.hasOwnProperty.call(message, 'poi')
+                            )
+                                writer
+                                    .uint32(/* id 22, wireType 1 =*/ 177)
+                                    .double(message.poi);
                             return writer;
                         };
 
@@ -1798,9 +2436,10 @@ $root.com = (function() {
                          * @param {$protobuf.Writer} [writer] Writer to encode to
                          * @returns {$protobuf.Writer} Writer
                          */
-                        ExtendedFeedDetails.encodeDelimited = function encodeDelimited(message, writer) {
-                            return this.encode(message, writer).ldelim();
-                        };
+                        ExtendedFeedDetails.encodeDelimited =
+                            function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
 
                         /**
                          * Decodes an ExtendedFeedDetails message from the specified reader or buffer.
@@ -1813,106 +2452,114 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ExtendedFeedDetails.decode = function decode(reader, length, error) {
+                        ExtendedFeedDetails.decode = function decode(
+                            reader,
+                            length,
+                            error,
+                        ) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails();
+                            var end =
+                                    length === undefined
+                                        ? reader.len
+                                        : reader.pos + length,
+                                message =
+                                    new $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
-                                if (tag === error)
-                                    break;
+                                if (tag === error) break;
                                 switch (tag >>> 3) {
-                                case 1: {
+                                    case 1: {
                                         message.atp = reader.double();
                                         break;
                                     }
-                                case 2: {
+                                    case 2: {
                                         message.cp = reader.double();
                                         break;
                                     }
-                                case 3: {
+                                    case 3: {
                                         message.vtt = reader.int64();
                                         break;
                                     }
-                                case 4: {
+                                    case 4: {
                                         message.oi = reader.double();
                                         break;
                                     }
-                                case 5: {
+                                    case 5: {
                                         message.changeOi = reader.double();
                                         break;
                                     }
-                                case 6: {
+                                    case 6: {
                                         message.lastClose = reader.double();
                                         break;
                                     }
-                                case 7: {
+                                    case 7: {
                                         message.tbq = reader.double();
                                         break;
                                     }
-                                case 8: {
+                                    case 8: {
                                         message.tsq = reader.double();
                                         break;
                                     }
-                                case 9: {
+                                    case 9: {
                                         message.close = reader.double();
                                         break;
                                     }
-                                case 10: {
+                                    case 10: {
                                         message.lc = reader.double();
                                         break;
                                     }
-                                case 11: {
+                                    case 11: {
                                         message.uc = reader.double();
                                         break;
                                     }
-                                case 12: {
+                                    case 12: {
                                         message.yh = reader.double();
                                         break;
                                     }
-                                case 13: {
+                                    case 13: {
                                         message.yl = reader.double();
                                         break;
                                     }
-                                case 14: {
+                                    case 14: {
                                         message.fp = reader.double();
                                         break;
                                     }
-                                case 15: {
+                                    case 15: {
                                         message.fv = reader.int32();
                                         break;
                                     }
-                                case 16: {
+                                    case 16: {
                                         message.mbpBuy = reader.int64();
                                         break;
                                     }
-                                case 17: {
+                                    case 17: {
                                         message.mbpSell = reader.int64();
                                         break;
                                     }
-                                case 18: {
+                                    case 18: {
                                         message.tv = reader.int64();
                                         break;
                                     }
-                                case 19: {
+                                    case 19: {
                                         message.dhoi = reader.double();
                                         break;
                                     }
-                                case 20: {
+                                    case 20: {
                                         message.dloi = reader.double();
                                         break;
                                     }
-                                case 21: {
+                                    case 21: {
                                         message.sp = reader.double();
                                         break;
                                     }
-                                case 22: {
+                                    case 22: {
                                         message.poi = reader.double();
                                         break;
                                     }
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
                                 }
                             }
                             return message;
@@ -1928,11 +2575,12 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        ExtendedFeedDetails.decodeDelimited = function decodeDelimited(reader) {
-                            if (!(reader instanceof $Reader))
-                                reader = new $Reader(reader);
-                            return this.decode(reader, reader.uint32());
-                        };
+                        ExtendedFeedDetails.decodeDelimited =
+                            function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
 
                         /**
                          * Verifies an ExtendedFeedDetails message.
@@ -1943,74 +2591,168 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         ExtendedFeedDetails.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.atp != null && message.hasOwnProperty("atp"))
-                                if (typeof message.atp !== "number")
-                                    return "atp: number expected";
-                            if (message.cp != null && message.hasOwnProperty("cp"))
-                                if (typeof message.cp !== "number")
-                                    return "cp: number expected";
-                            if (message.vtt != null && message.hasOwnProperty("vtt"))
-                                if (!$util.isInteger(message.vtt) && !(message.vtt && $util.isInteger(message.vtt.low) && $util.isInteger(message.vtt.high)))
-                                    return "vtt: integer|Long expected";
-                            if (message.oi != null && message.hasOwnProperty("oi"))
-                                if (typeof message.oi !== "number")
-                                    return "oi: number expected";
-                            if (message.changeOi != null && message.hasOwnProperty("changeOi"))
-                                if (typeof message.changeOi !== "number")
-                                    return "changeOi: number expected";
-                            if (message.lastClose != null && message.hasOwnProperty("lastClose"))
-                                if (typeof message.lastClose !== "number")
-                                    return "lastClose: number expected";
-                            if (message.tbq != null && message.hasOwnProperty("tbq"))
-                                if (typeof message.tbq !== "number")
-                                    return "tbq: number expected";
-                            if (message.tsq != null && message.hasOwnProperty("tsq"))
-                                if (typeof message.tsq !== "number")
-                                    return "tsq: number expected";
-                            if (message.close != null && message.hasOwnProperty("close"))
-                                if (typeof message.close !== "number")
-                                    return "close: number expected";
-                            if (message.lc != null && message.hasOwnProperty("lc"))
-                                if (typeof message.lc !== "number")
-                                    return "lc: number expected";
-                            if (message.uc != null && message.hasOwnProperty("uc"))
-                                if (typeof message.uc !== "number")
-                                    return "uc: number expected";
-                            if (message.yh != null && message.hasOwnProperty("yh"))
-                                if (typeof message.yh !== "number")
-                                    return "yh: number expected";
-                            if (message.yl != null && message.hasOwnProperty("yl"))
-                                if (typeof message.yl !== "number")
-                                    return "yl: number expected";
-                            if (message.fp != null && message.hasOwnProperty("fp"))
-                                if (typeof message.fp !== "number")
-                                    return "fp: number expected";
-                            if (message.fv != null && message.hasOwnProperty("fv"))
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
+                            if (
+                                message.atp != null &&
+                                message.hasOwnProperty('atp')
+                            )
+                                if (typeof message.atp !== 'number')
+                                    return 'atp: number expected';
+                            if (
+                                message.cp != null &&
+                                message.hasOwnProperty('cp')
+                            )
+                                if (typeof message.cp !== 'number')
+                                    return 'cp: number expected';
+                            if (
+                                message.vtt != null &&
+                                message.hasOwnProperty('vtt')
+                            )
+                                if (
+                                    !$util.isInteger(message.vtt) &&
+                                    !(
+                                        message.vtt &&
+                                        $util.isInteger(message.vtt.low) &&
+                                        $util.isInteger(message.vtt.high)
+                                    )
+                                )
+                                    return 'vtt: integer|Long expected';
+                            if (
+                                message.oi != null &&
+                                message.hasOwnProperty('oi')
+                            )
+                                if (typeof message.oi !== 'number')
+                                    return 'oi: number expected';
+                            if (
+                                message.changeOi != null &&
+                                message.hasOwnProperty('changeOi')
+                            )
+                                if (typeof message.changeOi !== 'number')
+                                    return 'changeOi: number expected';
+                            if (
+                                message.lastClose != null &&
+                                message.hasOwnProperty('lastClose')
+                            )
+                                if (typeof message.lastClose !== 'number')
+                                    return 'lastClose: number expected';
+                            if (
+                                message.tbq != null &&
+                                message.hasOwnProperty('tbq')
+                            )
+                                if (typeof message.tbq !== 'number')
+                                    return 'tbq: number expected';
+                            if (
+                                message.tsq != null &&
+                                message.hasOwnProperty('tsq')
+                            )
+                                if (typeof message.tsq !== 'number')
+                                    return 'tsq: number expected';
+                            if (
+                                message.close != null &&
+                                message.hasOwnProperty('close')
+                            )
+                                if (typeof message.close !== 'number')
+                                    return 'close: number expected';
+                            if (
+                                message.lc != null &&
+                                message.hasOwnProperty('lc')
+                            )
+                                if (typeof message.lc !== 'number')
+                                    return 'lc: number expected';
+                            if (
+                                message.uc != null &&
+                                message.hasOwnProperty('uc')
+                            )
+                                if (typeof message.uc !== 'number')
+                                    return 'uc: number expected';
+                            if (
+                                message.yh != null &&
+                                message.hasOwnProperty('yh')
+                            )
+                                if (typeof message.yh !== 'number')
+                                    return 'yh: number expected';
+                            if (
+                                message.yl != null &&
+                                message.hasOwnProperty('yl')
+                            )
+                                if (typeof message.yl !== 'number')
+                                    return 'yl: number expected';
+                            if (
+                                message.fp != null &&
+                                message.hasOwnProperty('fp')
+                            )
+                                if (typeof message.fp !== 'number')
+                                    return 'fp: number expected';
+                            if (
+                                message.fv != null &&
+                                message.hasOwnProperty('fv')
+                            )
                                 if (!$util.isInteger(message.fv))
-                                    return "fv: integer expected";
-                            if (message.mbpBuy != null && message.hasOwnProperty("mbpBuy"))
-                                if (!$util.isInteger(message.mbpBuy) && !(message.mbpBuy && $util.isInteger(message.mbpBuy.low) && $util.isInteger(message.mbpBuy.high)))
-                                    return "mbpBuy: integer|Long expected";
-                            if (message.mbpSell != null && message.hasOwnProperty("mbpSell"))
-                                if (!$util.isInteger(message.mbpSell) && !(message.mbpSell && $util.isInteger(message.mbpSell.low) && $util.isInteger(message.mbpSell.high)))
-                                    return "mbpSell: integer|Long expected";
-                            if (message.tv != null && message.hasOwnProperty("tv"))
-                                if (!$util.isInteger(message.tv) && !(message.tv && $util.isInteger(message.tv.low) && $util.isInteger(message.tv.high)))
-                                    return "tv: integer|Long expected";
-                            if (message.dhoi != null && message.hasOwnProperty("dhoi"))
-                                if (typeof message.dhoi !== "number")
-                                    return "dhoi: number expected";
-                            if (message.dloi != null && message.hasOwnProperty("dloi"))
-                                if (typeof message.dloi !== "number")
-                                    return "dloi: number expected";
-                            if (message.sp != null && message.hasOwnProperty("sp"))
-                                if (typeof message.sp !== "number")
-                                    return "sp: number expected";
-                            if (message.poi != null && message.hasOwnProperty("poi"))
-                                if (typeof message.poi !== "number")
-                                    return "poi: number expected";
+                                    return 'fv: integer expected';
+                            if (
+                                message.mbpBuy != null &&
+                                message.hasOwnProperty('mbpBuy')
+                            )
+                                if (
+                                    !$util.isInteger(message.mbpBuy) &&
+                                    !(
+                                        message.mbpBuy &&
+                                        $util.isInteger(message.mbpBuy.low) &&
+                                        $util.isInteger(message.mbpBuy.high)
+                                    )
+                                )
+                                    return 'mbpBuy: integer|Long expected';
+                            if (
+                                message.mbpSell != null &&
+                                message.hasOwnProperty('mbpSell')
+                            )
+                                if (
+                                    !$util.isInteger(message.mbpSell) &&
+                                    !(
+                                        message.mbpSell &&
+                                        $util.isInteger(message.mbpSell.low) &&
+                                        $util.isInteger(message.mbpSell.high)
+                                    )
+                                )
+                                    return 'mbpSell: integer|Long expected';
+                            if (
+                                message.tv != null &&
+                                message.hasOwnProperty('tv')
+                            )
+                                if (
+                                    !$util.isInteger(message.tv) &&
+                                    !(
+                                        message.tv &&
+                                        $util.isInteger(message.tv.low) &&
+                                        $util.isInteger(message.tv.high)
+                                    )
+                                )
+                                    return 'tv: integer|Long expected';
+                            if (
+                                message.dhoi != null &&
+                                message.hasOwnProperty('dhoi')
+                            )
+                                if (typeof message.dhoi !== 'number')
+                                    return 'dhoi: number expected';
+                            if (
+                                message.dloi != null &&
+                                message.hasOwnProperty('dloi')
+                            )
+                                if (typeof message.dloi !== 'number')
+                                    return 'dloi: number expected';
+                            if (
+                                message.sp != null &&
+                                message.hasOwnProperty('sp')
+                            )
+                                if (typeof message.sp !== 'number')
+                                    return 'sp: number expected';
+                            if (
+                                message.poi != null &&
+                                message.hasOwnProperty('poi')
+                            )
+                                if (typeof message.poi !== 'number')
+                                    return 'poi: number expected';
                             return null;
                         };
 
@@ -2022,23 +2764,35 @@ $root.com = (function() {
                          * @param {Object.<string,*>} object Plain object
                          * @returns {com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails} ExtendedFeedDetails
                          */
-                        ExtendedFeedDetails.fromObject = function fromObject(object) {
-                            if (object instanceof $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails)
+                        ExtendedFeedDetails.fromObject = function fromObject(
+                            object,
+                        ) {
+                            if (
+                                object instanceof
+                                $root.com.upstox.marketdatafeeder.rpc.proto
+                                    .ExtendedFeedDetails
+                            )
                                 return object;
-                            var message = new $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails();
+                            var message =
+                                new $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails();
                             if (object.atp != null)
                                 message.atp = Number(object.atp);
                             if (object.cp != null)
                                 message.cp = Number(object.cp);
                             if (object.vtt != null)
                                 if ($util.Long)
-                                    (message.vtt = $util.Long.fromValue(object.vtt)).unsigned = false;
-                                else if (typeof object.vtt === "string")
+                                    (message.vtt = $util.Long.fromValue(
+                                        object.vtt,
+                                    )).unsigned = false;
+                                else if (typeof object.vtt === 'string')
                                     message.vtt = parseInt(object.vtt, 10);
-                                else if (typeof object.vtt === "number")
+                                else if (typeof object.vtt === 'number')
                                     message.vtt = object.vtt;
-                                else if (typeof object.vtt === "object")
-                                    message.vtt = new $util.LongBits(object.vtt.low >>> 0, object.vtt.high >>> 0).toNumber();
+                                else if (typeof object.vtt === 'object')
+                                    message.vtt = new $util.LongBits(
+                                        object.vtt.low >>> 0,
+                                        object.vtt.high >>> 0,
+                                    ).toNumber();
                             if (object.oi != null)
                                 message.oi = Number(object.oi);
                             if (object.changeOi != null)
@@ -2061,35 +2815,55 @@ $root.com = (function() {
                                 message.yl = Number(object.yl);
                             if (object.fp != null)
                                 message.fp = Number(object.fp);
-                            if (object.fv != null)
-                                message.fv = object.fv | 0;
+                            if (object.fv != null) message.fv = object.fv | 0;
                             if (object.mbpBuy != null)
                                 if ($util.Long)
-                                    (message.mbpBuy = $util.Long.fromValue(object.mbpBuy)).unsigned = false;
-                                else if (typeof object.mbpBuy === "string")
-                                    message.mbpBuy = parseInt(object.mbpBuy, 10);
-                                else if (typeof object.mbpBuy === "number")
+                                    (message.mbpBuy = $util.Long.fromValue(
+                                        object.mbpBuy,
+                                    )).unsigned = false;
+                                else if (typeof object.mbpBuy === 'string')
+                                    message.mbpBuy = parseInt(
+                                        object.mbpBuy,
+                                        10,
+                                    );
+                                else if (typeof object.mbpBuy === 'number')
                                     message.mbpBuy = object.mbpBuy;
-                                else if (typeof object.mbpBuy === "object")
-                                    message.mbpBuy = new $util.LongBits(object.mbpBuy.low >>> 0, object.mbpBuy.high >>> 0).toNumber();
+                                else if (typeof object.mbpBuy === 'object')
+                                    message.mbpBuy = new $util.LongBits(
+                                        object.mbpBuy.low >>> 0,
+                                        object.mbpBuy.high >>> 0,
+                                    ).toNumber();
                             if (object.mbpSell != null)
                                 if ($util.Long)
-                                    (message.mbpSell = $util.Long.fromValue(object.mbpSell)).unsigned = false;
-                                else if (typeof object.mbpSell === "string")
-                                    message.mbpSell = parseInt(object.mbpSell, 10);
-                                else if (typeof object.mbpSell === "number")
+                                    (message.mbpSell = $util.Long.fromValue(
+                                        object.mbpSell,
+                                    )).unsigned = false;
+                                else if (typeof object.mbpSell === 'string')
+                                    message.mbpSell = parseInt(
+                                        object.mbpSell,
+                                        10,
+                                    );
+                                else if (typeof object.mbpSell === 'number')
                                     message.mbpSell = object.mbpSell;
-                                else if (typeof object.mbpSell === "object")
-                                    message.mbpSell = new $util.LongBits(object.mbpSell.low >>> 0, object.mbpSell.high >>> 0).toNumber();
+                                else if (typeof object.mbpSell === 'object')
+                                    message.mbpSell = new $util.LongBits(
+                                        object.mbpSell.low >>> 0,
+                                        object.mbpSell.high >>> 0,
+                                    ).toNumber();
                             if (object.tv != null)
                                 if ($util.Long)
-                                    (message.tv = $util.Long.fromValue(object.tv)).unsigned = false;
-                                else if (typeof object.tv === "string")
+                                    (message.tv = $util.Long.fromValue(
+                                        object.tv,
+                                    )).unsigned = false;
+                                else if (typeof object.tv === 'string')
                                     message.tv = parseInt(object.tv, 10);
-                                else if (typeof object.tv === "number")
+                                else if (typeof object.tv === 'number')
                                     message.tv = object.tv;
-                                else if (typeof object.tv === "object")
-                                    message.tv = new $util.LongBits(object.tv.low >>> 0, object.tv.high >>> 0).toNumber();
+                                else if (typeof object.tv === 'object')
+                                    message.tv = new $util.LongBits(
+                                        object.tv.low >>> 0,
+                                        object.tv.high >>> 0,
+                                    ).toNumber();
                             if (object.dhoi != null)
                                 message.dhoi = Number(object.dhoi);
                             if (object.dloi != null)
@@ -2110,18 +2884,26 @@ $root.com = (function() {
                          * @param {$protobuf.IConversionOptions} [options] Conversion options
                          * @returns {Object.<string,*>} Plain object
                          */
-                        ExtendedFeedDetails.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
+                        ExtendedFeedDetails.toObject = function toObject(
+                            message,
+                            options,
+                        ) {
+                            if (!options) options = {};
                             var object = {};
                             if (options.defaults) {
                                 object.atp = 0;
                                 object.cp = 0;
                                 if ($util.Long) {
                                     var long = new $util.Long(0, 0, false);
-                                    object.vtt = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    object.vtt =
+                                        options.longs === String
+                                            ? long.toString()
+                                            : options.longs === Number
+                                              ? long.toNumber()
+                                              : long;
                                 } else
-                                    object.vtt = options.longs === String ? "0" : 0;
+                                    object.vtt =
+                                        options.longs === String ? '0' : 0;
                                 object.oi = 0;
                                 object.changeOi = 0;
                                 object.lastClose = 0;
@@ -2136,80 +2918,267 @@ $root.com = (function() {
                                 object.fv = 0;
                                 if ($util.Long) {
                                     var long = new $util.Long(0, 0, false);
-                                    object.mbpBuy = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    object.mbpBuy =
+                                        options.longs === String
+                                            ? long.toString()
+                                            : options.longs === Number
+                                              ? long.toNumber()
+                                              : long;
                                 } else
-                                    object.mbpBuy = options.longs === String ? "0" : 0;
+                                    object.mbpBuy =
+                                        options.longs === String ? '0' : 0;
                                 if ($util.Long) {
                                     var long = new $util.Long(0, 0, false);
-                                    object.mbpSell = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    object.mbpSell =
+                                        options.longs === String
+                                            ? long.toString()
+                                            : options.longs === Number
+                                              ? long.toNumber()
+                                              : long;
                                 } else
-                                    object.mbpSell = options.longs === String ? "0" : 0;
+                                    object.mbpSell =
+                                        options.longs === String ? '0' : 0;
                                 if ($util.Long) {
                                     var long = new $util.Long(0, 0, false);
-                                    object.tv = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    object.tv =
+                                        options.longs === String
+                                            ? long.toString()
+                                            : options.longs === Number
+                                              ? long.toNumber()
+                                              : long;
                                 } else
-                                    object.tv = options.longs === String ? "0" : 0;
+                                    object.tv =
+                                        options.longs === String ? '0' : 0;
                                 object.dhoi = 0;
                                 object.dloi = 0;
                                 object.sp = 0;
                                 object.poi = 0;
                             }
-                            if (message.atp != null && message.hasOwnProperty("atp"))
-                                object.atp = options.json && !isFinite(message.atp) ? String(message.atp) : message.atp;
-                            if (message.cp != null && message.hasOwnProperty("cp"))
-                                object.cp = options.json && !isFinite(message.cp) ? String(message.cp) : message.cp;
-                            if (message.vtt != null && message.hasOwnProperty("vtt"))
-                                if (typeof message.vtt === "number")
-                                    object.vtt = options.longs === String ? String(message.vtt) : message.vtt;
+                            if (
+                                message.atp != null &&
+                                message.hasOwnProperty('atp')
+                            )
+                                object.atp =
+                                    options.json && !isFinite(message.atp)
+                                        ? String(message.atp)
+                                        : message.atp;
+                            if (
+                                message.cp != null &&
+                                message.hasOwnProperty('cp')
+                            )
+                                object.cp =
+                                    options.json && !isFinite(message.cp)
+                                        ? String(message.cp)
+                                        : message.cp;
+                            if (
+                                message.vtt != null &&
+                                message.hasOwnProperty('vtt')
+                            )
+                                if (typeof message.vtt === 'number')
+                                    object.vtt =
+                                        options.longs === String
+                                            ? String(message.vtt)
+                                            : message.vtt;
                                 else
-                                    object.vtt = options.longs === String ? $util.Long.prototype.toString.call(message.vtt) : options.longs === Number ? new $util.LongBits(message.vtt.low >>> 0, message.vtt.high >>> 0).toNumber() : message.vtt;
-                            if (message.oi != null && message.hasOwnProperty("oi"))
-                                object.oi = options.json && !isFinite(message.oi) ? String(message.oi) : message.oi;
-                            if (message.changeOi != null && message.hasOwnProperty("changeOi"))
-                                object.changeOi = options.json && !isFinite(message.changeOi) ? String(message.changeOi) : message.changeOi;
-                            if (message.lastClose != null && message.hasOwnProperty("lastClose"))
-                                object.lastClose = options.json && !isFinite(message.lastClose) ? String(message.lastClose) : message.lastClose;
-                            if (message.tbq != null && message.hasOwnProperty("tbq"))
-                                object.tbq = options.json && !isFinite(message.tbq) ? String(message.tbq) : message.tbq;
-                            if (message.tsq != null && message.hasOwnProperty("tsq"))
-                                object.tsq = options.json && !isFinite(message.tsq) ? String(message.tsq) : message.tsq;
-                            if (message.close != null && message.hasOwnProperty("close"))
-                                object.close = options.json && !isFinite(message.close) ? String(message.close) : message.close;
-                            if (message.lc != null && message.hasOwnProperty("lc"))
-                                object.lc = options.json && !isFinite(message.lc) ? String(message.lc) : message.lc;
-                            if (message.uc != null && message.hasOwnProperty("uc"))
-                                object.uc = options.json && !isFinite(message.uc) ? String(message.uc) : message.uc;
-                            if (message.yh != null && message.hasOwnProperty("yh"))
-                                object.yh = options.json && !isFinite(message.yh) ? String(message.yh) : message.yh;
-                            if (message.yl != null && message.hasOwnProperty("yl"))
-                                object.yl = options.json && !isFinite(message.yl) ? String(message.yl) : message.yl;
-                            if (message.fp != null && message.hasOwnProperty("fp"))
-                                object.fp = options.json && !isFinite(message.fp) ? String(message.fp) : message.fp;
-                            if (message.fv != null && message.hasOwnProperty("fv"))
+                                    object.vtt =
+                                        options.longs === String
+                                            ? $util.Long.prototype.toString.call(
+                                                  message.vtt,
+                                              )
+                                            : options.longs === Number
+                                              ? new $util.LongBits(
+                                                    message.vtt.low >>> 0,
+                                                    message.vtt.high >>> 0,
+                                                ).toNumber()
+                                              : message.vtt;
+                            if (
+                                message.oi != null &&
+                                message.hasOwnProperty('oi')
+                            )
+                                object.oi =
+                                    options.json && !isFinite(message.oi)
+                                        ? String(message.oi)
+                                        : message.oi;
+                            if (
+                                message.changeOi != null &&
+                                message.hasOwnProperty('changeOi')
+                            )
+                                object.changeOi =
+                                    options.json && !isFinite(message.changeOi)
+                                        ? String(message.changeOi)
+                                        : message.changeOi;
+                            if (
+                                message.lastClose != null &&
+                                message.hasOwnProperty('lastClose')
+                            )
+                                object.lastClose =
+                                    options.json && !isFinite(message.lastClose)
+                                        ? String(message.lastClose)
+                                        : message.lastClose;
+                            if (
+                                message.tbq != null &&
+                                message.hasOwnProperty('tbq')
+                            )
+                                object.tbq =
+                                    options.json && !isFinite(message.tbq)
+                                        ? String(message.tbq)
+                                        : message.tbq;
+                            if (
+                                message.tsq != null &&
+                                message.hasOwnProperty('tsq')
+                            )
+                                object.tsq =
+                                    options.json && !isFinite(message.tsq)
+                                        ? String(message.tsq)
+                                        : message.tsq;
+                            if (
+                                message.close != null &&
+                                message.hasOwnProperty('close')
+                            )
+                                object.close =
+                                    options.json && !isFinite(message.close)
+                                        ? String(message.close)
+                                        : message.close;
+                            if (
+                                message.lc != null &&
+                                message.hasOwnProperty('lc')
+                            )
+                                object.lc =
+                                    options.json && !isFinite(message.lc)
+                                        ? String(message.lc)
+                                        : message.lc;
+                            if (
+                                message.uc != null &&
+                                message.hasOwnProperty('uc')
+                            )
+                                object.uc =
+                                    options.json && !isFinite(message.uc)
+                                        ? String(message.uc)
+                                        : message.uc;
+                            if (
+                                message.yh != null &&
+                                message.hasOwnProperty('yh')
+                            )
+                                object.yh =
+                                    options.json && !isFinite(message.yh)
+                                        ? String(message.yh)
+                                        : message.yh;
+                            if (
+                                message.yl != null &&
+                                message.hasOwnProperty('yl')
+                            )
+                                object.yl =
+                                    options.json && !isFinite(message.yl)
+                                        ? String(message.yl)
+                                        : message.yl;
+                            if (
+                                message.fp != null &&
+                                message.hasOwnProperty('fp')
+                            )
+                                object.fp =
+                                    options.json && !isFinite(message.fp)
+                                        ? String(message.fp)
+                                        : message.fp;
+                            if (
+                                message.fv != null &&
+                                message.hasOwnProperty('fv')
+                            )
                                 object.fv = message.fv;
-                            if (message.mbpBuy != null && message.hasOwnProperty("mbpBuy"))
-                                if (typeof message.mbpBuy === "number")
-                                    object.mbpBuy = options.longs === String ? String(message.mbpBuy) : message.mbpBuy;
+                            if (
+                                message.mbpBuy != null &&
+                                message.hasOwnProperty('mbpBuy')
+                            )
+                                if (typeof message.mbpBuy === 'number')
+                                    object.mbpBuy =
+                                        options.longs === String
+                                            ? String(message.mbpBuy)
+                                            : message.mbpBuy;
                                 else
-                                    object.mbpBuy = options.longs === String ? $util.Long.prototype.toString.call(message.mbpBuy) : options.longs === Number ? new $util.LongBits(message.mbpBuy.low >>> 0, message.mbpBuy.high >>> 0).toNumber() : message.mbpBuy;
-                            if (message.mbpSell != null && message.hasOwnProperty("mbpSell"))
-                                if (typeof message.mbpSell === "number")
-                                    object.mbpSell = options.longs === String ? String(message.mbpSell) : message.mbpSell;
+                                    object.mbpBuy =
+                                        options.longs === String
+                                            ? $util.Long.prototype.toString.call(
+                                                  message.mbpBuy,
+                                              )
+                                            : options.longs === Number
+                                              ? new $util.LongBits(
+                                                    message.mbpBuy.low >>> 0,
+                                                    message.mbpBuy.high >>> 0,
+                                                ).toNumber()
+                                              : message.mbpBuy;
+                            if (
+                                message.mbpSell != null &&
+                                message.hasOwnProperty('mbpSell')
+                            )
+                                if (typeof message.mbpSell === 'number')
+                                    object.mbpSell =
+                                        options.longs === String
+                                            ? String(message.mbpSell)
+                                            : message.mbpSell;
                                 else
-                                    object.mbpSell = options.longs === String ? $util.Long.prototype.toString.call(message.mbpSell) : options.longs === Number ? new $util.LongBits(message.mbpSell.low >>> 0, message.mbpSell.high >>> 0).toNumber() : message.mbpSell;
-                            if (message.tv != null && message.hasOwnProperty("tv"))
-                                if (typeof message.tv === "number")
-                                    object.tv = options.longs === String ? String(message.tv) : message.tv;
+                                    object.mbpSell =
+                                        options.longs === String
+                                            ? $util.Long.prototype.toString.call(
+                                                  message.mbpSell,
+                                              )
+                                            : options.longs === Number
+                                              ? new $util.LongBits(
+                                                    message.mbpSell.low >>> 0,
+                                                    message.mbpSell.high >>> 0,
+                                                ).toNumber()
+                                              : message.mbpSell;
+                            if (
+                                message.tv != null &&
+                                message.hasOwnProperty('tv')
+                            )
+                                if (typeof message.tv === 'number')
+                                    object.tv =
+                                        options.longs === String
+                                            ? String(message.tv)
+                                            : message.tv;
                                 else
-                                    object.tv = options.longs === String ? $util.Long.prototype.toString.call(message.tv) : options.longs === Number ? new $util.LongBits(message.tv.low >>> 0, message.tv.high >>> 0).toNumber() : message.tv;
-                            if (message.dhoi != null && message.hasOwnProperty("dhoi"))
-                                object.dhoi = options.json && !isFinite(message.dhoi) ? String(message.dhoi) : message.dhoi;
-                            if (message.dloi != null && message.hasOwnProperty("dloi"))
-                                object.dloi = options.json && !isFinite(message.dloi) ? String(message.dloi) : message.dloi;
-                            if (message.sp != null && message.hasOwnProperty("sp"))
-                                object.sp = options.json && !isFinite(message.sp) ? String(message.sp) : message.sp;
-                            if (message.poi != null && message.hasOwnProperty("poi"))
-                                object.poi = options.json && !isFinite(message.poi) ? String(message.poi) : message.poi;
+                                    object.tv =
+                                        options.longs === String
+                                            ? $util.Long.prototype.toString.call(
+                                                  message.tv,
+                                              )
+                                            : options.longs === Number
+                                              ? new $util.LongBits(
+                                                    message.tv.low >>> 0,
+                                                    message.tv.high >>> 0,
+                                                ).toNumber()
+                                              : message.tv;
+                            if (
+                                message.dhoi != null &&
+                                message.hasOwnProperty('dhoi')
+                            )
+                                object.dhoi =
+                                    options.json && !isFinite(message.dhoi)
+                                        ? String(message.dhoi)
+                                        : message.dhoi;
+                            if (
+                                message.dloi != null &&
+                                message.hasOwnProperty('dloi')
+                            )
+                                object.dloi =
+                                    options.json && !isFinite(message.dloi)
+                                        ? String(message.dloi)
+                                        : message.dloi;
+                            if (
+                                message.sp != null &&
+                                message.hasOwnProperty('sp')
+                            )
+                                object.sp =
+                                    options.json && !isFinite(message.sp)
+                                        ? String(message.sp)
+                                        : message.sp;
+                            if (
+                                message.poi != null &&
+                                message.hasOwnProperty('poi')
+                            )
+                                object.poi =
+                                    options.json && !isFinite(message.poi)
+                                        ? String(message.poi)
+                                        : message.poi;
                             return object;
                         };
 
@@ -2220,9 +3189,13 @@ $root.com = (function() {
                          * @instance
                          * @returns {Object.<string,*>} JSON object
                          */
-                        ExtendedFeedDetails.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                        };
+                        ExtendedFeedDetails.prototype.toJSON =
+                            function toJSON() {
+                                return this.constructor.toObject(
+                                    this,
+                                    $protobuf.util.toJSONOptions,
+                                );
+                            };
 
                         /**
                          * Gets the default type url for ExtendedFeedDetails
@@ -2232,18 +3205,22 @@ $root.com = (function() {
                          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                          * @returns {string} The default type url
                          */
-                        ExtendedFeedDetails.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        ExtendedFeedDetails.getTypeUrl = function getTypeUrl(
+                            typeUrlPrefix,
+                        ) {
                             if (typeUrlPrefix === undefined) {
-                                typeUrlPrefix = "type.googleapis.com";
+                                typeUrlPrefix = 'type.googleapis.com';
                             }
-                            return typeUrlPrefix + "/com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails";
+                            return (
+                                typeUrlPrefix +
+                                '/com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails'
+                            );
                         };
 
                         return ExtendedFeedDetails;
                     })();
 
-                    proto.OHLC = (function() {
-
+                    proto.OHLC = (function () {
                         /**
                          * Properties of a OHLC.
                          * @memberof com.upstox.marketdatafeeder.rpc.proto
@@ -2267,7 +3244,11 @@ $root.com = (function() {
                          */
                         function OHLC(properties) {
                             if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                for (
+                                    var keys = Object.keys(properties), i = 0;
+                                    i < keys.length;
+                                    ++i
+                                )
                                     if (properties[keys[i]] != null)
                                         this[keys[i]] = properties[keys[i]];
                         }
@@ -2278,7 +3259,7 @@ $root.com = (function() {
                          * @memberof com.upstox.marketdatafeeder.rpc.proto.OHLC
                          * @instance
                          */
-                        OHLC.prototype.interval = "";
+                        OHLC.prototype.interval = '';
 
                         /**
                          * OHLC open.
@@ -2326,7 +3307,9 @@ $root.com = (function() {
                          * @memberof com.upstox.marketdatafeeder.rpc.proto.OHLC
                          * @instance
                          */
-                        OHLC.prototype.ts = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+                        OHLC.prototype.ts = $util.Long
+                            ? $util.Long.fromBits(0, 0, false)
+                            : 0;
 
                         /**
                          * Creates a new OHLC instance using the specified properties.
@@ -2350,22 +3333,56 @@ $root.com = (function() {
                          * @returns {$protobuf.Writer} Writer
                          */
                         OHLC.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.interval != null && Object.hasOwnProperty.call(message, "interval"))
-                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.interval);
-                            if (message.open != null && Object.hasOwnProperty.call(message, "open"))
-                                writer.uint32(/* id 2, wireType 1 =*/17).double(message.open);
-                            if (message.high != null && Object.hasOwnProperty.call(message, "high"))
-                                writer.uint32(/* id 3, wireType 1 =*/25).double(message.high);
-                            if (message.low != null && Object.hasOwnProperty.call(message, "low"))
-                                writer.uint32(/* id 4, wireType 1 =*/33).double(message.low);
-                            if (message.close != null && Object.hasOwnProperty.call(message, "close"))
-                                writer.uint32(/* id 5, wireType 1 =*/41).double(message.close);
-                            if (message.volume != null && Object.hasOwnProperty.call(message, "volume"))
-                                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.volume);
-                            if (message.ts != null && Object.hasOwnProperty.call(message, "ts"))
-                                writer.uint32(/* id 7, wireType 0 =*/56).int64(message.ts);
+                            if (!writer) writer = $Writer.create();
+                            if (
+                                message.interval != null &&
+                                Object.hasOwnProperty.call(message, 'interval')
+                            )
+                                writer
+                                    .uint32(/* id 1, wireType 2 =*/ 10)
+                                    .string(message.interval);
+                            if (
+                                message.open != null &&
+                                Object.hasOwnProperty.call(message, 'open')
+                            )
+                                writer
+                                    .uint32(/* id 2, wireType 1 =*/ 17)
+                                    .double(message.open);
+                            if (
+                                message.high != null &&
+                                Object.hasOwnProperty.call(message, 'high')
+                            )
+                                writer
+                                    .uint32(/* id 3, wireType 1 =*/ 25)
+                                    .double(message.high);
+                            if (
+                                message.low != null &&
+                                Object.hasOwnProperty.call(message, 'low')
+                            )
+                                writer
+                                    .uint32(/* id 4, wireType 1 =*/ 33)
+                                    .double(message.low);
+                            if (
+                                message.close != null &&
+                                Object.hasOwnProperty.call(message, 'close')
+                            )
+                                writer
+                                    .uint32(/* id 5, wireType 1 =*/ 41)
+                                    .double(message.close);
+                            if (
+                                message.volume != null &&
+                                Object.hasOwnProperty.call(message, 'volume')
+                            )
+                                writer
+                                    .uint32(/* id 6, wireType 0 =*/ 48)
+                                    .int32(message.volume);
+                            if (
+                                message.ts != null &&
+                                Object.hasOwnProperty.call(message, 'ts')
+                            )
+                                writer
+                                    .uint32(/* id 7, wireType 0 =*/ 56)
+                                    .int64(message.ts);
                             return writer;
                         };
 
@@ -2378,7 +3395,10 @@ $root.com = (function() {
                          * @param {$protobuf.Writer} [writer] Writer to encode to
                          * @returns {$protobuf.Writer} Writer
                          */
-                        OHLC.encodeDelimited = function encodeDelimited(message, writer) {
+                        OHLC.encodeDelimited = function encodeDelimited(
+                            message,
+                            writer,
+                        ) {
                             return this.encode(message, writer).ldelim();
                         };
 
@@ -2396,43 +3416,47 @@ $root.com = (function() {
                         OHLC.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.com.upstox.marketdatafeeder.rpc.proto.OHLC();
+                            var end =
+                                    length === undefined
+                                        ? reader.len
+                                        : reader.pos + length,
+                                message =
+                                    new $root.com.upstox.marketdatafeeder.rpc.proto.OHLC();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
-                                if (tag === error)
-                                    break;
+                                if (tag === error) break;
                                 switch (tag >>> 3) {
-                                case 1: {
+                                    case 1: {
                                         message.interval = reader.string();
                                         break;
                                     }
-                                case 2: {
+                                    case 2: {
                                         message.open = reader.double();
                                         break;
                                     }
-                                case 3: {
+                                    case 3: {
                                         message.high = reader.double();
                                         break;
                                     }
-                                case 4: {
+                                    case 4: {
                                         message.low = reader.double();
                                         break;
                                     }
-                                case 5: {
+                                    case 5: {
                                         message.close = reader.double();
                                         break;
                                     }
-                                case 6: {
+                                    case 6: {
                                         message.volume = reader.int32();
                                         break;
                                     }
-                                case 7: {
+                                    case 7: {
                                         message.ts = reader.int64();
                                         break;
                                     }
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
                                 }
                             }
                             return message;
@@ -2448,7 +3472,9 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        OHLC.decodeDelimited = function decodeDelimited(reader) {
+                        OHLC.decodeDelimited = function decodeDelimited(
+                            reader,
+                        ) {
                             if (!(reader instanceof $Reader))
                                 reader = new $Reader(reader);
                             return this.decode(reader, reader.uint32());
@@ -2463,29 +3489,57 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         OHLC.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.interval != null && message.hasOwnProperty("interval"))
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
+                            if (
+                                message.interval != null &&
+                                message.hasOwnProperty('interval')
+                            )
                                 if (!$util.isString(message.interval))
-                                    return "interval: string expected";
-                            if (message.open != null && message.hasOwnProperty("open"))
-                                if (typeof message.open !== "number")
-                                    return "open: number expected";
-                            if (message.high != null && message.hasOwnProperty("high"))
-                                if (typeof message.high !== "number")
-                                    return "high: number expected";
-                            if (message.low != null && message.hasOwnProperty("low"))
-                                if (typeof message.low !== "number")
-                                    return "low: number expected";
-                            if (message.close != null && message.hasOwnProperty("close"))
-                                if (typeof message.close !== "number")
-                                    return "close: number expected";
-                            if (message.volume != null && message.hasOwnProperty("volume"))
+                                    return 'interval: string expected';
+                            if (
+                                message.open != null &&
+                                message.hasOwnProperty('open')
+                            )
+                                if (typeof message.open !== 'number')
+                                    return 'open: number expected';
+                            if (
+                                message.high != null &&
+                                message.hasOwnProperty('high')
+                            )
+                                if (typeof message.high !== 'number')
+                                    return 'high: number expected';
+                            if (
+                                message.low != null &&
+                                message.hasOwnProperty('low')
+                            )
+                                if (typeof message.low !== 'number')
+                                    return 'low: number expected';
+                            if (
+                                message.close != null &&
+                                message.hasOwnProperty('close')
+                            )
+                                if (typeof message.close !== 'number')
+                                    return 'close: number expected';
+                            if (
+                                message.volume != null &&
+                                message.hasOwnProperty('volume')
+                            )
                                 if (!$util.isInteger(message.volume))
-                                    return "volume: integer expected";
-                            if (message.ts != null && message.hasOwnProperty("ts"))
-                                if (!$util.isInteger(message.ts) && !(message.ts && $util.isInteger(message.ts.low) && $util.isInteger(message.ts.high)))
-                                    return "ts: integer|Long expected";
+                                    return 'volume: integer expected';
+                            if (
+                                message.ts != null &&
+                                message.hasOwnProperty('ts')
+                            )
+                                if (
+                                    !$util.isInteger(message.ts) &&
+                                    !(
+                                        message.ts &&
+                                        $util.isInteger(message.ts.low) &&
+                                        $util.isInteger(message.ts.high)
+                                    )
+                                )
+                                    return 'ts: integer|Long expected';
                             return null;
                         };
 
@@ -2498,9 +3552,13 @@ $root.com = (function() {
                          * @returns {com.upstox.marketdatafeeder.rpc.proto.OHLC} OHLC
                          */
                         OHLC.fromObject = function fromObject(object) {
-                            if (object instanceof $root.com.upstox.marketdatafeeder.rpc.proto.OHLC)
+                            if (
+                                object instanceof
+                                $root.com.upstox.marketdatafeeder.rpc.proto.OHLC
+                            )
                                 return object;
-                            var message = new $root.com.upstox.marketdatafeeder.rpc.proto.OHLC();
+                            var message =
+                                new $root.com.upstox.marketdatafeeder.rpc.proto.OHLC();
                             if (object.interval != null)
                                 message.interval = String(object.interval);
                             if (object.open != null)
@@ -2515,13 +3573,18 @@ $root.com = (function() {
                                 message.volume = object.volume | 0;
                             if (object.ts != null)
                                 if ($util.Long)
-                                    (message.ts = $util.Long.fromValue(object.ts)).unsigned = false;
-                                else if (typeof object.ts === "string")
+                                    (message.ts = $util.Long.fromValue(
+                                        object.ts,
+                                    )).unsigned = false;
+                                else if (typeof object.ts === 'string')
                                     message.ts = parseInt(object.ts, 10);
-                                else if (typeof object.ts === "number")
+                                else if (typeof object.ts === 'number')
                                     message.ts = object.ts;
-                                else if (typeof object.ts === "object")
-                                    message.ts = new $util.LongBits(object.ts.low >>> 0, object.ts.high >>> 0).toNumber();
+                                else if (typeof object.ts === 'object')
+                                    message.ts = new $util.LongBits(
+                                        object.ts.low >>> 0,
+                                        object.ts.high >>> 0,
+                                    ).toNumber();
                             return message;
                         };
 
@@ -2535,11 +3598,10 @@ $root.com = (function() {
                          * @returns {Object.<string,*>} Plain object
                          */
                         OHLC.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
+                            if (!options) options = {};
                             var object = {};
                             if (options.defaults) {
-                                object.interval = "";
+                                object.interval = '';
                                 object.open = 0;
                                 object.high = 0;
                                 object.low = 0;
@@ -2547,27 +3609,79 @@ $root.com = (function() {
                                 object.volume = 0;
                                 if ($util.Long) {
                                     var long = new $util.Long(0, 0, false);
-                                    object.ts = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    object.ts =
+                                        options.longs === String
+                                            ? long.toString()
+                                            : options.longs === Number
+                                              ? long.toNumber()
+                                              : long;
                                 } else
-                                    object.ts = options.longs === String ? "0" : 0;
+                                    object.ts =
+                                        options.longs === String ? '0' : 0;
                             }
-                            if (message.interval != null && message.hasOwnProperty("interval"))
+                            if (
+                                message.interval != null &&
+                                message.hasOwnProperty('interval')
+                            )
                                 object.interval = message.interval;
-                            if (message.open != null && message.hasOwnProperty("open"))
-                                object.open = options.json && !isFinite(message.open) ? String(message.open) : message.open;
-                            if (message.high != null && message.hasOwnProperty("high"))
-                                object.high = options.json && !isFinite(message.high) ? String(message.high) : message.high;
-                            if (message.low != null && message.hasOwnProperty("low"))
-                                object.low = options.json && !isFinite(message.low) ? String(message.low) : message.low;
-                            if (message.close != null && message.hasOwnProperty("close"))
-                                object.close = options.json && !isFinite(message.close) ? String(message.close) : message.close;
-                            if (message.volume != null && message.hasOwnProperty("volume"))
+                            if (
+                                message.open != null &&
+                                message.hasOwnProperty('open')
+                            )
+                                object.open =
+                                    options.json && !isFinite(message.open)
+                                        ? String(message.open)
+                                        : message.open;
+                            if (
+                                message.high != null &&
+                                message.hasOwnProperty('high')
+                            )
+                                object.high =
+                                    options.json && !isFinite(message.high)
+                                        ? String(message.high)
+                                        : message.high;
+                            if (
+                                message.low != null &&
+                                message.hasOwnProperty('low')
+                            )
+                                object.low =
+                                    options.json && !isFinite(message.low)
+                                        ? String(message.low)
+                                        : message.low;
+                            if (
+                                message.close != null &&
+                                message.hasOwnProperty('close')
+                            )
+                                object.close =
+                                    options.json && !isFinite(message.close)
+                                        ? String(message.close)
+                                        : message.close;
+                            if (
+                                message.volume != null &&
+                                message.hasOwnProperty('volume')
+                            )
                                 object.volume = message.volume;
-                            if (message.ts != null && message.hasOwnProperty("ts"))
-                                if (typeof message.ts === "number")
-                                    object.ts = options.longs === String ? String(message.ts) : message.ts;
+                            if (
+                                message.ts != null &&
+                                message.hasOwnProperty('ts')
+                            )
+                                if (typeof message.ts === 'number')
+                                    object.ts =
+                                        options.longs === String
+                                            ? String(message.ts)
+                                            : message.ts;
                                 else
-                                    object.ts = options.longs === String ? $util.Long.prototype.toString.call(message.ts) : options.longs === Number ? new $util.LongBits(message.ts.low >>> 0, message.ts.high >>> 0).toNumber() : message.ts;
+                                    object.ts =
+                                        options.longs === String
+                                            ? $util.Long.prototype.toString.call(
+                                                  message.ts,
+                                              )
+                                            : options.longs === Number
+                                              ? new $util.LongBits(
+                                                    message.ts.low >>> 0,
+                                                    message.ts.high >>> 0,
+                                                ).toNumber()
+                                              : message.ts;
                             return object;
                         };
 
@@ -2579,7 +3693,10 @@ $root.com = (function() {
                          * @returns {Object.<string,*>} JSON object
                          */
                         OHLC.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            return this.constructor.toObject(
+                                this,
+                                $protobuf.util.toJSONOptions,
+                            );
                         };
 
                         /**
@@ -2592,9 +3709,12 @@ $root.com = (function() {
                          */
                         OHLC.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
                             if (typeUrlPrefix === undefined) {
-                                typeUrlPrefix = "type.googleapis.com";
+                                typeUrlPrefix = 'type.googleapis.com';
                             }
-                            return typeUrlPrefix + "/com.upstox.marketdatafeeder.rpc.proto.OHLC";
+                            return (
+                                typeUrlPrefix +
+                                '/com.upstox.marketdatafeeder.rpc.proto.OHLC'
+                            );
                         };
 
                         return OHLC;
@@ -2607,15 +3727,15 @@ $root.com = (function() {
                      * @property {number} initial_feed=0 initial_feed value
                      * @property {number} live_feed=1 live_feed value
                      */
-                    proto.Type = (function() {
-                        var valuesById = {}, values = Object.create(valuesById);
-                        values[valuesById[0] = "initial_feed"] = 0;
-                        values[valuesById[1] = "live_feed"] = 1;
+                    proto.Type = (function () {
+                        var valuesById = {},
+                            values = Object.create(valuesById);
+                        values[(valuesById[0] = 'initial_feed')] = 0;
+                        values[(valuesById[1] = 'live_feed')] = 1;
                         return values;
                     })();
 
-                    proto.MarketFullFeed = (function() {
-
+                    proto.MarketFullFeed = (function () {
                         /**
                          * Properties of a MarketFullFeed.
                          * @memberof com.upstox.marketdatafeeder.rpc.proto
@@ -2637,7 +3757,11 @@ $root.com = (function() {
                          */
                         function MarketFullFeed(properties) {
                             if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                for (
+                                    var keys = Object.keys(properties), i = 0;
+                                    i < keys.length;
+                                    ++i
+                                )
                                     if (properties[keys[i]] != null)
                                         this[keys[i]] = properties[keys[i]];
                         }
@@ -2703,19 +3827,73 @@ $root.com = (function() {
                          * @param {$protobuf.Writer} [writer] Writer to encode to
                          * @returns {$protobuf.Writer} Writer
                          */
-                        MarketFullFeed.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.ltpc != null && Object.hasOwnProperty.call(message, "ltpc"))
-                                $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.encode(message.ltpc, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                            if (message.marketLevel != null && Object.hasOwnProperty.call(message, "marketLevel"))
-                                $root.com.upstox.marketdatafeeder.rpc.proto.MarketLevel.encode(message.marketLevel, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                            if (message.optionGreeks != null && Object.hasOwnProperty.call(message, "optionGreeks"))
-                                $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks.encode(message.optionGreeks, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-                            if (message.marketOHLC != null && Object.hasOwnProperty.call(message, "marketOHLC"))
-                                $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.encode(message.marketOHLC, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-                            if (message.eFeedDetails != null && Object.hasOwnProperty.call(message, "eFeedDetails"))
-                                $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails.encode(message.eFeedDetails, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                        MarketFullFeed.encode = function encode(
+                            message,
+                            writer,
+                        ) {
+                            if (!writer) writer = $Writer.create();
+                            if (
+                                message.ltpc != null &&
+                                Object.hasOwnProperty.call(message, 'ltpc')
+                            )
+                                $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.encode(
+                                    message.ltpc,
+                                    writer
+                                        .uint32(/* id 1, wireType 2 =*/ 10)
+                                        .fork(),
+                                ).ldelim();
+                            if (
+                                message.marketLevel != null &&
+                                Object.hasOwnProperty.call(
+                                    message,
+                                    'marketLevel',
+                                )
+                            )
+                                $root.com.upstox.marketdatafeeder.rpc.proto.MarketLevel.encode(
+                                    message.marketLevel,
+                                    writer
+                                        .uint32(/* id 2, wireType 2 =*/ 18)
+                                        .fork(),
+                                ).ldelim();
+                            if (
+                                message.optionGreeks != null &&
+                                Object.hasOwnProperty.call(
+                                    message,
+                                    'optionGreeks',
+                                )
+                            )
+                                $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks.encode(
+                                    message.optionGreeks,
+                                    writer
+                                        .uint32(/* id 3, wireType 2 =*/ 26)
+                                        .fork(),
+                                ).ldelim();
+                            if (
+                                message.marketOHLC != null &&
+                                Object.hasOwnProperty.call(
+                                    message,
+                                    'marketOHLC',
+                                )
+                            )
+                                $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.encode(
+                                    message.marketOHLC,
+                                    writer
+                                        .uint32(/* id 4, wireType 2 =*/ 34)
+                                        .fork(),
+                                ).ldelim();
+                            if (
+                                message.eFeedDetails != null &&
+                                Object.hasOwnProperty.call(
+                                    message,
+                                    'eFeedDetails',
+                                )
+                            )
+                                $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails.encode(
+                                    message.eFeedDetails,
+                                    writer
+                                        .uint32(/* id 5, wireType 2 =*/ 42)
+                                        .fork(),
+                                ).ldelim();
                             return writer;
                         };
 
@@ -2728,9 +3906,10 @@ $root.com = (function() {
                          * @param {$protobuf.Writer} [writer] Writer to encode to
                          * @returns {$protobuf.Writer} Writer
                          */
-                        MarketFullFeed.encodeDelimited = function encodeDelimited(message, writer) {
-                            return this.encode(message, writer).ldelim();
-                        };
+                        MarketFullFeed.encodeDelimited =
+                            function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
 
                         /**
                          * Decodes a MarketFullFeed message from the specified reader or buffer.
@@ -2743,38 +3922,66 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        MarketFullFeed.decode = function decode(reader, length, error) {
+                        MarketFullFeed.decode = function decode(
+                            reader,
+                            length,
+                            error,
+                        ) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed();
+                            var end =
+                                    length === undefined
+                                        ? reader.len
+                                        : reader.pos + length,
+                                message =
+                                    new $root.com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
-                                if (tag === error)
-                                    break;
+                                if (tag === error) break;
                                 switch (tag >>> 3) {
-                                case 1: {
-                                        message.ltpc = $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.decode(reader, reader.uint32());
+                                    case 1: {
+                                        message.ltpc =
+                                            $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.decode(
+                                                reader,
+                                                reader.uint32(),
+                                            );
                                         break;
                                     }
-                                case 2: {
-                                        message.marketLevel = $root.com.upstox.marketdatafeeder.rpc.proto.MarketLevel.decode(reader, reader.uint32());
+                                    case 2: {
+                                        message.marketLevel =
+                                            $root.com.upstox.marketdatafeeder.rpc.proto.MarketLevel.decode(
+                                                reader,
+                                                reader.uint32(),
+                                            );
                                         break;
                                     }
-                                case 3: {
-                                        message.optionGreeks = $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks.decode(reader, reader.uint32());
+                                    case 3: {
+                                        message.optionGreeks =
+                                            $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks.decode(
+                                                reader,
+                                                reader.uint32(),
+                                            );
                                         break;
                                     }
-                                case 4: {
-                                        message.marketOHLC = $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.decode(reader, reader.uint32());
+                                    case 4: {
+                                        message.marketOHLC =
+                                            $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.decode(
+                                                reader,
+                                                reader.uint32(),
+                                            );
                                         break;
                                     }
-                                case 5: {
-                                        message.eFeedDetails = $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails.decode(reader, reader.uint32());
+                                    case 5: {
+                                        message.eFeedDetails =
+                                            $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails.decode(
+                                                reader,
+                                                reader.uint32(),
+                                            );
                                         break;
                                     }
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
                                 }
                             }
                             return message;
@@ -2790,11 +3997,12 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        MarketFullFeed.decodeDelimited = function decodeDelimited(reader) {
-                            if (!(reader instanceof $Reader))
-                                reader = new $Reader(reader);
-                            return this.decode(reader, reader.uint32());
-                        };
+                        MarketFullFeed.decodeDelimited =
+                            function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
 
                         /**
                          * Verifies a MarketFullFeed message.
@@ -2805,32 +4013,57 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         MarketFullFeed.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.ltpc != null && message.hasOwnProperty("ltpc")) {
-                                var error = $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.verify(message.ltpc);
-                                if (error)
-                                    return "ltpc." + error;
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
+                            if (
+                                message.ltpc != null &&
+                                message.hasOwnProperty('ltpc')
+                            ) {
+                                var error =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.verify(
+                                        message.ltpc,
+                                    );
+                                if (error) return 'ltpc.' + error;
                             }
-                            if (message.marketLevel != null && message.hasOwnProperty("marketLevel")) {
-                                var error = $root.com.upstox.marketdatafeeder.rpc.proto.MarketLevel.verify(message.marketLevel);
-                                if (error)
-                                    return "marketLevel." + error;
+                            if (
+                                message.marketLevel != null &&
+                                message.hasOwnProperty('marketLevel')
+                            ) {
+                                var error =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.MarketLevel.verify(
+                                        message.marketLevel,
+                                    );
+                                if (error) return 'marketLevel.' + error;
                             }
-                            if (message.optionGreeks != null && message.hasOwnProperty("optionGreeks")) {
-                                var error = $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks.verify(message.optionGreeks);
-                                if (error)
-                                    return "optionGreeks." + error;
+                            if (
+                                message.optionGreeks != null &&
+                                message.hasOwnProperty('optionGreeks')
+                            ) {
+                                var error =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks.verify(
+                                        message.optionGreeks,
+                                    );
+                                if (error) return 'optionGreeks.' + error;
                             }
-                            if (message.marketOHLC != null && message.hasOwnProperty("marketOHLC")) {
-                                var error = $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.verify(message.marketOHLC);
-                                if (error)
-                                    return "marketOHLC." + error;
+                            if (
+                                message.marketOHLC != null &&
+                                message.hasOwnProperty('marketOHLC')
+                            ) {
+                                var error =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.verify(
+                                        message.marketOHLC,
+                                    );
+                                if (error) return 'marketOHLC.' + error;
                             }
-                            if (message.eFeedDetails != null && message.hasOwnProperty("eFeedDetails")) {
-                                var error = $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails.verify(message.eFeedDetails);
-                                if (error)
-                                    return "eFeedDetails." + error;
+                            if (
+                                message.eFeedDetails != null &&
+                                message.hasOwnProperty('eFeedDetails')
+                            ) {
+                                var error =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails.verify(
+                                        message.eFeedDetails,
+                                    );
+                                if (error) return 'eFeedDetails.' + error;
                             }
                             return null;
                         };
@@ -2843,34 +4076,66 @@ $root.com = (function() {
                          * @param {Object.<string,*>} object Plain object
                          * @returns {com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed} MarketFullFeed
                          */
-                        MarketFullFeed.fromObject = function fromObject(object) {
-                            if (object instanceof $root.com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed)
+                        MarketFullFeed.fromObject = function fromObject(
+                            object,
+                        ) {
+                            if (
+                                object instanceof
+                                $root.com.upstox.marketdatafeeder.rpc.proto
+                                    .MarketFullFeed
+                            )
                                 return object;
-                            var message = new $root.com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed();
+                            var message =
+                                new $root.com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed();
                             if (object.ltpc != null) {
-                                if (typeof object.ltpc !== "object")
-                                    throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed.ltpc: object expected");
-                                message.ltpc = $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.fromObject(object.ltpc);
+                                if (typeof object.ltpc !== 'object')
+                                    throw TypeError(
+                                        '.com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed.ltpc: object expected',
+                                    );
+                                message.ltpc =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.fromObject(
+                                        object.ltpc,
+                                    );
                             }
                             if (object.marketLevel != null) {
-                                if (typeof object.marketLevel !== "object")
-                                    throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed.marketLevel: object expected");
-                                message.marketLevel = $root.com.upstox.marketdatafeeder.rpc.proto.MarketLevel.fromObject(object.marketLevel);
+                                if (typeof object.marketLevel !== 'object')
+                                    throw TypeError(
+                                        '.com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed.marketLevel: object expected',
+                                    );
+                                message.marketLevel =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.MarketLevel.fromObject(
+                                        object.marketLevel,
+                                    );
                             }
                             if (object.optionGreeks != null) {
-                                if (typeof object.optionGreeks !== "object")
-                                    throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed.optionGreeks: object expected");
-                                message.optionGreeks = $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks.fromObject(object.optionGreeks);
+                                if (typeof object.optionGreeks !== 'object')
+                                    throw TypeError(
+                                        '.com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed.optionGreeks: object expected',
+                                    );
+                                message.optionGreeks =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks.fromObject(
+                                        object.optionGreeks,
+                                    );
                             }
                             if (object.marketOHLC != null) {
-                                if (typeof object.marketOHLC !== "object")
-                                    throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed.marketOHLC: object expected");
-                                message.marketOHLC = $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.fromObject(object.marketOHLC);
+                                if (typeof object.marketOHLC !== 'object')
+                                    throw TypeError(
+                                        '.com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed.marketOHLC: object expected',
+                                    );
+                                message.marketOHLC =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.fromObject(
+                                        object.marketOHLC,
+                                    );
                             }
                             if (object.eFeedDetails != null) {
-                                if (typeof object.eFeedDetails !== "object")
-                                    throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed.eFeedDetails: object expected");
-                                message.eFeedDetails = $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails.fromObject(object.eFeedDetails);
+                                if (typeof object.eFeedDetails !== 'object')
+                                    throw TypeError(
+                                        '.com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed.eFeedDetails: object expected',
+                                    );
+                                message.eFeedDetails =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails.fromObject(
+                                        object.eFeedDetails,
+                                    );
                             }
                             return message;
                         };
@@ -2884,9 +4149,11 @@ $root.com = (function() {
                          * @param {$protobuf.IConversionOptions} [options] Conversion options
                          * @returns {Object.<string,*>} Plain object
                          */
-                        MarketFullFeed.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
+                        MarketFullFeed.toObject = function toObject(
+                            message,
+                            options,
+                        ) {
+                            if (!options) options = {};
                             var object = {};
                             if (options.defaults) {
                                 object.ltpc = null;
@@ -2895,16 +4162,51 @@ $root.com = (function() {
                                 object.marketOHLC = null;
                                 object.eFeedDetails = null;
                             }
-                            if (message.ltpc != null && message.hasOwnProperty("ltpc"))
-                                object.ltpc = $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.toObject(message.ltpc, options);
-                            if (message.marketLevel != null && message.hasOwnProperty("marketLevel"))
-                                object.marketLevel = $root.com.upstox.marketdatafeeder.rpc.proto.MarketLevel.toObject(message.marketLevel, options);
-                            if (message.optionGreeks != null && message.hasOwnProperty("optionGreeks"))
-                                object.optionGreeks = $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks.toObject(message.optionGreeks, options);
-                            if (message.marketOHLC != null && message.hasOwnProperty("marketOHLC"))
-                                object.marketOHLC = $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.toObject(message.marketOHLC, options);
-                            if (message.eFeedDetails != null && message.hasOwnProperty("eFeedDetails"))
-                                object.eFeedDetails = $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails.toObject(message.eFeedDetails, options);
+                            if (
+                                message.ltpc != null &&
+                                message.hasOwnProperty('ltpc')
+                            )
+                                object.ltpc =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.toObject(
+                                        message.ltpc,
+                                        options,
+                                    );
+                            if (
+                                message.marketLevel != null &&
+                                message.hasOwnProperty('marketLevel')
+                            )
+                                object.marketLevel =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.MarketLevel.toObject(
+                                        message.marketLevel,
+                                        options,
+                                    );
+                            if (
+                                message.optionGreeks != null &&
+                                message.hasOwnProperty('optionGreeks')
+                            )
+                                object.optionGreeks =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks.toObject(
+                                        message.optionGreeks,
+                                        options,
+                                    );
+                            if (
+                                message.marketOHLC != null &&
+                                message.hasOwnProperty('marketOHLC')
+                            )
+                                object.marketOHLC =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.toObject(
+                                        message.marketOHLC,
+                                        options,
+                                    );
+                            if (
+                                message.eFeedDetails != null &&
+                                message.hasOwnProperty('eFeedDetails')
+                            )
+                                object.eFeedDetails =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails.toObject(
+                                        message.eFeedDetails,
+                                        options,
+                                    );
                             return object;
                         };
 
@@ -2916,7 +4218,10 @@ $root.com = (function() {
                          * @returns {Object.<string,*>} JSON object
                          */
                         MarketFullFeed.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            return this.constructor.toObject(
+                                this,
+                                $protobuf.util.toJSONOptions,
+                            );
                         };
 
                         /**
@@ -2927,18 +4232,22 @@ $root.com = (function() {
                          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                          * @returns {string} The default type url
                          */
-                        MarketFullFeed.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        MarketFullFeed.getTypeUrl = function getTypeUrl(
+                            typeUrlPrefix,
+                        ) {
                             if (typeUrlPrefix === undefined) {
-                                typeUrlPrefix = "type.googleapis.com";
+                                typeUrlPrefix = 'type.googleapis.com';
                             }
-                            return typeUrlPrefix + "/com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed";
+                            return (
+                                typeUrlPrefix +
+                                '/com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed'
+                            );
                         };
 
                         return MarketFullFeed;
                     })();
 
-                    proto.IndexFullFeed = (function() {
-
+                    proto.IndexFullFeed = (function () {
                         /**
                          * Properties of an IndexFullFeed.
                          * @memberof com.upstox.marketdatafeeder.rpc.proto
@@ -2960,7 +4269,11 @@ $root.com = (function() {
                          */
                         function IndexFullFeed(properties) {
                             if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                for (
+                                    var keys = Object.keys(properties), i = 0;
+                                    i < keys.length;
+                                    ++i
+                                )
                                     if (properties[keys[i]] != null)
                                         this[keys[i]] = properties[keys[i]];
                         }
@@ -3026,19 +4339,55 @@ $root.com = (function() {
                          * @param {$protobuf.Writer} [writer] Writer to encode to
                          * @returns {$protobuf.Writer} Writer
                          */
-                        IndexFullFeed.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.ltpc != null && Object.hasOwnProperty.call(message, "ltpc"))
-                                $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.encode(message.ltpc, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                            if (message.marketOHLC != null && Object.hasOwnProperty.call(message, "marketOHLC"))
-                                $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.encode(message.marketOHLC, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                            if (message.lastClose != null && Object.hasOwnProperty.call(message, "lastClose"))
-                                writer.uint32(/* id 3, wireType 1 =*/25).double(message.lastClose);
-                            if (message.yh != null && Object.hasOwnProperty.call(message, "yh"))
-                                writer.uint32(/* id 4, wireType 1 =*/33).double(message.yh);
-                            if (message.yl != null && Object.hasOwnProperty.call(message, "yl"))
-                                writer.uint32(/* id 5, wireType 1 =*/41).double(message.yl);
+                        IndexFullFeed.encode = function encode(
+                            message,
+                            writer,
+                        ) {
+                            if (!writer) writer = $Writer.create();
+                            if (
+                                message.ltpc != null &&
+                                Object.hasOwnProperty.call(message, 'ltpc')
+                            )
+                                $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.encode(
+                                    message.ltpc,
+                                    writer
+                                        .uint32(/* id 1, wireType 2 =*/ 10)
+                                        .fork(),
+                                ).ldelim();
+                            if (
+                                message.marketOHLC != null &&
+                                Object.hasOwnProperty.call(
+                                    message,
+                                    'marketOHLC',
+                                )
+                            )
+                                $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.encode(
+                                    message.marketOHLC,
+                                    writer
+                                        .uint32(/* id 2, wireType 2 =*/ 18)
+                                        .fork(),
+                                ).ldelim();
+                            if (
+                                message.lastClose != null &&
+                                Object.hasOwnProperty.call(message, 'lastClose')
+                            )
+                                writer
+                                    .uint32(/* id 3, wireType 1 =*/ 25)
+                                    .double(message.lastClose);
+                            if (
+                                message.yh != null &&
+                                Object.hasOwnProperty.call(message, 'yh')
+                            )
+                                writer
+                                    .uint32(/* id 4, wireType 1 =*/ 33)
+                                    .double(message.yh);
+                            if (
+                                message.yl != null &&
+                                Object.hasOwnProperty.call(message, 'yl')
+                            )
+                                writer
+                                    .uint32(/* id 5, wireType 1 =*/ 41)
+                                    .double(message.yl);
                             return writer;
                         };
 
@@ -3051,9 +4400,10 @@ $root.com = (function() {
                          * @param {$protobuf.Writer} [writer] Writer to encode to
                          * @returns {$protobuf.Writer} Writer
                          */
-                        IndexFullFeed.encodeDelimited = function encodeDelimited(message, writer) {
-                            return this.encode(message, writer).ldelim();
-                        };
+                        IndexFullFeed.encodeDelimited =
+                            function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
 
                         /**
                          * Decodes an IndexFullFeed message from the specified reader or buffer.
@@ -3066,38 +4416,54 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        IndexFullFeed.decode = function decode(reader, length, error) {
+                        IndexFullFeed.decode = function decode(
+                            reader,
+                            length,
+                            error,
+                        ) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed();
+                            var end =
+                                    length === undefined
+                                        ? reader.len
+                                        : reader.pos + length,
+                                message =
+                                    new $root.com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
-                                if (tag === error)
-                                    break;
+                                if (tag === error) break;
                                 switch (tag >>> 3) {
-                                case 1: {
-                                        message.ltpc = $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.decode(reader, reader.uint32());
+                                    case 1: {
+                                        message.ltpc =
+                                            $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.decode(
+                                                reader,
+                                                reader.uint32(),
+                                            );
                                         break;
                                     }
-                                case 2: {
-                                        message.marketOHLC = $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.decode(reader, reader.uint32());
+                                    case 2: {
+                                        message.marketOHLC =
+                                            $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.decode(
+                                                reader,
+                                                reader.uint32(),
+                                            );
                                         break;
                                     }
-                                case 3: {
+                                    case 3: {
                                         message.lastClose = reader.double();
                                         break;
                                     }
-                                case 4: {
+                                    case 4: {
                                         message.yh = reader.double();
                                         break;
                                     }
-                                case 5: {
+                                    case 5: {
                                         message.yl = reader.double();
                                         break;
                                     }
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
                                 }
                             }
                             return message;
@@ -3113,11 +4479,12 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        IndexFullFeed.decodeDelimited = function decodeDelimited(reader) {
-                            if (!(reader instanceof $Reader))
-                                reader = new $Reader(reader);
-                            return this.decode(reader, reader.uint32());
-                        };
+                        IndexFullFeed.decodeDelimited =
+                            function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
 
                         /**
                          * Verifies an IndexFullFeed message.
@@ -3128,27 +4495,46 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         IndexFullFeed.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.ltpc != null && message.hasOwnProperty("ltpc")) {
-                                var error = $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.verify(message.ltpc);
-                                if (error)
-                                    return "ltpc." + error;
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
+                            if (
+                                message.ltpc != null &&
+                                message.hasOwnProperty('ltpc')
+                            ) {
+                                var error =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.verify(
+                                        message.ltpc,
+                                    );
+                                if (error) return 'ltpc.' + error;
                             }
-                            if (message.marketOHLC != null && message.hasOwnProperty("marketOHLC")) {
-                                var error = $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.verify(message.marketOHLC);
-                                if (error)
-                                    return "marketOHLC." + error;
+                            if (
+                                message.marketOHLC != null &&
+                                message.hasOwnProperty('marketOHLC')
+                            ) {
+                                var error =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.verify(
+                                        message.marketOHLC,
+                                    );
+                                if (error) return 'marketOHLC.' + error;
                             }
-                            if (message.lastClose != null && message.hasOwnProperty("lastClose"))
-                                if (typeof message.lastClose !== "number")
-                                    return "lastClose: number expected";
-                            if (message.yh != null && message.hasOwnProperty("yh"))
-                                if (typeof message.yh !== "number")
-                                    return "yh: number expected";
-                            if (message.yl != null && message.hasOwnProperty("yl"))
-                                if (typeof message.yl !== "number")
-                                    return "yl: number expected";
+                            if (
+                                message.lastClose != null &&
+                                message.hasOwnProperty('lastClose')
+                            )
+                                if (typeof message.lastClose !== 'number')
+                                    return 'lastClose: number expected';
+                            if (
+                                message.yh != null &&
+                                message.hasOwnProperty('yh')
+                            )
+                                if (typeof message.yh !== 'number')
+                                    return 'yh: number expected';
+                            if (
+                                message.yl != null &&
+                                message.hasOwnProperty('yl')
+                            )
+                                if (typeof message.yl !== 'number')
+                                    return 'yl: number expected';
                             return null;
                         };
 
@@ -3161,18 +4547,33 @@ $root.com = (function() {
                          * @returns {com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed} IndexFullFeed
                          */
                         IndexFullFeed.fromObject = function fromObject(object) {
-                            if (object instanceof $root.com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed)
+                            if (
+                                object instanceof
+                                $root.com.upstox.marketdatafeeder.rpc.proto
+                                    .IndexFullFeed
+                            )
                                 return object;
-                            var message = new $root.com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed();
+                            var message =
+                                new $root.com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed();
                             if (object.ltpc != null) {
-                                if (typeof object.ltpc !== "object")
-                                    throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed.ltpc: object expected");
-                                message.ltpc = $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.fromObject(object.ltpc);
+                                if (typeof object.ltpc !== 'object')
+                                    throw TypeError(
+                                        '.com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed.ltpc: object expected',
+                                    );
+                                message.ltpc =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.fromObject(
+                                        object.ltpc,
+                                    );
                             }
                             if (object.marketOHLC != null) {
-                                if (typeof object.marketOHLC !== "object")
-                                    throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed.marketOHLC: object expected");
-                                message.marketOHLC = $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.fromObject(object.marketOHLC);
+                                if (typeof object.marketOHLC !== 'object')
+                                    throw TypeError(
+                                        '.com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed.marketOHLC: object expected',
+                                    );
+                                message.marketOHLC =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.fromObject(
+                                        object.marketOHLC,
+                                    );
                             }
                             if (object.lastClose != null)
                                 message.lastClose = Number(object.lastClose);
@@ -3192,9 +4593,11 @@ $root.com = (function() {
                          * @param {$protobuf.IConversionOptions} [options] Conversion options
                          * @returns {Object.<string,*>} Plain object
                          */
-                        IndexFullFeed.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
+                        IndexFullFeed.toObject = function toObject(
+                            message,
+                            options,
+                        ) {
+                            if (!options) options = {};
                             var object = {};
                             if (options.defaults) {
                                 object.ltpc = null;
@@ -3203,16 +4606,48 @@ $root.com = (function() {
                                 object.yh = 0;
                                 object.yl = 0;
                             }
-                            if (message.ltpc != null && message.hasOwnProperty("ltpc"))
-                                object.ltpc = $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.toObject(message.ltpc, options);
-                            if (message.marketOHLC != null && message.hasOwnProperty("marketOHLC"))
-                                object.marketOHLC = $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.toObject(message.marketOHLC, options);
-                            if (message.lastClose != null && message.hasOwnProperty("lastClose"))
-                                object.lastClose = options.json && !isFinite(message.lastClose) ? String(message.lastClose) : message.lastClose;
-                            if (message.yh != null && message.hasOwnProperty("yh"))
-                                object.yh = options.json && !isFinite(message.yh) ? String(message.yh) : message.yh;
-                            if (message.yl != null && message.hasOwnProperty("yl"))
-                                object.yl = options.json && !isFinite(message.yl) ? String(message.yl) : message.yl;
+                            if (
+                                message.ltpc != null &&
+                                message.hasOwnProperty('ltpc')
+                            )
+                                object.ltpc =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.toObject(
+                                        message.ltpc,
+                                        options,
+                                    );
+                            if (
+                                message.marketOHLC != null &&
+                                message.hasOwnProperty('marketOHLC')
+                            )
+                                object.marketOHLC =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.MarketOHLC.toObject(
+                                        message.marketOHLC,
+                                        options,
+                                    );
+                            if (
+                                message.lastClose != null &&
+                                message.hasOwnProperty('lastClose')
+                            )
+                                object.lastClose =
+                                    options.json && !isFinite(message.lastClose)
+                                        ? String(message.lastClose)
+                                        : message.lastClose;
+                            if (
+                                message.yh != null &&
+                                message.hasOwnProperty('yh')
+                            )
+                                object.yh =
+                                    options.json && !isFinite(message.yh)
+                                        ? String(message.yh)
+                                        : message.yh;
+                            if (
+                                message.yl != null &&
+                                message.hasOwnProperty('yl')
+                            )
+                                object.yl =
+                                    options.json && !isFinite(message.yl)
+                                        ? String(message.yl)
+                                        : message.yl;
                             return object;
                         };
 
@@ -3224,7 +4659,10 @@ $root.com = (function() {
                          * @returns {Object.<string,*>} JSON object
                          */
                         IndexFullFeed.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            return this.constructor.toObject(
+                                this,
+                                $protobuf.util.toJSONOptions,
+                            );
                         };
 
                         /**
@@ -3235,18 +4673,22 @@ $root.com = (function() {
                          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                          * @returns {string} The default type url
                          */
-                        IndexFullFeed.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        IndexFullFeed.getTypeUrl = function getTypeUrl(
+                            typeUrlPrefix,
+                        ) {
                             if (typeUrlPrefix === undefined) {
-                                typeUrlPrefix = "type.googleapis.com";
+                                typeUrlPrefix = 'type.googleapis.com';
                             }
-                            return typeUrlPrefix + "/com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed";
+                            return (
+                                typeUrlPrefix +
+                                '/com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed'
+                            );
                         };
 
                         return IndexFullFeed;
                     })();
 
-                    proto.FullFeed = (function() {
-
+                    proto.FullFeed = (function () {
                         /**
                          * Properties of a FullFeed.
                          * @memberof com.upstox.marketdatafeeder.rpc.proto
@@ -3265,7 +4707,11 @@ $root.com = (function() {
                          */
                         function FullFeed(properties) {
                             if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                for (
+                                    var keys = Object.keys(properties), i = 0;
+                                    i < keys.length;
+                                    ++i
+                                )
                                     if (properties[keys[i]] != null)
                                         this[keys[i]] = properties[keys[i]];
                         }
@@ -3295,10 +4741,16 @@ $root.com = (function() {
                          * @memberof com.upstox.marketdatafeeder.rpc.proto.FullFeed
                          * @instance
                          */
-                        Object.defineProperty(FullFeed.prototype, "FullFeedUnion", {
-                            get: $util.oneOfGetter($oneOfFields = ["marketFF", "indexFF"]),
-                            set: $util.oneOfSetter($oneOfFields)
-                        });
+                        Object.defineProperty(
+                            FullFeed.prototype,
+                            'FullFeedUnion',
+                            {
+                                get: $util.oneOfGetter(
+                                    ($oneOfFields = ['marketFF', 'indexFF']),
+                                ),
+                                set: $util.oneOfSetter($oneOfFields),
+                            },
+                        );
 
                         /**
                          * Creates a new FullFeed instance using the specified properties.
@@ -3322,12 +4774,27 @@ $root.com = (function() {
                          * @returns {$protobuf.Writer} Writer
                          */
                         FullFeed.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.marketFF != null && Object.hasOwnProperty.call(message, "marketFF"))
-                                $root.com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed.encode(message.marketFF, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                            if (message.indexFF != null && Object.hasOwnProperty.call(message, "indexFF"))
-                                $root.com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed.encode(message.indexFF, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            if (!writer) writer = $Writer.create();
+                            if (
+                                message.marketFF != null &&
+                                Object.hasOwnProperty.call(message, 'marketFF')
+                            )
+                                $root.com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed.encode(
+                                    message.marketFF,
+                                    writer
+                                        .uint32(/* id 1, wireType 2 =*/ 10)
+                                        .fork(),
+                                ).ldelim();
+                            if (
+                                message.indexFF != null &&
+                                Object.hasOwnProperty.call(message, 'indexFF')
+                            )
+                                $root.com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed.encode(
+                                    message.indexFF,
+                                    writer
+                                        .uint32(/* id 2, wireType 2 =*/ 18)
+                                        .fork(),
+                                ).ldelim();
                             return writer;
                         };
 
@@ -3340,7 +4807,10 @@ $root.com = (function() {
                          * @param {$protobuf.Writer} [writer] Writer to encode to
                          * @returns {$protobuf.Writer} Writer
                          */
-                        FullFeed.encodeDelimited = function encodeDelimited(message, writer) {
+                        FullFeed.encodeDelimited = function encodeDelimited(
+                            message,
+                            writer,
+                        ) {
                             return this.encode(message, writer).ldelim();
                         };
 
@@ -3355,26 +4825,42 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        FullFeed.decode = function decode(reader, length, error) {
+                        FullFeed.decode = function decode(
+                            reader,
+                            length,
+                            error,
+                        ) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.com.upstox.marketdatafeeder.rpc.proto.FullFeed();
+                            var end =
+                                    length === undefined
+                                        ? reader.len
+                                        : reader.pos + length,
+                                message =
+                                    new $root.com.upstox.marketdatafeeder.rpc.proto.FullFeed();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
-                                if (tag === error)
-                                    break;
+                                if (tag === error) break;
                                 switch (tag >>> 3) {
-                                case 1: {
-                                        message.marketFF = $root.com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed.decode(reader, reader.uint32());
+                                    case 1: {
+                                        message.marketFF =
+                                            $root.com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed.decode(
+                                                reader,
+                                                reader.uint32(),
+                                            );
                                         break;
                                     }
-                                case 2: {
-                                        message.indexFF = $root.com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed.decode(reader, reader.uint32());
+                                    case 2: {
+                                        message.indexFF =
+                                            $root.com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed.decode(
+                                                reader,
+                                                reader.uint32(),
+                                            );
                                         break;
                                     }
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
                                 }
                             }
                             return message;
@@ -3390,7 +4876,9 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        FullFeed.decodeDelimited = function decodeDelimited(reader) {
+                        FullFeed.decodeDelimited = function decodeDelimited(
+                            reader,
+                        ) {
                             if (!(reader instanceof $Reader))
                                 reader = new $Reader(reader);
                             return this.decode(reader, reader.uint32());
@@ -3405,25 +4893,35 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         FullFeed.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
                             var properties = {};
-                            if (message.marketFF != null && message.hasOwnProperty("marketFF")) {
+                            if (
+                                message.marketFF != null &&
+                                message.hasOwnProperty('marketFF')
+                            ) {
                                 properties.FullFeedUnion = 1;
                                 {
-                                    var error = $root.com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed.verify(message.marketFF);
-                                    if (error)
-                                        return "marketFF." + error;
+                                    var error =
+                                        $root.com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed.verify(
+                                            message.marketFF,
+                                        );
+                                    if (error) return 'marketFF.' + error;
                                 }
                             }
-                            if (message.indexFF != null && message.hasOwnProperty("indexFF")) {
+                            if (
+                                message.indexFF != null &&
+                                message.hasOwnProperty('indexFF')
+                            ) {
                                 if (properties.FullFeedUnion === 1)
-                                    return "FullFeedUnion: multiple values";
+                                    return 'FullFeedUnion: multiple values';
                                 properties.FullFeedUnion = 1;
                                 {
-                                    var error = $root.com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed.verify(message.indexFF);
-                                    if (error)
-                                        return "indexFF." + error;
+                                    var error =
+                                        $root.com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed.verify(
+                                            message.indexFF,
+                                        );
+                                    if (error) return 'indexFF.' + error;
                                 }
                             }
                             return null;
@@ -3438,18 +4936,33 @@ $root.com = (function() {
                          * @returns {com.upstox.marketdatafeeder.rpc.proto.FullFeed} FullFeed
                          */
                         FullFeed.fromObject = function fromObject(object) {
-                            if (object instanceof $root.com.upstox.marketdatafeeder.rpc.proto.FullFeed)
+                            if (
+                                object instanceof
+                                $root.com.upstox.marketdatafeeder.rpc.proto
+                                    .FullFeed
+                            )
                                 return object;
-                            var message = new $root.com.upstox.marketdatafeeder.rpc.proto.FullFeed();
+                            var message =
+                                new $root.com.upstox.marketdatafeeder.rpc.proto.FullFeed();
                             if (object.marketFF != null) {
-                                if (typeof object.marketFF !== "object")
-                                    throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.FullFeed.marketFF: object expected");
-                                message.marketFF = $root.com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed.fromObject(object.marketFF);
+                                if (typeof object.marketFF !== 'object')
+                                    throw TypeError(
+                                        '.com.upstox.marketdatafeeder.rpc.proto.FullFeed.marketFF: object expected',
+                                    );
+                                message.marketFF =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed.fromObject(
+                                        object.marketFF,
+                                    );
                             }
                             if (object.indexFF != null) {
-                                if (typeof object.indexFF !== "object")
-                                    throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.FullFeed.indexFF: object expected");
-                                message.indexFF = $root.com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed.fromObject(object.indexFF);
+                                if (typeof object.indexFF !== 'object')
+                                    throw TypeError(
+                                        '.com.upstox.marketdatafeeder.rpc.proto.FullFeed.indexFF: object expected',
+                                    );
+                                message.indexFF =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed.fromObject(
+                                        object.indexFF,
+                                    );
                             }
                             return message;
                         };
@@ -3463,19 +4976,35 @@ $root.com = (function() {
                          * @param {$protobuf.IConversionOptions} [options] Conversion options
                          * @returns {Object.<string,*>} Plain object
                          */
-                        FullFeed.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
+                        FullFeed.toObject = function toObject(
+                            message,
+                            options,
+                        ) {
+                            if (!options) options = {};
                             var object = {};
-                            if (message.marketFF != null && message.hasOwnProperty("marketFF")) {
-                                object.marketFF = $root.com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed.toObject(message.marketFF, options);
+                            if (
+                                message.marketFF != null &&
+                                message.hasOwnProperty('marketFF')
+                            ) {
+                                object.marketFF =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.MarketFullFeed.toObject(
+                                        message.marketFF,
+                                        options,
+                                    );
                                 if (options.oneofs)
-                                    object.FullFeedUnion = "marketFF";
+                                    object.FullFeedUnion = 'marketFF';
                             }
-                            if (message.indexFF != null && message.hasOwnProperty("indexFF")) {
-                                object.indexFF = $root.com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed.toObject(message.indexFF, options);
+                            if (
+                                message.indexFF != null &&
+                                message.hasOwnProperty('indexFF')
+                            ) {
+                                object.indexFF =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.IndexFullFeed.toObject(
+                                        message.indexFF,
+                                        options,
+                                    );
                                 if (options.oneofs)
-                                    object.FullFeedUnion = "indexFF";
+                                    object.FullFeedUnion = 'indexFF';
                             }
                             return object;
                         };
@@ -3488,7 +5017,10 @@ $root.com = (function() {
                          * @returns {Object.<string,*>} JSON object
                          */
                         FullFeed.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            return this.constructor.toObject(
+                                this,
+                                $protobuf.util.toJSONOptions,
+                            );
                         };
 
                         /**
@@ -3499,18 +5031,22 @@ $root.com = (function() {
                          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                          * @returns {string} The default type url
                          */
-                        FullFeed.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        FullFeed.getTypeUrl = function getTypeUrl(
+                            typeUrlPrefix,
+                        ) {
                             if (typeUrlPrefix === undefined) {
-                                typeUrlPrefix = "type.googleapis.com";
+                                typeUrlPrefix = 'type.googleapis.com';
                             }
-                            return typeUrlPrefix + "/com.upstox.marketdatafeeder.rpc.proto.FullFeed";
+                            return (
+                                typeUrlPrefix +
+                                '/com.upstox.marketdatafeeder.rpc.proto.FullFeed'
+                            );
                         };
 
                         return FullFeed;
                     })();
 
-                    proto.OptionChain = (function() {
-
+                    proto.OptionChain = (function () {
                         /**
                          * Properties of an OptionChain.
                          * @memberof com.upstox.marketdatafeeder.rpc.proto
@@ -3531,7 +5067,11 @@ $root.com = (function() {
                          */
                         function OptionChain(properties) {
                             if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                for (
+                                    var keys = Object.keys(properties), i = 0;
+                                    i < keys.length;
+                                    ++i
+                                )
                                     if (properties[keys[i]] != null)
                                         this[keys[i]] = properties[keys[i]];
                         }
@@ -3590,16 +5130,56 @@ $root.com = (function() {
                          * @returns {$protobuf.Writer} Writer
                          */
                         OptionChain.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.ltpc != null && Object.hasOwnProperty.call(message, "ltpc"))
-                                $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.encode(message.ltpc, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                            if (message.bidAskQuote != null && Object.hasOwnProperty.call(message, "bidAskQuote"))
-                                $root.com.upstox.marketdatafeeder.rpc.proto.Quote.encode(message.bidAskQuote, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                            if (message.optionGreeks != null && Object.hasOwnProperty.call(message, "optionGreeks"))
-                                $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks.encode(message.optionGreeks, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-                            if (message.eFeedDetails != null && Object.hasOwnProperty.call(message, "eFeedDetails"))
-                                $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails.encode(message.eFeedDetails, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                            if (!writer) writer = $Writer.create();
+                            if (
+                                message.ltpc != null &&
+                                Object.hasOwnProperty.call(message, 'ltpc')
+                            )
+                                $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.encode(
+                                    message.ltpc,
+                                    writer
+                                        .uint32(/* id 1, wireType 2 =*/ 10)
+                                        .fork(),
+                                ).ldelim();
+                            if (
+                                message.bidAskQuote != null &&
+                                Object.hasOwnProperty.call(
+                                    message,
+                                    'bidAskQuote',
+                                )
+                            )
+                                $root.com.upstox.marketdatafeeder.rpc.proto.Quote.encode(
+                                    message.bidAskQuote,
+                                    writer
+                                        .uint32(/* id 2, wireType 2 =*/ 18)
+                                        .fork(),
+                                ).ldelim();
+                            if (
+                                message.optionGreeks != null &&
+                                Object.hasOwnProperty.call(
+                                    message,
+                                    'optionGreeks',
+                                )
+                            )
+                                $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks.encode(
+                                    message.optionGreeks,
+                                    writer
+                                        .uint32(/* id 3, wireType 2 =*/ 26)
+                                        .fork(),
+                                ).ldelim();
+                            if (
+                                message.eFeedDetails != null &&
+                                Object.hasOwnProperty.call(
+                                    message,
+                                    'eFeedDetails',
+                                )
+                            )
+                                $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails.encode(
+                                    message.eFeedDetails,
+                                    writer
+                                        .uint32(/* id 4, wireType 2 =*/ 34)
+                                        .fork(),
+                                ).ldelim();
                             return writer;
                         };
 
@@ -3612,7 +5192,10 @@ $root.com = (function() {
                          * @param {$protobuf.Writer} [writer] Writer to encode to
                          * @returns {$protobuf.Writer} Writer
                          */
-                        OptionChain.encodeDelimited = function encodeDelimited(message, writer) {
+                        OptionChain.encodeDelimited = function encodeDelimited(
+                            message,
+                            writer,
+                        ) {
                             return this.encode(message, writer).ldelim();
                         };
 
@@ -3627,34 +5210,58 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        OptionChain.decode = function decode(reader, length, error) {
+                        OptionChain.decode = function decode(
+                            reader,
+                            length,
+                            error,
+                        ) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.com.upstox.marketdatafeeder.rpc.proto.OptionChain();
+                            var end =
+                                    length === undefined
+                                        ? reader.len
+                                        : reader.pos + length,
+                                message =
+                                    new $root.com.upstox.marketdatafeeder.rpc.proto.OptionChain();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
-                                if (tag === error)
-                                    break;
+                                if (tag === error) break;
                                 switch (tag >>> 3) {
-                                case 1: {
-                                        message.ltpc = $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.decode(reader, reader.uint32());
+                                    case 1: {
+                                        message.ltpc =
+                                            $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.decode(
+                                                reader,
+                                                reader.uint32(),
+                                            );
                                         break;
                                     }
-                                case 2: {
-                                        message.bidAskQuote = $root.com.upstox.marketdatafeeder.rpc.proto.Quote.decode(reader, reader.uint32());
+                                    case 2: {
+                                        message.bidAskQuote =
+                                            $root.com.upstox.marketdatafeeder.rpc.proto.Quote.decode(
+                                                reader,
+                                                reader.uint32(),
+                                            );
                                         break;
                                     }
-                                case 3: {
-                                        message.optionGreeks = $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks.decode(reader, reader.uint32());
+                                    case 3: {
+                                        message.optionGreeks =
+                                            $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks.decode(
+                                                reader,
+                                                reader.uint32(),
+                                            );
                                         break;
                                     }
-                                case 4: {
-                                        message.eFeedDetails = $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails.decode(reader, reader.uint32());
+                                    case 4: {
+                                        message.eFeedDetails =
+                                            $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails.decode(
+                                                reader,
+                                                reader.uint32(),
+                                            );
                                         break;
                                     }
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
                                 }
                             }
                             return message;
@@ -3670,7 +5277,9 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        OptionChain.decodeDelimited = function decodeDelimited(reader) {
+                        OptionChain.decodeDelimited = function decodeDelimited(
+                            reader,
+                        ) {
                             if (!(reader instanceof $Reader))
                                 reader = new $Reader(reader);
                             return this.decode(reader, reader.uint32());
@@ -3685,27 +5294,47 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         OptionChain.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.ltpc != null && message.hasOwnProperty("ltpc")) {
-                                var error = $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.verify(message.ltpc);
-                                if (error)
-                                    return "ltpc." + error;
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
+                            if (
+                                message.ltpc != null &&
+                                message.hasOwnProperty('ltpc')
+                            ) {
+                                var error =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.verify(
+                                        message.ltpc,
+                                    );
+                                if (error) return 'ltpc.' + error;
                             }
-                            if (message.bidAskQuote != null && message.hasOwnProperty("bidAskQuote")) {
-                                var error = $root.com.upstox.marketdatafeeder.rpc.proto.Quote.verify(message.bidAskQuote);
-                                if (error)
-                                    return "bidAskQuote." + error;
+                            if (
+                                message.bidAskQuote != null &&
+                                message.hasOwnProperty('bidAskQuote')
+                            ) {
+                                var error =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.Quote.verify(
+                                        message.bidAskQuote,
+                                    );
+                                if (error) return 'bidAskQuote.' + error;
                             }
-                            if (message.optionGreeks != null && message.hasOwnProperty("optionGreeks")) {
-                                var error = $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks.verify(message.optionGreeks);
-                                if (error)
-                                    return "optionGreeks." + error;
+                            if (
+                                message.optionGreeks != null &&
+                                message.hasOwnProperty('optionGreeks')
+                            ) {
+                                var error =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks.verify(
+                                        message.optionGreeks,
+                                    );
+                                if (error) return 'optionGreeks.' + error;
                             }
-                            if (message.eFeedDetails != null && message.hasOwnProperty("eFeedDetails")) {
-                                var error = $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails.verify(message.eFeedDetails);
-                                if (error)
-                                    return "eFeedDetails." + error;
+                            if (
+                                message.eFeedDetails != null &&
+                                message.hasOwnProperty('eFeedDetails')
+                            ) {
+                                var error =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails.verify(
+                                        message.eFeedDetails,
+                                    );
+                                if (error) return 'eFeedDetails.' + error;
                             }
                             return null;
                         };
@@ -3719,28 +5348,53 @@ $root.com = (function() {
                          * @returns {com.upstox.marketdatafeeder.rpc.proto.OptionChain} OptionChain
                          */
                         OptionChain.fromObject = function fromObject(object) {
-                            if (object instanceof $root.com.upstox.marketdatafeeder.rpc.proto.OptionChain)
+                            if (
+                                object instanceof
+                                $root.com.upstox.marketdatafeeder.rpc.proto
+                                    .OptionChain
+                            )
                                 return object;
-                            var message = new $root.com.upstox.marketdatafeeder.rpc.proto.OptionChain();
+                            var message =
+                                new $root.com.upstox.marketdatafeeder.rpc.proto.OptionChain();
                             if (object.ltpc != null) {
-                                if (typeof object.ltpc !== "object")
-                                    throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.OptionChain.ltpc: object expected");
-                                message.ltpc = $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.fromObject(object.ltpc);
+                                if (typeof object.ltpc !== 'object')
+                                    throw TypeError(
+                                        '.com.upstox.marketdatafeeder.rpc.proto.OptionChain.ltpc: object expected',
+                                    );
+                                message.ltpc =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.fromObject(
+                                        object.ltpc,
+                                    );
                             }
                             if (object.bidAskQuote != null) {
-                                if (typeof object.bidAskQuote !== "object")
-                                    throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.OptionChain.bidAskQuote: object expected");
-                                message.bidAskQuote = $root.com.upstox.marketdatafeeder.rpc.proto.Quote.fromObject(object.bidAskQuote);
+                                if (typeof object.bidAskQuote !== 'object')
+                                    throw TypeError(
+                                        '.com.upstox.marketdatafeeder.rpc.proto.OptionChain.bidAskQuote: object expected',
+                                    );
+                                message.bidAskQuote =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.Quote.fromObject(
+                                        object.bidAskQuote,
+                                    );
                             }
                             if (object.optionGreeks != null) {
-                                if (typeof object.optionGreeks !== "object")
-                                    throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.OptionChain.optionGreeks: object expected");
-                                message.optionGreeks = $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks.fromObject(object.optionGreeks);
+                                if (typeof object.optionGreeks !== 'object')
+                                    throw TypeError(
+                                        '.com.upstox.marketdatafeeder.rpc.proto.OptionChain.optionGreeks: object expected',
+                                    );
+                                message.optionGreeks =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks.fromObject(
+                                        object.optionGreeks,
+                                    );
                             }
                             if (object.eFeedDetails != null) {
-                                if (typeof object.eFeedDetails !== "object")
-                                    throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.OptionChain.eFeedDetails: object expected");
-                                message.eFeedDetails = $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails.fromObject(object.eFeedDetails);
+                                if (typeof object.eFeedDetails !== 'object')
+                                    throw TypeError(
+                                        '.com.upstox.marketdatafeeder.rpc.proto.OptionChain.eFeedDetails: object expected',
+                                    );
+                                message.eFeedDetails =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails.fromObject(
+                                        object.eFeedDetails,
+                                    );
                             }
                             return message;
                         };
@@ -3754,9 +5408,11 @@ $root.com = (function() {
                          * @param {$protobuf.IConversionOptions} [options] Conversion options
                          * @returns {Object.<string,*>} Plain object
                          */
-                        OptionChain.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
+                        OptionChain.toObject = function toObject(
+                            message,
+                            options,
+                        ) {
+                            if (!options) options = {};
                             var object = {};
                             if (options.defaults) {
                                 object.ltpc = null;
@@ -3764,14 +5420,42 @@ $root.com = (function() {
                                 object.optionGreeks = null;
                                 object.eFeedDetails = null;
                             }
-                            if (message.ltpc != null && message.hasOwnProperty("ltpc"))
-                                object.ltpc = $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.toObject(message.ltpc, options);
-                            if (message.bidAskQuote != null && message.hasOwnProperty("bidAskQuote"))
-                                object.bidAskQuote = $root.com.upstox.marketdatafeeder.rpc.proto.Quote.toObject(message.bidAskQuote, options);
-                            if (message.optionGreeks != null && message.hasOwnProperty("optionGreeks"))
-                                object.optionGreeks = $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks.toObject(message.optionGreeks, options);
-                            if (message.eFeedDetails != null && message.hasOwnProperty("eFeedDetails"))
-                                object.eFeedDetails = $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails.toObject(message.eFeedDetails, options);
+                            if (
+                                message.ltpc != null &&
+                                message.hasOwnProperty('ltpc')
+                            )
+                                object.ltpc =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.toObject(
+                                        message.ltpc,
+                                        options,
+                                    );
+                            if (
+                                message.bidAskQuote != null &&
+                                message.hasOwnProperty('bidAskQuote')
+                            )
+                                object.bidAskQuote =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.Quote.toObject(
+                                        message.bidAskQuote,
+                                        options,
+                                    );
+                            if (
+                                message.optionGreeks != null &&
+                                message.hasOwnProperty('optionGreeks')
+                            )
+                                object.optionGreeks =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.OptionGreeks.toObject(
+                                        message.optionGreeks,
+                                        options,
+                                    );
+                            if (
+                                message.eFeedDetails != null &&
+                                message.hasOwnProperty('eFeedDetails')
+                            )
+                                object.eFeedDetails =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.ExtendedFeedDetails.toObject(
+                                        message.eFeedDetails,
+                                        options,
+                                    );
                             return object;
                         };
 
@@ -3783,7 +5467,10 @@ $root.com = (function() {
                          * @returns {Object.<string,*>} JSON object
                          */
                         OptionChain.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            return this.constructor.toObject(
+                                this,
+                                $protobuf.util.toJSONOptions,
+                            );
                         };
 
                         /**
@@ -3794,18 +5481,22 @@ $root.com = (function() {
                          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                          * @returns {string} The default type url
                          */
-                        OptionChain.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        OptionChain.getTypeUrl = function getTypeUrl(
+                            typeUrlPrefix,
+                        ) {
                             if (typeUrlPrefix === undefined) {
-                                typeUrlPrefix = "type.googleapis.com";
+                                typeUrlPrefix = 'type.googleapis.com';
                             }
-                            return typeUrlPrefix + "/com.upstox.marketdatafeeder.rpc.proto.OptionChain";
+                            return (
+                                typeUrlPrefix +
+                                '/com.upstox.marketdatafeeder.rpc.proto.OptionChain'
+                            );
                         };
 
                         return OptionChain;
                     })();
 
-                    proto.Feed = (function() {
-
+                    proto.Feed = (function () {
                         /**
                          * Properties of a Feed.
                          * @memberof com.upstox.marketdatafeeder.rpc.proto
@@ -3825,7 +5516,11 @@ $root.com = (function() {
                          */
                         function Feed(properties) {
                             if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                for (
+                                    var keys = Object.keys(properties), i = 0;
+                                    i < keys.length;
+                                    ++i
+                                )
                                     if (properties[keys[i]] != null)
                                         this[keys[i]] = properties[keys[i]];
                         }
@@ -3863,9 +5558,11 @@ $root.com = (function() {
                          * @memberof com.upstox.marketdatafeeder.rpc.proto.Feed
                          * @instance
                          */
-                        Object.defineProperty(Feed.prototype, "FeedUnion", {
-                            get: $util.oneOfGetter($oneOfFields = ["ltpc", "ff", "oc"]),
-                            set: $util.oneOfSetter($oneOfFields)
+                        Object.defineProperty(Feed.prototype, 'FeedUnion', {
+                            get: $util.oneOfGetter(
+                                ($oneOfFields = ['ltpc', 'ff', 'oc']),
+                            ),
+                            set: $util.oneOfSetter($oneOfFields),
                         });
 
                         /**
@@ -3890,14 +5587,37 @@ $root.com = (function() {
                          * @returns {$protobuf.Writer} Writer
                          */
                         Feed.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.ltpc != null && Object.hasOwnProperty.call(message, "ltpc"))
-                                $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.encode(message.ltpc, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                            if (message.ff != null && Object.hasOwnProperty.call(message, "ff"))
-                                $root.com.upstox.marketdatafeeder.rpc.proto.FullFeed.encode(message.ff, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                            if (message.oc != null && Object.hasOwnProperty.call(message, "oc"))
-                                $root.com.upstox.marketdatafeeder.rpc.proto.OptionChain.encode(message.oc, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                            if (!writer) writer = $Writer.create();
+                            if (
+                                message.ltpc != null &&
+                                Object.hasOwnProperty.call(message, 'ltpc')
+                            )
+                                $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.encode(
+                                    message.ltpc,
+                                    writer
+                                        .uint32(/* id 1, wireType 2 =*/ 10)
+                                        .fork(),
+                                ).ldelim();
+                            if (
+                                message.ff != null &&
+                                Object.hasOwnProperty.call(message, 'ff')
+                            )
+                                $root.com.upstox.marketdatafeeder.rpc.proto.FullFeed.encode(
+                                    message.ff,
+                                    writer
+                                        .uint32(/* id 2, wireType 2 =*/ 18)
+                                        .fork(),
+                                ).ldelim();
+                            if (
+                                message.oc != null &&
+                                Object.hasOwnProperty.call(message, 'oc')
+                            )
+                                $root.com.upstox.marketdatafeeder.rpc.proto.OptionChain.encode(
+                                    message.oc,
+                                    writer
+                                        .uint32(/* id 3, wireType 2 =*/ 26)
+                                        .fork(),
+                                ).ldelim();
                             return writer;
                         };
 
@@ -3910,7 +5630,10 @@ $root.com = (function() {
                          * @param {$protobuf.Writer} [writer] Writer to encode to
                          * @returns {$protobuf.Writer} Writer
                          */
-                        Feed.encodeDelimited = function encodeDelimited(message, writer) {
+                        Feed.encodeDelimited = function encodeDelimited(
+                            message,
+                            writer,
+                        ) {
                             return this.encode(message, writer).ldelim();
                         };
 
@@ -3928,27 +5651,43 @@ $root.com = (function() {
                         Feed.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.com.upstox.marketdatafeeder.rpc.proto.Feed();
+                            var end =
+                                    length === undefined
+                                        ? reader.len
+                                        : reader.pos + length,
+                                message =
+                                    new $root.com.upstox.marketdatafeeder.rpc.proto.Feed();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
-                                if (tag === error)
-                                    break;
+                                if (tag === error) break;
                                 switch (tag >>> 3) {
-                                case 1: {
-                                        message.ltpc = $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.decode(reader, reader.uint32());
+                                    case 1: {
+                                        message.ltpc =
+                                            $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.decode(
+                                                reader,
+                                                reader.uint32(),
+                                            );
                                         break;
                                     }
-                                case 2: {
-                                        message.ff = $root.com.upstox.marketdatafeeder.rpc.proto.FullFeed.decode(reader, reader.uint32());
+                                    case 2: {
+                                        message.ff =
+                                            $root.com.upstox.marketdatafeeder.rpc.proto.FullFeed.decode(
+                                                reader,
+                                                reader.uint32(),
+                                            );
                                         break;
                                     }
-                                case 3: {
-                                        message.oc = $root.com.upstox.marketdatafeeder.rpc.proto.OptionChain.decode(reader, reader.uint32());
+                                    case 3: {
+                                        message.oc =
+                                            $root.com.upstox.marketdatafeeder.rpc.proto.OptionChain.decode(
+                                                reader,
+                                                reader.uint32(),
+                                            );
                                         break;
                                     }
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
                                 }
                             }
                             return message;
@@ -3964,7 +5703,9 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        Feed.decodeDelimited = function decodeDelimited(reader) {
+                        Feed.decodeDelimited = function decodeDelimited(
+                            reader,
+                        ) {
                             if (!(reader instanceof $Reader))
                                 reader = new $Reader(reader);
                             return this.decode(reader, reader.uint32());
@@ -3979,35 +5720,50 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         Feed.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
                             var properties = {};
-                            if (message.ltpc != null && message.hasOwnProperty("ltpc")) {
+                            if (
+                                message.ltpc != null &&
+                                message.hasOwnProperty('ltpc')
+                            ) {
                                 properties.FeedUnion = 1;
                                 {
-                                    var error = $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.verify(message.ltpc);
-                                    if (error)
-                                        return "ltpc." + error;
+                                    var error =
+                                        $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.verify(
+                                            message.ltpc,
+                                        );
+                                    if (error) return 'ltpc.' + error;
                                 }
                             }
-                            if (message.ff != null && message.hasOwnProperty("ff")) {
+                            if (
+                                message.ff != null &&
+                                message.hasOwnProperty('ff')
+                            ) {
                                 if (properties.FeedUnion === 1)
-                                    return "FeedUnion: multiple values";
+                                    return 'FeedUnion: multiple values';
                                 properties.FeedUnion = 1;
                                 {
-                                    var error = $root.com.upstox.marketdatafeeder.rpc.proto.FullFeed.verify(message.ff);
-                                    if (error)
-                                        return "ff." + error;
+                                    var error =
+                                        $root.com.upstox.marketdatafeeder.rpc.proto.FullFeed.verify(
+                                            message.ff,
+                                        );
+                                    if (error) return 'ff.' + error;
                                 }
                             }
-                            if (message.oc != null && message.hasOwnProperty("oc")) {
+                            if (
+                                message.oc != null &&
+                                message.hasOwnProperty('oc')
+                            ) {
                                 if (properties.FeedUnion === 1)
-                                    return "FeedUnion: multiple values";
+                                    return 'FeedUnion: multiple values';
                                 properties.FeedUnion = 1;
                                 {
-                                    var error = $root.com.upstox.marketdatafeeder.rpc.proto.OptionChain.verify(message.oc);
-                                    if (error)
-                                        return "oc." + error;
+                                    var error =
+                                        $root.com.upstox.marketdatafeeder.rpc.proto.OptionChain.verify(
+                                            message.oc,
+                                        );
+                                    if (error) return 'oc.' + error;
                                 }
                             }
                             return null;
@@ -4022,23 +5778,42 @@ $root.com = (function() {
                          * @returns {com.upstox.marketdatafeeder.rpc.proto.Feed} Feed
                          */
                         Feed.fromObject = function fromObject(object) {
-                            if (object instanceof $root.com.upstox.marketdatafeeder.rpc.proto.Feed)
+                            if (
+                                object instanceof
+                                $root.com.upstox.marketdatafeeder.rpc.proto.Feed
+                            )
                                 return object;
-                            var message = new $root.com.upstox.marketdatafeeder.rpc.proto.Feed();
+                            var message =
+                                new $root.com.upstox.marketdatafeeder.rpc.proto.Feed();
                             if (object.ltpc != null) {
-                                if (typeof object.ltpc !== "object")
-                                    throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.Feed.ltpc: object expected");
-                                message.ltpc = $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.fromObject(object.ltpc);
+                                if (typeof object.ltpc !== 'object')
+                                    throw TypeError(
+                                        '.com.upstox.marketdatafeeder.rpc.proto.Feed.ltpc: object expected',
+                                    );
+                                message.ltpc =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.fromObject(
+                                        object.ltpc,
+                                    );
                             }
                             if (object.ff != null) {
-                                if (typeof object.ff !== "object")
-                                    throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.Feed.ff: object expected");
-                                message.ff = $root.com.upstox.marketdatafeeder.rpc.proto.FullFeed.fromObject(object.ff);
+                                if (typeof object.ff !== 'object')
+                                    throw TypeError(
+                                        '.com.upstox.marketdatafeeder.rpc.proto.Feed.ff: object expected',
+                                    );
+                                message.ff =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.FullFeed.fromObject(
+                                        object.ff,
+                                    );
                             }
                             if (object.oc != null) {
-                                if (typeof object.oc !== "object")
-                                    throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.Feed.oc: object expected");
-                                message.oc = $root.com.upstox.marketdatafeeder.rpc.proto.OptionChain.fromObject(object.oc);
+                                if (typeof object.oc !== 'object')
+                                    throw TypeError(
+                                        '.com.upstox.marketdatafeeder.rpc.proto.Feed.oc: object expected',
+                                    );
+                                message.oc =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.OptionChain.fromObject(
+                                        object.oc,
+                                    );
                             }
                             return message;
                         };
@@ -4053,23 +5828,40 @@ $root.com = (function() {
                          * @returns {Object.<string,*>} Plain object
                          */
                         Feed.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
+                            if (!options) options = {};
                             var object = {};
-                            if (message.ltpc != null && message.hasOwnProperty("ltpc")) {
-                                object.ltpc = $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.toObject(message.ltpc, options);
-                                if (options.oneofs)
-                                    object.FeedUnion = "ltpc";
+                            if (
+                                message.ltpc != null &&
+                                message.hasOwnProperty('ltpc')
+                            ) {
+                                object.ltpc =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.LTPC.toObject(
+                                        message.ltpc,
+                                        options,
+                                    );
+                                if (options.oneofs) object.FeedUnion = 'ltpc';
                             }
-                            if (message.ff != null && message.hasOwnProperty("ff")) {
-                                object.ff = $root.com.upstox.marketdatafeeder.rpc.proto.FullFeed.toObject(message.ff, options);
-                                if (options.oneofs)
-                                    object.FeedUnion = "ff";
+                            if (
+                                message.ff != null &&
+                                message.hasOwnProperty('ff')
+                            ) {
+                                object.ff =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.FullFeed.toObject(
+                                        message.ff,
+                                        options,
+                                    );
+                                if (options.oneofs) object.FeedUnion = 'ff';
                             }
-                            if (message.oc != null && message.hasOwnProperty("oc")) {
-                                object.oc = $root.com.upstox.marketdatafeeder.rpc.proto.OptionChain.toObject(message.oc, options);
-                                if (options.oneofs)
-                                    object.FeedUnion = "oc";
+                            if (
+                                message.oc != null &&
+                                message.hasOwnProperty('oc')
+                            ) {
+                                object.oc =
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.OptionChain.toObject(
+                                        message.oc,
+                                        options,
+                                    );
+                                if (options.oneofs) object.FeedUnion = 'oc';
                             }
                             return object;
                         };
@@ -4082,7 +5874,10 @@ $root.com = (function() {
                          * @returns {Object.<string,*>} JSON object
                          */
                         Feed.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            return this.constructor.toObject(
+                                this,
+                                $protobuf.util.toJSONOptions,
+                            );
                         };
 
                         /**
@@ -4095,16 +5890,18 @@ $root.com = (function() {
                          */
                         Feed.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
                             if (typeUrlPrefix === undefined) {
-                                typeUrlPrefix = "type.googleapis.com";
+                                typeUrlPrefix = 'type.googleapis.com';
                             }
-                            return typeUrlPrefix + "/com.upstox.marketdatafeeder.rpc.proto.Feed";
+                            return (
+                                typeUrlPrefix +
+                                '/com.upstox.marketdatafeeder.rpc.proto.Feed'
+                            );
                         };
 
                         return Feed;
                     })();
 
-                    proto.FeedResponse = (function() {
-
+                    proto.FeedResponse = (function () {
                         /**
                          * Properties of a FeedResponse.
                          * @memberof com.upstox.marketdatafeeder.rpc.proto
@@ -4124,7 +5921,11 @@ $root.com = (function() {
                         function FeedResponse(properties) {
                             this.feeds = {};
                             if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                for (
+                                    var keys = Object.keys(properties), i = 0;
+                                    i < keys.length;
+                                    ++i
+                                )
                                     if (properties[keys[i]] != null)
                                         this[keys[i]] = properties[keys[i]];
                         }
@@ -4167,14 +5968,37 @@ $root.com = (function() {
                          * @returns {$protobuf.Writer} Writer
                          */
                         FeedResponse.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
-                                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
-                            if (message.feeds != null && Object.hasOwnProperty.call(message, "feeds"))
-                                for (var keys = Object.keys(message.feeds), i = 0; i < keys.length; ++i) {
-                                    writer.uint32(/* id 2, wireType 2 =*/18).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
-                                    $root.com.upstox.marketdatafeeder.rpc.proto.Feed.encode(message.feeds[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+                            if (!writer) writer = $Writer.create();
+                            if (
+                                message.type != null &&
+                                Object.hasOwnProperty.call(message, 'type')
+                            )
+                                writer
+                                    .uint32(/* id 1, wireType 0 =*/ 8)
+                                    .int32(message.type);
+                            if (
+                                message.feeds != null &&
+                                Object.hasOwnProperty.call(message, 'feeds')
+                            )
+                                for (
+                                    var keys = Object.keys(message.feeds),
+                                        i = 0;
+                                    i < keys.length;
+                                    ++i
+                                ) {
+                                    writer
+                                        .uint32(/* id 2, wireType 2 =*/ 18)
+                                        .fork()
+                                        .uint32(/* id 1, wireType 2 =*/ 10)
+                                        .string(keys[i]);
+                                    $root.com.upstox.marketdatafeeder.rpc.proto.Feed.encode(
+                                        message.feeds[keys[i]],
+                                        writer
+                                            .uint32(/* id 2, wireType 2 =*/ 18)
+                                            .fork(),
+                                    )
+                                        .ldelim()
+                                        .ldelim();
                                 }
                             return writer;
                         };
@@ -4188,7 +6012,10 @@ $root.com = (function() {
                          * @param {$protobuf.Writer} [writer] Writer to encode to
                          * @returns {$protobuf.Writer} Writer
                          */
-                        FeedResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                        FeedResponse.encodeDelimited = function encodeDelimited(
+                            message,
+                            writer,
+                        ) {
                             return this.encode(message, writer).ldelim();
                         };
 
@@ -4203,45 +6030,59 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        FeedResponse.decode = function decode(reader, length, error) {
+                        FeedResponse.decode = function decode(
+                            reader,
+                            length,
+                            error,
+                        ) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.com.upstox.marketdatafeeder.rpc.proto.FeedResponse(), key, value;
+                            var end =
+                                    length === undefined
+                                        ? reader.len
+                                        : reader.pos + length,
+                                message =
+                                    new $root.com.upstox.marketdatafeeder.rpc.proto.FeedResponse(),
+                                key,
+                                value;
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
-                                if (tag === error)
-                                    break;
+                                if (tag === error) break;
                                 switch (tag >>> 3) {
-                                case 1: {
+                                    case 1: {
                                         message.type = reader.int32();
                                         break;
                                     }
-                                case 2: {
+                                    case 2: {
                                         if (message.feeds === $util.emptyObject)
                                             message.feeds = {};
                                         var end2 = reader.uint32() + reader.pos;
-                                        key = "";
+                                        key = '';
                                         value = null;
                                         while (reader.pos < end2) {
                                             var tag2 = reader.uint32();
                                             switch (tag2 >>> 3) {
-                                            case 1:
-                                                key = reader.string();
-                                                break;
-                                            case 2:
-                                                value = $root.com.upstox.marketdatafeeder.rpc.proto.Feed.decode(reader, reader.uint32());
-                                                break;
-                                            default:
-                                                reader.skipType(tag2 & 7);
-                                                break;
+                                                case 1:
+                                                    key = reader.string();
+                                                    break;
+                                                case 2:
+                                                    value =
+                                                        $root.com.upstox.marketdatafeeder.rpc.proto.Feed.decode(
+                                                            reader,
+                                                            reader.uint32(),
+                                                        );
+                                                    break;
+                                                default:
+                                                    reader.skipType(tag2 & 7);
+                                                    break;
                                             }
                                         }
                                         message.feeds[key] = value;
                                         break;
                                     }
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
                                 }
                             }
                             return message;
@@ -4257,7 +6098,9 @@ $root.com = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        FeedResponse.decodeDelimited = function decodeDelimited(reader) {
+                        FeedResponse.decodeDelimited = function decodeDelimited(
+                            reader,
+                        ) {
                             if (!(reader instanceof $Reader))
                                 reader = new $Reader(reader);
                             return this.decode(reader, reader.uint32());
@@ -4272,24 +6115,32 @@ $root.com = (function() {
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
                         FeedResponse.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.type != null && message.hasOwnProperty("type"))
+                            if (typeof message !== 'object' || message === null)
+                                return 'object expected';
+                            if (
+                                message.type != null &&
+                                message.hasOwnProperty('type')
+                            )
                                 switch (message.type) {
-                                default:
-                                    return "type: enum value expected";
-                                case 0:
-                                case 1:
-                                    break;
+                                    default:
+                                        return 'type: enum value expected';
+                                    case 0:
+                                    case 1:
+                                        break;
                                 }
-                            if (message.feeds != null && message.hasOwnProperty("feeds")) {
+                            if (
+                                message.feeds != null &&
+                                message.hasOwnProperty('feeds')
+                            ) {
                                 if (!$util.isObject(message.feeds))
-                                    return "feeds: object expected";
+                                    return 'feeds: object expected';
                                 var key = Object.keys(message.feeds);
                                 for (var i = 0; i < key.length; ++i) {
-                                    var error = $root.com.upstox.marketdatafeeder.rpc.proto.Feed.verify(message.feeds[key[i]]);
-                                    if (error)
-                                        return "feeds." + error;
+                                    var error =
+                                        $root.com.upstox.marketdatafeeder.rpc.proto.Feed.verify(
+                                            message.feeds[key[i]],
+                                        );
+                                    if (error) return 'feeds.' + error;
                                 }
                             }
                             return null;
@@ -4304,33 +6155,52 @@ $root.com = (function() {
                          * @returns {com.upstox.marketdatafeeder.rpc.proto.FeedResponse} FeedResponse
                          */
                         FeedResponse.fromObject = function fromObject(object) {
-                            if (object instanceof $root.com.upstox.marketdatafeeder.rpc.proto.FeedResponse)
+                            if (
+                                object instanceof
+                                $root.com.upstox.marketdatafeeder.rpc.proto
+                                    .FeedResponse
+                            )
                                 return object;
-                            var message = new $root.com.upstox.marketdatafeeder.rpc.proto.FeedResponse();
+                            var message =
+                                new $root.com.upstox.marketdatafeeder.rpc.proto.FeedResponse();
                             switch (object.type) {
-                            default:
-                                if (typeof object.type === "number") {
-                                    message.type = object.type;
+                                default:
+                                    if (typeof object.type === 'number') {
+                                        message.type = object.type;
+                                        break;
+                                    }
                                     break;
-                                }
-                                break;
-                            case "initial_feed":
-                            case 0:
-                                message.type = 0;
-                                break;
-                            case "live_feed":
-                            case 1:
-                                message.type = 1;
-                                break;
+                                case 'initial_feed':
+                                case 0:
+                                    message.type = 0;
+                                    break;
+                                case 'live_feed':
+                                case 1:
+                                    message.type = 1;
+                                    break;
                             }
                             if (object.feeds) {
-                                if (typeof object.feeds !== "object")
-                                    throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.FeedResponse.feeds: object expected");
+                                if (typeof object.feeds !== 'object')
+                                    throw TypeError(
+                                        '.com.upstox.marketdatafeeder.rpc.proto.FeedResponse.feeds: object expected',
+                                    );
                                 message.feeds = {};
-                                for (var keys = Object.keys(object.feeds), i = 0; i < keys.length; ++i) {
-                                    if (typeof object.feeds[keys[i]] !== "object")
-                                        throw TypeError(".com.upstox.marketdatafeeder.rpc.proto.FeedResponse.feeds: object expected");
-                                    message.feeds[keys[i]] = $root.com.upstox.marketdatafeeder.rpc.proto.Feed.fromObject(object.feeds[keys[i]]);
+                                for (
+                                    var keys = Object.keys(object.feeds), i = 0;
+                                    i < keys.length;
+                                    ++i
+                                ) {
+                                    if (
+                                        typeof object.feeds[keys[i]] !==
+                                        'object'
+                                    )
+                                        throw TypeError(
+                                            '.com.upstox.marketdatafeeder.rpc.proto.FeedResponse.feeds: object expected',
+                                        );
+                                    message.feeds[keys[i]] =
+                                        $root.com.upstox.marketdatafeeder.rpc.proto.Feed.fromObject(
+                                            object.feeds[keys[i]],
+                                        );
                                 }
                             }
                             return message;
@@ -4345,21 +6215,44 @@ $root.com = (function() {
                          * @param {$protobuf.IConversionOptions} [options] Conversion options
                          * @returns {Object.<string,*>} Plain object
                          */
-                        FeedResponse.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
+                        FeedResponse.toObject = function toObject(
+                            message,
+                            options,
+                        ) {
+                            if (!options) options = {};
                             var object = {};
                             if (options.objects || options.defaults)
                                 object.feeds = {};
                             if (options.defaults)
-                                object.type = options.enums === String ? "initial_feed" : 0;
-                            if (message.type != null && message.hasOwnProperty("type"))
-                                object.type = options.enums === String ? $root.com.upstox.marketdatafeeder.rpc.proto.Type[message.type] === undefined ? message.type : $root.com.upstox.marketdatafeeder.rpc.proto.Type[message.type] : message.type;
+                                object.type =
+                                    options.enums === String
+                                        ? 'initial_feed'
+                                        : 0;
+                            if (
+                                message.type != null &&
+                                message.hasOwnProperty('type')
+                            )
+                                object.type =
+                                    options.enums === String
+                                        ? $root.com.upstox.marketdatafeeder.rpc
+                                              .proto.Type[message.type] ===
+                                          undefined
+                                            ? message.type
+                                            : $root.com.upstox.marketdatafeeder
+                                                  .rpc.proto.Type[message.type]
+                                        : message.type;
                             var keys2;
-                            if (message.feeds && (keys2 = Object.keys(message.feeds)).length) {
+                            if (
+                                message.feeds &&
+                                (keys2 = Object.keys(message.feeds)).length
+                            ) {
                                 object.feeds = {};
                                 for (var j = 0; j < keys2.length; ++j)
-                                    object.feeds[keys2[j]] = $root.com.upstox.marketdatafeeder.rpc.proto.Feed.toObject(message.feeds[keys2[j]], options);
+                                    object.feeds[keys2[j]] =
+                                        $root.com.upstox.marketdatafeeder.rpc.proto.Feed.toObject(
+                                            message.feeds[keys2[j]],
+                                            options,
+                                        );
                             }
                             return object;
                         };
@@ -4372,7 +6265,10 @@ $root.com = (function() {
                          * @returns {Object.<string,*>} JSON object
                          */
                         FeedResponse.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            return this.constructor.toObject(
+                                this,
+                                $protobuf.util.toJSONOptions,
+                            );
                         };
 
                         /**
@@ -4383,11 +6279,16 @@ $root.com = (function() {
                          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                          * @returns {string} The default type url
                          */
-                        FeedResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        FeedResponse.getTypeUrl = function getTypeUrl(
+                            typeUrlPrefix,
+                        ) {
                             if (typeUrlPrefix === undefined) {
-                                typeUrlPrefix = "type.googleapis.com";
+                                typeUrlPrefix = 'type.googleapis.com';
                             }
-                            return typeUrlPrefix + "/com.upstox.marketdatafeeder.rpc.proto.FeedResponse";
+                            return (
+                                typeUrlPrefix +
+                                '/com.upstox.marketdatafeeder.rpc.proto.FeedResponse'
+                            );
                         };
 
                         return FeedResponse;

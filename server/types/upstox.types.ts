@@ -4,7 +4,7 @@ export type Instrument = {
     name: string;
     exchange: string;
     expiry: number;
-    instrument_type: "PE" | "CE" | "FO" | "EQ";
+    instrument_type: 'PE' | 'CE' | 'FO' | 'EQ';
     asset_symbol: string;
     underlying_symbol: string;
     instrument_key: string;
@@ -15,10 +15,9 @@ export type Instrument = {
     asset_key: string;
     underlying_key: string;
     tick_size: number;
-    asset_type: "INDEX" | "STOCK";
-    underlying_type: "INDEX" | "STOCK";
+    asset_type: 'INDEX' | 'STOCK';
+    underlying_type: 'INDEX' | 'STOCK';
     trading_symbol: string;
     strike_price: number;
     qty_multiplier: number;
-  };
-  
+};
