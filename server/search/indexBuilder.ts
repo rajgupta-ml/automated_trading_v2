@@ -22,9 +22,9 @@ export const buildHashIndex = async () => {
                     count++;
                 }
             
-                if (instrument.asset_symbol) {
-                    const symbolKey = `exact_symbol:${instrument.asset_symbol.toLowerCase()}`;
-                    pipeline.set(symbolKey, JSON.stringify(instrument));
+                if (instrument.instrument_key) {
+                    const instrumentKey = `exact_key:${instrument.instrument_key.toLowerCase()}`;
+                    pipeline.set(instrumentKey, JSON.stringify(instrument));
                     count++;
                 }
             
@@ -59,7 +59,7 @@ const buildTrieIndex = async () => {
         Object.values(instruments).forEach((instrument) => {
 
             if(instrument.instrument_type=== "EQ" || instrument.instrument_type === "FO") {
-                const searchableText = [instrument.name || "" , instrument.asset_symbol || ""].filter(text => text.length > 0);
+                const searchableText = [instrument.name || "" , instrument.instrument_key || ""].filter(text => text.length > 0);
                 searchableText.forEach((text) => {
                     for (let i = 2; i <= text.length; i++){
                         const prefix = text.substring(0,i).toLowerCase().trim();

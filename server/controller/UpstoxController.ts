@@ -1,8 +1,6 @@
 import type { Request, Response } from "express";
 import { AxiosError } from "axios";
 import type UpstoxManager from "../managers/upstoxManager";
-import { connectToRedis } from "../utils/redis";
-import type { RedisClientType } from "redis";
 
 export class UpstoxController {
   constructor(private readonly upstoxClient: UpstoxManager) {}
@@ -19,7 +17,10 @@ export class UpstoxController {
   getAccessToken = async (req: Request, res: Response) => {
     try {
       const code = req.query.code as string;
-      if (!code) throw new Error("Code missing");
+      if (!code) res.status(400).json({
+        success : false,
+        message : "Access Code is missing. malformed Request"
+      });
 
       await this.upstoxClient.getToken(code);
       res.status(200).send("Ok");
@@ -44,6 +45,41 @@ export class UpstoxController {
     }
   };
 
+  userSubscribeInstrument = async (req: Request, res: Response) => {
+    const user = (req as any).user;
+    const instrument_key = req.body.instrument_key as string;
+  
+    if (!user) {
+      res.status(400).json({
+        success: false,
+        message: "Malformed JWT. Please re-login.",
+      });
+    }
+  
+    if (!instrument_key) {
+      res.status(400).json({
+        success: false,
+        message: "Instrument name is required to subscribe.",
+      });
+    }
+  
+    try {
+      await this.upstoxClient.userSubscribeInstrument(user.userId, instrument_key);
+  
+      res.status(200).json({
+        success: true,
+        message: "Successfully subscribed to instruments.",
+      });
+    } catch (error: any) {
+      console.error("Subscription error:", error);
+  
+      res.status(500).json({
+        success: false,
+        message: "Failed to subscribe instruments. Please try again later.",
+        error: error.message || "Unknown error",
+      });
+    }
+  };
 
   getInstrumentsDetails = async (req : Request, res : Response) => {
     try {

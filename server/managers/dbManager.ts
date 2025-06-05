@@ -15,3 +15,13 @@ export const connectToDatabase = async () => {
     process.exit(1);
   }
 };
+
+
+export const convertStringToObjectId = (str : string) => {
+  try {
+    return new mongoose.Types.ObjectId(str);
+  } catch (error) {
+    console.log(error);
+    return str;
+  }
+}

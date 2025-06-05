@@ -3,6 +3,7 @@ import User, {type IUser } from "../Models/User";
 import ExpiredToken from "../Models/ExpiredToken";
 import { config } from "../utils/config";
 import crypto, { type HashOptions } from "crypto";
+import UpstoxManager from "./upstoxManager";
 
 export class AuthService {
   private algo = config.crypto.algorithm;
@@ -28,7 +29,7 @@ export class AuthService {
 
 
     const token = jwt.sign(
-      { userId: user.userId, username: user.username },
+      { userId: user._id, username: user.username },
       this.jwtSecret,
       { expiresIn: '1d' }
     );
@@ -46,7 +47,12 @@ export class AuthService {
 
   async delete(username: string): Promise<boolean> {
     const result = await User.findOneAndDelete({ username });
-    return !!result;
+    if(!result){
+      return false;
+    }
+    const subscriptionDeleteResult = UpstoxManager.deleteUserSubscription(result._id)
+
+    return !!subscriptionDeleteResult || !!result;
   }
 
   // Store expired token

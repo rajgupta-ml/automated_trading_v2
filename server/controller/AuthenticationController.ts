@@ -36,7 +36,7 @@ export class AuthController {
         type: "success",
         message: "User signed up successfully",
         user: {
-          userId: user.userId,
+          userId: user._id,
           username: user.username,
           apiKey: user.apiKey,
           apiSecret: user.apiSecret,
@@ -128,7 +128,7 @@ export class AuthController {
         type: "success",
         message: "User updated successfully",
         user: {
-          userId: updatedUser.userId,
+          userId: updatedUser._id,
           username: updatedUser.username,
           apiKey: updatedUser.apiKey,
           apiSecret: updatedUser.apiSecret,

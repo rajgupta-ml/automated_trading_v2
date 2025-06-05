@@ -5,7 +5,7 @@ export const exactMatchSearch = async (query : string) : Promise<string[]> => {
 
     try{
         const lowerQuery = query.toLowerCase().trim();
-        const exactMatches = await Promise.all([client.get(`exact_name:${lowerQuery}`), client.get(`exact_symbol:${lowerQuery}`)]);
+        const exactMatches = await Promise.all([client.get(`exact_name:${lowerQuery}`), client.get(`exact_key:${lowerQuery}`)]);
         return exactMatches.filter(Boolean) as string[]; 
     }finally{
         client.quit()

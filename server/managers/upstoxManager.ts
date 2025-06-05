@@ -1,11 +1,13 @@
-import axios, { Axios, AxiosHeaders, type AxiosRequestConfig } from "axios";
+import axios, { type AxiosRequestConfig } from "axios";
 import { config } from "../utils/config";
 import {WebSocket} from "ws";
 import { decodeProtoBuf } from "../utils/protobuf";
 import { formatDate } from "../utils/utilityFn";
-import type { RedisClientType } from "@redis/client";
-import type { Instrument } from "../types/upstox.types";
 import { exactMatchSearch, prefixSearch } from "../search/searchEngine";
+import UserSubscribedInstruments from "../Models/SubscribedInstruments";
+import objectId from "mongoose"
+import mongoose from "mongoose";
+import { convertStringToObjectId } from "./dbManager";
 
 
 enum URLs {
@@ -129,14 +131,37 @@ export default class UpstoxManager {
             }
 
 
-            return {};
+            return [];
         } catch (error) {
             console.error(error);
-            return {}   
+            return [] 
         }
     }
 
+    public async userSubscribeInstrument(userId : string, instrument_name : string) {
+         
+        const instrument = await this.getInstrumetnDetails(instrument_name);
+        if(instrument.length !== 1){
+            throw new Error("Invalid instrument Key");
+        }
+        
+        await UserSubscribedInstruments.findOneAndUpdate(
+            {userId: convertStringToObjectId(userId)},
+            {$addToSet : {
+                instrumentNames : instrument_name.toLowerCase()
+            }},
+            {new : true, upsert : true}
+        );
+    }
 
+    public static async deleteUserSubscription(userId : string) {
+        if(!userId) {
+            throw new Error("User Id is required to delete the subscription schema");
+        }
+
+        const userObjId = convertStringToObjectId(userId);
+        await UserSubscribedInstruments.findOneAndDelete({userId : userObjId});
+    }
     private async getWsAuthURL() {
         if(!this.access_code) {
             throw new Error("Access Code is required. Can not generate the Websocket Authorization URL")
@@ -151,7 +176,6 @@ export default class UpstoxManager {
         const response = await axios.get(url, config)
         return response.data.data.authorizedRedirectUri
     }
-
 
     private getURLs (Key : URLs, query?: string) {
         const URLS : {[key :string]: string} = {
