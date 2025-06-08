@@ -5,11 +5,12 @@ import MarketDataRouter from './route/v1/Upstox';
 import AuthRouter from './route/v1/Auth';
 import { connectToDatabase } from './managers/dbManager';
 import { errorHandler } from './middleware/ErrorHandlerMiddleware';
+import helmet from 'helmet';
 
 dotenv.config();
 const app = express();
 const PORT = config.port;
-
+app.use(helmet());
 app.use(express.json());
 app.use('/api/marketdatabroker/v1', MarketDataRouter);
 app.use('/api/auth/v1', AuthRouter);
