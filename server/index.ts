@@ -30,3 +30,6 @@ app.listen(PORT, async () => {
 // Adding integration module where broker API keys, secret's and redirectURI can be added and access_code after OAuth Should be added
 // Subscribing the websocket by getting the instrument Name[]
 // Adding Socket IO for client side
+// Build a intergration module to store brokers
+// Implement Reconnection Logic in Upstox Ws
+// Get the access code, bearer token client id, client secret and redirect uri from db

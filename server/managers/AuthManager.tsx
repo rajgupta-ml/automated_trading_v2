@@ -175,22 +175,12 @@ export class AuthService {
                 );
             }
 
-            const userId = userToDelete._id;
             const result = await User.deleteOne({ username });
 
             if (result.deletedCount === 0) {
                 this.throwInternalError(
                     new Error('User found but not deleted'),
                     'delete',
-                );
-            }
-
-            try {
-                await UpstoxManager.deleteUserSubscription(userId);
-            } catch (upstoxError) {
-                console.error(
-                    `Warning: Failed to delete Upstox subscription for user ${userId}:`,
-                    upstoxError,
                 );
             }
 

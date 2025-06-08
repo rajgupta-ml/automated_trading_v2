@@ -1,70 +1,151 @@
-import type { Request, Response } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import { AxiosError } from 'axios';
 import type UpstoxManager from '../managers/upstoxManager';
+import { ApiError } from '../error/apiError';
+import { ErrorMessages, SuccessMessages } from '../utils/messages';
+import { HttpStatusCode } from '../utils/httpStatusCode';
 
 export class UpstoxController {
     constructor(private readonly upstoxClient: UpstoxManager) {}
 
-    getAuthUrl = (req: Request, res: Response) => {
+    getAuthUrl = (req: Request, res: Response, next: NextFunction) => {
         try {
             const authUrl = this.upstoxClient.getUpstoxAuthUrl();
-            res.json({ type: 'success', auth_url: authUrl });
-        } catch (error) {
-            res.status(401).json({
-                type: 'error',
-                message: 'Could not get authURL',
+            res.status(Number(HttpStatusCode.OK)).json({
+                success: true,
+                message: SuccessMessages.UPSTOX_AUTH_URL_GENERATED,
+                auth_url: authUrl,
             });
+        } catch (error) {
+            console.error('Error getting Upstox Auth URL:', error);
+            next(
+                new ApiError(
+                    ErrorMessages.UPSTOX_AUTH_URL_FAILED,
+                    HttpStatusCode.INTERNAL_SERVER_ERROR,
+                ),
+            );
         }
     };
 
-    getAccessToken = async (req: Request, res: Response) => {
+    getAccessToken = async (
+        req: Request,
+        res: Response,
+        next: NextFunction,
+    ) => {
         try {
             const code = req.query.code as string;
-            if (!code)
-                res.status(400).json({
-                    success: false,
-                    message: 'Access Code is missing. malformed Request',
-                });
+            if (!code) {
+                return next(
+                    new ApiError(
+                        ErrorMessages.UPSTOX_ACCESS_CODE_MISSING,
+                        HttpStatusCode.BAD_REQUEST,
+                    ),
+                );
+            }
 
             await this.upstoxClient.getToken(code);
-            res.status(200).send('Ok');
-        } catch (error) {
-            if ((error as AxiosError).isAxiosError) {
-                console.error('Axios error:', error);
-            }
-            res.status(401).json({
-                type: 'error',
-                message: 'Could not generate the accessToken',
+            res.status(Number(HttpStatusCode.OK)).json({
+                success: true,
+                message: SuccessMessages.UPSTOX_ACCESS_TOKEN_GENERATED,
             });
+        } catch (error) {
+            console.error('Error generating Upstox Access Token:', error);
+            if (error instanceof ApiError) {
+                return next(error);
+            }
+            if (error instanceof AxiosError) {
+                const errorDetails =
+                    error.response?.data?.message || error.message;
+                return next(
+                    new ApiError(
+                        ErrorMessages.UPSTOX_TOKEN_GENERATION_FAILED.replace(
+                            '{details}',
+                            errorDetails,
+                        ),
+                        error.response?.status
+                            ? (error.response
+                                  .status as unknown as HttpStatusCode)
+                            : HttpStatusCode.INTERNAL_SERVER_ERROR,
+                    ),
+                );
+            }
+            next(
+                new ApiError(
+                    ErrorMessages.UPSTOX_TOKEN_GENERATION_FAILED.replace(
+                        '{details}',
+                        'Unknown error',
+                    ),
+                    HttpStatusCode.INTERNAL_SERVER_ERROR,
+                ),
+            );
         }
     };
 
-    establishWebsocket = async (req: Request, res: Response) => {
+    establishWebsocket = async (
+        req: Request,
+        res: Response,
+        next: NextFunction,
+    ) => {
         try {
             await this.upstoxClient.getLastTradingPriceForAllSubscribedStock();
-            res.status(200).send('ok');
+            res.status(Number(HttpStatusCode.OK)).json({
+                success: true,
+                message: SuccessMessages.UPSTOX_WEBSOCKET_ESTABLISHED,
+            });
         } catch (error) {
-            console.error(error);
-            res.status(500).send('error');
+            console.error('Error establishing Upstox websocket:', error);
+            if (error instanceof ApiError) {
+                return next(error);
+            }
+            if (error instanceof AxiosError) {
+                const errorDetails =
+                    error.response?.data?.message || error.message;
+                return next(
+                    new ApiError(
+                        ErrorMessages.UPSTOX_WEBSOCKET_ERROR +
+                            `: ${errorDetails}`,
+                        error.response?.status
+                            ? (error.response
+                                  .status as unknown as HttpStatusCode)
+                            : HttpStatusCode.INTERNAL_SERVER_ERROR,
+                    ),
+                );
+            }
+            next(
+                new ApiError(
+                    ErrorMessages.UPSTOX_WEBSOCKET_ERROR,
+                    HttpStatusCode.INTERNAL_SERVER_ERROR,
+                ),
+            );
         }
     };
 
-    userSubscribeInstrument = async (req: Request, res: Response) => {
+    userSubscribeInstrument = async (
+        req: Request,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        // Assuming a middleware handles JWT validation and attaches 'user' to req
         const user = (req as any).user;
         const instrument_key = req.body.instrument_key as string;
 
-        if (!user) {
-            res.status(400).json({
-                success: false,
-                message: 'Malformed JWT. Please re-login.',
-            });
+        if (!user || !user.userId) {
+            // Check for user existence and userId
+            return next(
+                new ApiError(
+                    ErrorMessages.MALFORMED_JWT,
+                    HttpStatusCode.UNAUTHORIZED,
+                ),
+            );
         }
 
         if (!instrument_key) {
-            res.status(400).json({
-                success: false,
-                message: 'Instrument name is required to subscribe.',
-            });
+            return next(
+                new ApiError(
+                    ErrorMessages.INSTRUMENT_NAME_REQUIRED,
+                    HttpStatusCode.BAD_REQUEST,
+                ),
+            );
         }
 
         try {
@@ -73,45 +154,92 @@ export class UpstoxController {
                 instrument_key,
             );
 
-            res.status(200).json({
+            res.status(Number(HttpStatusCode.OK)).json({
                 success: true,
-                message: 'Successfully subscribed to instruments.',
+                message: SuccessMessages.UPSTOX_INSTRUMENT_SUBSCRIBED,
             });
         } catch (error: any) {
-            console.error('Subscription error:', error);
-
-            res.status(500).json({
-                success: false,
-                message:
-                    'Failed to subscribe instruments. Please try again later.',
-                error: error.message || 'Unknown error',
-            });
+            console.error('Error subscribing instrument:', error);
+            if (error instanceof ApiError) {
+                return next(error);
+            }
+            if (error instanceof AxiosError) {
+                const errorDetails =
+                    error.response?.data?.message || error.message;
+                return next(
+                    new ApiError(
+                        ErrorMessages.UPSTOX_SUBSCRIPTION_FAILED +
+                            `: ${errorDetails}`,
+                        error.response?.status
+                            ? (error.response
+                                  .status as unknown as HttpStatusCode)
+                            : HttpStatusCode.INTERNAL_SERVER_ERROR,
+                    ),
+                );
+            }
+            next(
+                new ApiError(
+                    ErrorMessages.UPSTOX_SUBSCRIPTION_FAILED,
+                    HttpStatusCode.INTERNAL_SERVER_ERROR,
+                ),
+            );
         }
     };
 
-    getInstrumentsDetails = async (req: Request, res: Response) => {
+    getInstrumentsDetails = async (
+        req: Request,
+        res: Response,
+        next: NextFunction,
+    ) => {
         try {
             const instrument_name = req.query.instrument_name as string;
             const limit = parseInt(req.query.limit as string) || 5;
+
             if (!instrument_name) {
-                res.status(401).json({
-                    status: 'Bad Request',
-                    message: 'Instrument name is required',
-                });
+                return next(
+                    new ApiError(
+                        ErrorMessages.INSTRUMENT_NAME_REQUIRED,
+                        HttpStatusCode.BAD_REQUEST,
+                    ),
+                );
             }
-            const Instument = await this.upstoxClient.getInstrumetnDetails(
-                instrument_name,
-                limit,
-            );
-            res.status(200).json({
+
+            const instrumentDetails =
+                await this.upstoxClient.getInstrumetnDetails(
+                    instrument_name,
+                    limit,
+                );
+
+            res.status(Number(HttpStatusCode.OK)).json({
                 success: true,
-                instrument: Instument,
+                message: SuccessMessages.UPSTOX_INSTRUMENT_DETAILS_FETCHED,
+                instrument: instrumentDetails,
             });
         } catch (error) {
-            console.error(error);
-            res.status(400).json({
-                success: false,
-            });
+            console.error('Error getting instrument details:', error);
+            if (error instanceof ApiError) {
+                return next(error);
+            }
+            if (error instanceof AxiosError) {
+                const errorDetails =
+                    error.response?.data?.message || error.message;
+                return next(
+                    new ApiError(
+                        ErrorMessages.UPSTOX_INSTRUMENT_DETAILS_FAILED +
+                            `: ${errorDetails}`,
+                        error.response?.status
+                            ? (error.response
+                                  .status as unknown as HttpStatusCode)
+                            : HttpStatusCode.INTERNAL_SERVER_ERROR,
+                    ),
+                );
+            }
+            next(
+                new ApiError(
+                    ErrorMessages.UPSTOX_INSTRUMENT_DETAILS_FAILED,
+                    HttpStatusCode.INTERNAL_SERVER_ERROR,
+                ),
+            );
         }
     };
 }
