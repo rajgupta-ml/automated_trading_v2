@@ -4,6 +4,7 @@ import { config } from './utils/config';
 import MarketDataRouter from './route/v1/Upstox';
 import AuthRouter from './route/v1/Auth';
 import { connectToDatabase } from './managers/dbManager';
+import { errorHandler } from './middleware/ErrorHandlerMiddleware';
 
 dotenv.config();
 const app = express();
@@ -16,6 +17,7 @@ app.get('/healthcheck', (req: Request, res: Response) => {
     res.status(200).send('OK');
 });
 
+app.use(errorHandler);
 app.listen(PORT, async () => {
     await connectToDatabase();
     console.log(
@@ -24,4 +26,7 @@ app.listen(PORT, async () => {
 });
 
 // TODO
-// Addeding Error Class and preetier.rc
+// Addeding Error Class
+// Adding integration module where broker API keys, secret's and redirectURI can be added and access_code after OAuth Should be added
+// Subscribing the websocket by getting the instrument Name[]
+// Adding Socket IO for client side
