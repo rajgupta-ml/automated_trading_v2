@@ -8,7 +8,7 @@ import type {
 } from 'express';
 import { ApiError } from '../error/apiError';
 import { HttpStatusCode } from '../utils/httpStatusCode';
-import { ErrorMessages } from '../utils/messages';
+import { ErrorMessages } from '../enums/messages';
 
 export const errorHandler: ErrorRequestHandler = (
     err: Error | ApiError,

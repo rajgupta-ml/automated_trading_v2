@@ -1,9 +1,9 @@
 import express, { type Request, type Response } from 'express';
 import dotenv from 'dotenv';
 import { config } from './utils/config';
-import MarketDataRouter from './route/v1/Upstox';
+import MarketDataRouter from './route/v1/broker';
 import AuthRouter from './route/v1/Auth';
-import { connectToDatabase } from './managers/dbManager';
+import { connectToDatabase } from './Services/dbService';
 import { errorHandler } from './middleware/ErrorHandlerMiddleware';
 import helmet from 'helmet';
 
@@ -27,10 +27,7 @@ app.listen(PORT, async () => {
 });
 
 // TODO
-// Addeding Error Class
-// Adding integration module where broker API keys, secret's and redirectURI can be added and access_code after OAuth Should be added
 // Subscribing the websocket by getting the instrument Name[]
 // Adding Socket IO for client side
-// Build a intergration module to store brokers
 // Implement Reconnection Logic in Upstox Ws
-// Get the access code, bearer token client id, client secret and redirect uri from db
+// Add CRUD operation for integration

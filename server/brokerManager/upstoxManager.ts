@@ -5,13 +5,14 @@ import { decodeProtoBuf } from '../utils/protobuf';
 import { formatDate } from '../utils/utilityFn';
 import { exactMatchSearch, prefixSearch } from '../search/searchEngine';
 import UserSubscribedInstruments from '../Models/SubscribedInstruments';
-import { convertStringToObjectId } from './dbManager';
+import { convertStringToObjectId } from '../Services/dbService';
 import mongoose from 'mongoose';
 
 import { ApiError } from '../error/apiError';
-import { ErrorMessages } from '../utils/messages';
+import { ErrorMessages } from '../enums/messages';
 import { HttpStatusCode } from '../utils/httpStatusCode';
-import type { Instrument } from '../types/upstox.types';
+import type { ApiManager } from '../factory/integrationFactory';
+import type { IBrokerCredintials } from '../Models/IntegrationCredintials';
 
 enum URLs {
     authorizationURL = 'authorizationURL',
@@ -20,11 +21,8 @@ enum URLs {
     historicalData = 'historicalData',
 }
 
-export default class UpstoxManager {
+export default class UpstoxManager implements ApiManager {
     private readonly API_ENDPOINT = 'https://api.upstox.com/v2';
-    private readonly client_id = config.upstox.client_id;
-    private readonly client_secret = config.upstox.client_secret;
-    private readonly redirect_uri = config.upstox.redirect_uri;
     private readonly grant_type = 'authorization_code';
 
     private access_code: string | undefined =
@@ -38,18 +36,28 @@ export default class UpstoxManager {
         );
     }
 
-    public getUpstoxAuthUrl(): string {
+    public getAuthUrl(credentials: IBrokerCredintials) {
         try {
-            const url = this.getURLs(URLs.authorizationURL);
+            const { apiKey, apiSecret, redirectUri } = credentials;
+            if (!(apiKey && apiSecret && redirectUri)) {
+                throw new ApiError(
+                    ErrorMessages.BROKER_CONNECTION_FAILED,
+                    HttpStatusCode.BAD_REQUEST,
+                );
+            }
+            const url = this.getURLs(URLs.authorizationURL, credentials);
             return url;
         } catch (error) {
             this.throwInternalError(error, 'getUpstoxAuthUrl');
         }
     }
 
-    public async getToken(code: string): Promise<void> {
+    public async getToken(
+        credentials: IBrokerCredintials,
+        code: string,
+    ): Promise<string> {
         const url = this.getURLs(URLs.tokenURL);
-        const body = this.getBody(URLs.tokenURL, code);
+        const body = this.getBody(URLs.tokenURL, credentials, code);
         const requestConfig: AxiosRequestConfig = {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -66,13 +74,7 @@ export default class UpstoxManager {
 
         try {
             const response = await axios.post(url, body, requestConfig);
-            this.access_code = response.data.access_token;
-            console.log(
-                'Upstox Access Token obtained:',
-                this.access_code
-                    ? '******' + this.access_code.slice(-4)
-                    : 'N/A',
-            );
+            return response.data.access_token;
         } catch (error: any) {
             console.error('Error during Upstox token exchange:', error);
             if (error instanceof AxiosError) {
@@ -93,7 +95,7 @@ export default class UpstoxManager {
         }
     }
 
-    public async establishUpstoxSocketConnectionAndStreamMarketFeed(): Promise<void> {
+    public async establishMarketDataFeed(access_token: string): Promise<void> {
         let wsURL: string;
         try {
             wsURL = await this.getWsAuthURL();
@@ -112,7 +114,7 @@ export default class UpstoxManager {
         const wsConfig: WebSocket.ClientOptions = {
             headers: {
                 'Api-Version': '2.0',
-                Authorization: `Bearer ${this.access_code}`,
+                Authorization: `Bearer ${access_token}`,
             },
         };
 
@@ -182,7 +184,7 @@ export default class UpstoxManager {
         }
     }
 
-    public async getLastTradingPriceForAllSubscribedStock(): Promise<number> {
+    public async getHistoricalData(): Promise<number> {
         const fromDate = formatDate(); // Current date
         const toDate = formatDate(7); // Date 7 days from now
         const instrumentKey = 'NSE_EQ|INE848E01016';
@@ -194,7 +196,7 @@ export default class UpstoxManager {
                 Authorization: `Bearer ${this.access_code}`,
             },
         };
-        const url = this.getURLs(URLs.historicalData, query);
+        const url = this.getURLs(URLs.historicalData, undefined, query);
 
         if (!this.access_code) {
             throw new ApiError(
@@ -242,7 +244,7 @@ export default class UpstoxManager {
         }
     }
 
-    public async getInstrumetnDetails(
+    public async getInstrumentDetails(
         query: string,
         limit: number = 10,
     ): Promise<string[]> {
@@ -263,7 +265,7 @@ export default class UpstoxManager {
         }
     }
 
-    public async userSubscribeInstrument(
+    public async subscribeInstrument(
         userId: string,
         instrument_name: string,
     ): Promise<void> {
@@ -275,7 +277,7 @@ export default class UpstoxManager {
                 );
             }
 
-            const instrument = await this.getInstrumetnDetails(instrument_name);
+            const instrument = await this.getInstrumentDetails(instrument_name);
             if (instrument.length === 0) {
                 throw new ApiError(
                     ErrorMessages.INVALID_INSTRUMENT,
@@ -333,7 +335,7 @@ export default class UpstoxManager {
         }
     }
 
-    public async deleteUserSubscription(userId: string) {
+    public async deleteSubscription(userId: string) {
         if (!userId) {
             throw new ApiError(
                 ErrorMessages.MISSING_REQUIRED_SETTING.replace(
@@ -428,10 +430,14 @@ export default class UpstoxManager {
         }
     }
 
-    private getURLs(Key: URLs, query?: string): string {
+    private getURLs(
+        Key: URLs,
+        credentials?: IBrokerCredintials,
+        query?: string,
+    ): string {
         const URLS: { [key in URLs]: string } = {
             // Explicitly type keys for stricter checking
-            [URLs.authorizationURL]: `${this.API_ENDPOINT}/login/authorization/dialog?client_id=${this.client_id}&redirect_uri=${this.redirect_uri}`,
+            [URLs.authorizationURL]: `${this.API_ENDPOINT}/login/authorization/dialog?client_id=${credentials?.apiKey}&redirect_uri=${credentials?.redirectUri}`,
             [URLs.tokenURL]: `${this.API_ENDPOINT}/login/authorization/token`,
             [URLs.wsAuthURL]: `${this.API_ENDPOINT}/feed/market-data-feed/authorize`,
             [URLs.historicalData]: `${this.API_ENDPOINT}/historical-candle/${query}`,
@@ -451,11 +457,16 @@ export default class UpstoxManager {
 
     private getBody(
         Key: URLs, // Use URLs enum for Key
+        credentials?: IBrokerCredintials,
         code?: string,
     ): Record<string, string> {
-        // Return type is a simple object
+        if (!credentials) {
+            throw new ApiError(
+                ErrorMessages.UPSTOX_TOKEN_GENERATION_FAILED,
+                HttpStatusCode.INTERNAL_SERVER_ERROR,
+            );
+        }
         const Body: { [key in URLs]?: Record<string, string> } = {
-            // Use URLs enum for key, make optional for safety
             [URLs.tokenURL]: {
                 code:
                     code ??
@@ -465,9 +476,9 @@ export default class UpstoxManager {
                             HttpStatusCode.INTERNAL_SERVER_ERROR,
                         ); // Internal error if `code` is expected but missing
                     })(),
-                client_id: this.client_id,
-                client_secret: this.client_secret,
-                redirect_uri: this.redirect_uri,
+                client_id: credentials?.apiKey,
+                client_secret: credentials?.apiSecret,
+                redirect_uri: credentials?.redirectUri,
                 grant_type: this.grant_type,
             },
             // Add other body definitions if they exist for other URLs enum members

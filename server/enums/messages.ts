@@ -11,6 +11,7 @@ export enum ErrorMessages {
     GENERIC_ERROR = 'An unknown error occurred.', // Fallback for truly unhandled cases
 
     // ... (existing Authentication & User Management Errors) ...
+    BROKER_REQUIRED = 'Broker name is required',
     USERNAME_REQUIRED = 'Username is required.',
     PASSWORD_REQUIRED = 'Password is required.',
     USERNAME_AND_PASSWORD_REQUIRED = 'Username and password are required.',
@@ -37,7 +38,9 @@ export enum ErrorMessages {
     UPSTOX_SUBSCRIPTION_FAILED = 'Failed to subscribe to the instrument on Upstox. Please check instrument key and try again.',
     UPSTOX_INSTRUMENT_DETAILS_FAILED = 'Failed to retrieve instrument details from Upstox.',
     INSTRUMENT_NAME_REQUIRED = 'Instrument name is required.',
-    MALFORMED_JWT = 'Malformed JWT. Please re-login to re-authenticate with Upstox.', // General JWT error for upstox related calls
+    MALFORMED_JWT = 'Malformed JWT. Please re-login to re-authenticate with Upstox.',
+    WRONG_CREDINTIALS = 'Failed to validate apikey, apiSecret and redirectUri. Kindly re-check',
+    CREDINTIALS_NOT_AVAILABLE = 'Failed to fetch credintials. Kindly, first add the integration',
 
     // ... (existing Trading Logic / Order Related Errors) ...
     INVALID_ORDER_PARAMETERS = 'Invalid order parameters. Please check quantity, price, and type.',
@@ -58,6 +61,7 @@ export enum ErrorMessages {
 
     // ... (existing Configuration / Setup Errors) ...
     INVALID_API_KEY = 'The provided API key is invalid or expired. Please update your API key.',
+    INVALID_SESSION_TOKEN = 'The provided API key is invalid or expired.',
     BROKER_CONNECTION_FAILED = 'Failed to connect to the broker. Please check API key and network.',
     STRATEGY_CONFIGURATION_ERROR = 'Strategy configuration error: {details}. Please review your strategy settings.',
     MISSING_REQUIRED_SETTING = 'Missing a required setting: {settingName}. Please complete your profile/configuration.',
@@ -67,10 +71,15 @@ export enum ErrorMessages {
     INVALID_DATE_RANGE = 'Invalid date range specified for historical data query.',
     SUBSCRIPTION_FAILED = 'Failed to subscribe to market data for instrument: {instrument}.',
     DATA_FEED_ERROR = 'Error receiving data from market feed. Data may be stale.',
+
+    // ... (Broker Specific)
+    ACCESS_TOKEN_NOT_AVAILABLE = 'Access Token is required to establish websocket connect',
+    INTEGRATION_NOT_AVAILABLE = 'The provide broker at this is not supported. Please contact support team for further clarification.',
 }
 
 // enums/SuccessMessages.ts
 export enum SuccessMessages {
+    BROKER_INTEGRATION = 'Integration is complete',
     OPERATION_SUCCESSFUL = 'Operation completed successfully.',
     RESOURCE_CREATED = 'Resource created successfully.',
     USER_SIGNED_UP = 'User account created successfully.',

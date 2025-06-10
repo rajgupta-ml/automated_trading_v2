@@ -1,9 +1,9 @@
 // AuthController.ts
 import type { NextFunction, Request, Response } from 'express';
-import { AuthService } from '../managers/AuthManager';
+import { AuthService } from '../Services/authService';
 import type { IUser } from '../Models/User';
 import { ApiError } from '../error/apiError';
-import { ErrorMessages, SuccessMessages } from '../utils/messages';
+import { ErrorMessages, SuccessMessages } from '../enums/messages';
 import { HttpStatusCode } from '../utils/httpStatusCode';
 
 export class AuthController {
@@ -50,9 +50,6 @@ export class AuthController {
                 user: {
                     userId: user._id,
                     username: user.username,
-                    apiKey: user.apiKey,
-                    apiSecret: user.apiSecret,
-                    redirectUri: user.redirectUri,
                 },
             });
         } catch (error) {
@@ -134,9 +131,6 @@ export class AuthController {
 
             const updateFields: Partial<IUser> = {};
             if (password) updateFields.password = password;
-            if (apiKey) updateFields.apiKey = apiKey;
-            if (apiSecret) updateFields.apiSecret = apiSecret;
-            if (redirectUri) updateFields.redirectUri = redirectUri;
 
             if (Object.keys(updateFields).length === 0) {
                 return next(
@@ -167,9 +161,6 @@ export class AuthController {
                 user: {
                     userId: updatedUser._id,
                     username: updatedUser.username,
-                    apiKey: updatedUser.apiKey,
-                    apiSecret: updatedUser.apiSecret,
-                    redirectUri: updatedUser.redirectUri,
                 },
             });
         } catch (error) {

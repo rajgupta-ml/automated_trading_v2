@@ -3,9 +3,9 @@ import User, { type IUser } from '../Models/User';
 import ExpiredToken from '../Models/ExpiredToken';
 import { config } from '../utils/config';
 import crypto from 'crypto';
-import UpstoxManager from './upstoxManager';
+import UpstoxManager from '../brokerManager/upstoxManager';
 import { ApiError } from '../error/apiError';
-import { ErrorMessages } from '../utils/messages';
+import { ErrorMessages } from '../enums/messages';
 import { HttpStatusCode } from '../utils/httpStatusCode';
 import mongoose from 'mongoose';
 
