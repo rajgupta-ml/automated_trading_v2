@@ -47,6 +47,12 @@ export const authenticateJWT = async (
             );
         }
 
+        if (error instanceof jwt.JsonWebTokenError) {
+            throw new AuthError(
+                ErrorMessages.UNAUTHORIZED_ACCESS,
+                HttpStatusCode.UNAUTHORIZED,
+            );
+        }
         if (error instanceof AuthError) {
             throw error;
         }

@@ -26,4 +26,15 @@ const UserSubscribedInstruments = mongoose.model<IUserSubscribedInstruments>(
     userSubscribedInstrumentsSchema,
 );
 
-export default UserSubscribedInstruments;
+const getInstruments = async (
+    userId: mongoose.Types.ObjectId,
+): Promise<IUserSubscribedInstruments | Promise<null>> => {
+    const instrument = await UserSubscribedInstruments.findOne({ userId });
+    if (!instrument || instrument.instrumentNames.length === 0) {
+        return null;
+    }
+
+    return instrument;
+};
+
+export { UserSubscribedInstruments, getInstruments };

@@ -4,14 +4,14 @@ import { WebSocket } from 'ws';
 import { decodeProtoBuf } from '../utils/protobuf';
 import { formatDate } from '../utils/utilityFn';
 import { exactMatchSearch, prefixSearch } from '../search/searchEngine';
-import UserSubscribedInstruments from '../Models/SubscribedInstruments';
+import { UserSubscribedInstruments } from '../Models/SubscribedInstruments';
 import { convertStringToObjectId } from '../Services/dbService';
 import mongoose from 'mongoose';
 
 import { ApiError } from '../error/apiError';
 import { ErrorMessages } from '../enums/messages';
 import { HttpStatusCode } from '../utils/httpStatusCode';
-import type { ApiManager } from '../factory/integrationFactory';
+import type { ApiManager } from '../types/apiMangerInterface';
 import type { IBrokerCredintials } from '../Models/IntegrationCredintials';
 
 enum URLs {
@@ -21,12 +21,18 @@ enum URLs {
     historicalData = 'historicalData',
 }
 
+type IOhlc = {
+    open: String;
+    high: String;
+    low: String;
+    close: String;
+    interval: String;
+    ts: any;
+};
+
 export default class UpstoxManager implements ApiManager {
     private readonly API_ENDPOINT = 'https://api.upstox.com/v2';
     private readonly grant_type = 'authorization_code';
-
-    private access_code: string | undefined =
-        config.mode === 'dev' ? config.access_code : undefined;
 
     private throwInternalError(error: unknown, context: string): never {
         console.error(`UpstoxManager Internal Error in ${context}:`, error);
@@ -95,21 +101,16 @@ export default class UpstoxManager implements ApiManager {
         }
     }
 
-    public async establishMarketDataFeed(access_token: string): Promise<void> {
+    public async establishMarketDataFeed(
+        access_token: string,
+        subscribedInstrument: string[],
+    ): Promise<void> {
         let wsURL: string;
         try {
-            wsURL = await this.getWsAuthURL();
+            wsURL = await this.getWsAuthURL(access_token);
         } catch (error) {
             throw error;
         }
-
-        // --- Find the subscribed Instruments (This part needs actual fetching from DB for the user) ---
-        // CURRENTLY, this fetches an arbitrary hardcoded instrument.
-        // For a multi-user system, you'd need to fetch user-specific subscribed instruments here.
-        // For demonstration, let's assume `getWsAuthURL` is successful and we're just setting up the WS.
-        // Also, the WebSocket connection itself is client-side in a browser, or handled by a separate
-        // server-side service if you're maintaining persistent connections.
-        // For this manager, we're just demonstrating the *attempt* to establish.
 
         const wsConfig: WebSocket.ClientOptions = {
             headers: {
@@ -129,7 +130,7 @@ export default class UpstoxManager implements ApiManager {
                     method: 'sub',
                     data: {
                         mode: 'full',
-                        instrumentKeys: ['NSE_EQ|INE669E01016'],
+                        instrumentKeys: subscribedInstrument,
                     },
                 };
                 ws.send(Buffer.from(JSON.stringify(data)));
@@ -142,13 +143,12 @@ export default class UpstoxManager implements ApiManager {
             ws.onmessage = async (event) => {
                 try {
                     let response = await decodeProtoBuf(event.data as Buffer);
-
-                    console.log(
-                        'Received market data:',
-                        response.feeds
-                            ? response.feeds['NSE_EQ|INE669E01016']?.ff
-                            : 'No feeds',
+                    const feeds = response.feeds;
+                    const OhlcData = this.getOHLCData(
+                        subscribedInstrument,
+                        feeds,
                     );
+                    console.log(OhlcData);
                 } catch (decodeError) {
                     console.error(
                         'Error decoding Protobuf message:',
@@ -184,7 +184,7 @@ export default class UpstoxManager implements ApiManager {
         }
     }
 
-    public async getHistoricalData(): Promise<number> {
+    public async getHistoricalData(access_token: string): Promise<number> {
         const fromDate = formatDate(); // Current date
         const toDate = formatDate(7); // Date 7 days from now
         const instrumentKey = 'NSE_EQ|INE848E01016';
@@ -193,12 +193,12 @@ export default class UpstoxManager implements ApiManager {
         const requestConfig: AxiosRequestConfig = {
             headers: {
                 Accept: 'application/json',
-                Authorization: `Bearer ${this.access_code}`,
+                Authorization: `Bearer ${access_token}`,
             },
         };
         const url = this.getURLs(URLs.historicalData, undefined, query);
 
-        if (!this.access_code) {
+        if (!access_token) {
             throw new ApiError(
                 ErrorMessages.UNAUTHORIZED_ACCESS,
                 HttpStatusCode.UNAUTHORIZED,
@@ -335,7 +335,7 @@ export default class UpstoxManager implements ApiManager {
         }
     }
 
-    public async deleteSubscription(userId: string) {
+    public async deleteSubscription(userId: string, instrumentName: string) {
         if (!userId) {
             throw new ApiError(
                 ErrorMessages.MISSING_REQUIRED_SETTING.replace(
@@ -345,6 +345,7 @@ export default class UpstoxManager implements ApiManager {
                 HttpStatusCode.BAD_REQUEST,
             );
         }
+        console.log(userId);
         if (!mongoose.Types.ObjectId.isValid(userId)) {
             throw new ApiError(
                 ErrorMessages.INVALID_DATA_FORMAT,
@@ -354,18 +355,25 @@ export default class UpstoxManager implements ApiManager {
 
         try {
             const userObjId = convertStringToObjectId(userId);
-            const result = await UserSubscribedInstruments.findOneAndDelete({
-                userId: userObjId,
-            });
+            // 2. Use a single atomic 'findOneAndUpdate' operation with '$pull'
+            const result = await UserSubscribedInstruments.findOneAndUpdate(
+                { userId: userObjId },
+                { $pull: { instrumentNames: instrumentName } },
+                { new: true }, // 'new: true' is optional, returns the doc after update
+            );
 
+            // 3. Check if the user's document was found and modified.
+            // The '$pull' operation is idempotent, it won't error if the item isn't in the array.
+            // So, we just need to check if we found a user document to operate on.
             if (!result) {
                 throw new ApiError(
                     ErrorMessages.USER_NOT_FOUND +
-                        ': No active subscription found for this user.', // Use USER_NOT_FOUND or a more specific message
+                        ': No active subscription found for this user.',
                     HttpStatusCode.NOT_FOUND,
                 );
             }
-            return !!result;
+
+            return true;
         } catch (error: any) {
             if (error instanceof ApiError) {
                 throw error; // Re-throw ApiError
@@ -381,8 +389,8 @@ export default class UpstoxManager implements ApiManager {
         }
     }
 
-    private async getWsAuthURL(): Promise<string> {
-        if (!this.access_code) {
+    private async getWsAuthURL(access_token: string): Promise<string> {
+        if (!access_token) {
             throw new ApiError(
                 ErrorMessages.UNAUTHORIZED_ACCESS +
                     '. Upstox access token missing. Please re-authenticate.',
@@ -391,7 +399,7 @@ export default class UpstoxManager implements ApiManager {
         }
         const requestConfig: AxiosRequestConfig = {
             headers: {
-                Authorization: `Bearer ${this.access_code}`,
+                Authorization: `Bearer ${access_token}`,
                 Accept: 'application/json',
             },
         };
@@ -494,4 +502,40 @@ export default class UpstoxManager implements ApiManager {
         }
         return result;
     }
+
+    private getOHLCData = (subscribedInstrument: string[], feeds: any) => {
+        const allOhlcData: {
+            [key: string]: Omit<IOhlc, 'interval' | 'ts'> | undefined;
+        } = {};
+        subscribedInstrument.forEach((instrumentKey: string) => {
+            let latestTimeStamp: number = -1;
+            let latestOhlcData: IOhlc | null = null;
+
+            const instrumentFeed = feeds[instrumentKey];
+            const ohlcArray = instrumentFeed?.ff?.marketFF?.marketOHLC?.ohlc;
+
+            if (ohlcArray) {
+                ohlcArray.forEach((ohlc: IOhlc) => {
+                    if (ohlc.interval === 'I1') {
+                        const currentTimestamp = ohlc.ts.toNumber();
+
+                        if (currentTimestamp > latestTimeStamp) {
+                            latestTimeStamp = currentTimestamp;
+                            latestOhlcData = ohlc as IOhlc;
+                        }
+                    }
+                });
+
+                if (latestOhlcData) {
+                    allOhlcData[instrumentKey] = {
+                        open: (latestOhlcData as IOhlc).open,
+                        high: (latestOhlcData as IOhlc).high,
+                        low: (latestOhlcData as IOhlc).low,
+                        close: (latestOhlcData as IOhlc).close,
+                    }; // Store the found data (or undefined if not found)
+                }
+            }
+        });
+        return allOhlcData;
+    };
 }

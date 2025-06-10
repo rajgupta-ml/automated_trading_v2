@@ -33,16 +33,36 @@ MarketDataRouter.get(
     authenticateJWT,
     controller.getInstrumentsDetails,
 );
+
+// Instrument Subscription
 MarketDataRouter.post(
     '/:broker/subscribe/instrument',
     authenticateJWT,
     controller.userSubscribeInstrument,
 );
 
+MarketDataRouter.delete(
+    '/:broker/unsubscribe/instrument',
+    authenticateJWT,
+    controller.deleteSubscribedInstrument,
+);
+
+// Integration Crud
 MarketDataRouter.post(
     '/:broker/add/',
     authenticateJWT,
     controller.addIntegration,
+);
+MarketDataRouter.patch(
+    '/:broker/update',
+    authenticateJWT,
+    controller.updateIntegration,
+);
+
+MarketDataRouter.delete(
+    '/:broker/',
+    authenticateJWT,
+    controller.deleteIntegration,
 );
 
 export default MarketDataRouter;

@@ -14,25 +14,12 @@ import { convertStringToObjectId } from '../Services/dbService';
 import mongoose from 'mongoose';
 import axios, { AxiosError } from 'axios';
 
-// --- BrokerCredintialService Class ---
 export class BrokerCredintialService {
-    // integrationFactory is injected in the constructor for dependency inversion
     constructor(private integrationFactory: IntegrationFactory) {}
-
-    /**
-     * Initializes and returns an API manager for the specified broker.
-     * This method is responsible for using the factory to get a specific API manager
-     * and ensuring its type compatibility.
-     * @param broker_name The name of the broker (e.g., 'Upstox').
-     * @returns An instance of the ApiManager for the specified broker.
-     * @throws ApiError if the broker manager cannot be initialized.
-     */
     public getInitializedBrokerManager(
         broker_name: keyof ManagerConstructors,
     ): ApiManager {
         try {
-            // The getManager method already returns an instance that conforms to ApiManager
-            // The 'as ApiManager' assertion is used to explicitly confirm the type for TypeScript.
             return this.integrationFactory.getManager(
                 broker_name,
             ) as ApiManager;
@@ -41,7 +28,7 @@ export class BrokerCredintialService {
                 `Failed to initialize broker manager for ${broker_name}:`,
                 error,
             );
-            // Re-throw the original error if it's already an ApiError, otherwise wrap it
+
             if (error instanceof ApiError) {
                 throw error;
             }
@@ -53,30 +40,21 @@ export class BrokerCredintialService {
         }
     }
 
-    /**
-     * Internal method to check broker credentials by trying to get an auth URL.
-     * This method validates the provided API key, secret, and redirect URI with the broker's API.
-     * @param credentials The broker credentials to validate.
-     * @param broker_name The name of the broker.
-     * @returns A promise that resolves to true if credentials appear valid, false otherwise.
-     * @throws ApiError on validation failure or network issues.
-     */
     private async checkCredintials(
         credentials: IBrokerCredintials,
         broker_name: keyof ManagerConstructors,
     ): Promise<boolean> {
         try {
             const broker = this.getInitializedBrokerManager(broker_name);
-            // The getAuthUrl method is expected to throw an ApiError if credentials are fundamentally malformed
+
             const url = broker.getAuthUrl(credentials);
             const response = await axios.get(url);
-            // A simple 200 OK check; for more robust validation, you might need to
-            // parse the response body or follow redirects based on broker specifics.
+
             return response.status === 200;
         } catch (error: any) {
             console.error(`Credential check failed for ${broker_name}:`, error);
             if (error instanceof ApiError) {
-                throw error; // Re-throw custom API errors directly
+                throw error;
             }
             if (error instanceof AxiosError) {
                 const errorMessage =
@@ -95,15 +73,6 @@ export class BrokerCredintialService {
         }
     }
 
-    /**
-     * Adds new broker credentials or updates existing ones for a user.
-     * @param userId The ID of the user.
-     * @param broker The name of the broker (e.g., 'Upstox').
-     * @param credentials The API key, secret, and redirect URI for the broker.
-     * @returns The updated user integration document.
-     * @throws ApiError if required parameters are missing, broker is not supported,
-     * credentials are invalid, or a database operation fails.
-     */
     public async addBrokerCredintials(
         userId: string,
         broker: keyof ManagerConstructors,
@@ -124,7 +93,6 @@ export class BrokerCredintialService {
             const updatedIntegration = await Intergration.findOneAndUpdate(
                 { userId: userIdObjectId },
                 {
-                    // Use $set with dot notation to update a specific key within the Map
                     $set: { [`brokerIntegration.${broker}`]: credentials },
                 },
                 {
@@ -173,14 +141,6 @@ export class BrokerCredintialService {
         }
     }
 
-    /**
-     * Retrieves broker credentials for a specific user and broker.
-     * @param userId The ID of the user.
-     * @param broker The name of the broker.
-     * @returns The broker credentials (sanitized to hide secrets).
-     * @throws ApiError if required parameters are missing, user or broker credentials are not found,
-     * or a database operation fails.
-     */
     public async getBrokerCredintials(
         userId: string,
         broker: keyof ManagerConstructors,
@@ -250,15 +210,6 @@ export class BrokerCredintialService {
         }
     }
 
-    /**
-     * Updates specific fields of existing broker credentials for a user.
-     * @param userId The ID of the user.
-     * @param broker The name of the broker.
-     * @param updateFields An object containing the fields to update (apiKey, apiSecret, etc.).
-     * @returns The updated broker credentials (sanitized).
-     * @throws ApiError if required parameters are missing, no fields are provided for update,
-     * user or broker credentials are not found, or a database operation fails.
-     */
     public async updateBrokerCredintials(
         userId: string,
         broker: keyof ManagerConstructors,
@@ -278,7 +229,7 @@ export class BrokerCredintialService {
                 HttpStatusCode.UNAUTHORIZED,
             );
         }
-        // At least one field should be provided for update
+
         if (
             !(
                 updateFields.apiKey ||
@@ -297,7 +248,6 @@ export class BrokerCredintialService {
         try {
             const userIdObjectId = convertStringToObjectId(userId);
 
-            // Construct the update object using dot notation for Map fields
             const mongooseUpdate: { [key: string]: any } = {};
             if (updateFields.apiKey !== undefined)
                 mongooseUpdate[`brokerIntegration.${broker}.apiKey`] =
@@ -385,14 +335,6 @@ export class BrokerCredintialService {
         }
     }
 
-    /**
-     * Deletes specific broker credentials for a user.
-     * @param userId The ID of the user.
-     * @param broker The name of the broker to delete credentials for.
-     * @returns A boolean indicating success of the deletion.
-     * @throws ApiError if required parameters are missing, user is not found,
-     * credentials for the broker are not found, or a database operation fails.
-     */
     public async deleteBrokerCredintials(
         userId: string,
         broker: keyof ManagerConstructors,

@@ -7,6 +7,7 @@ import type { BrokerCredintialService } from '../Services/brokerCredintialServic
 import type { ManagerConstructors } from '../factory/integrationFactory';
 import type { IBrokerCredintials } from '../Models/IntegrationCredintials';
 import { generateSessionToken } from '../Models/SessionToken';
+import { getInstruments } from '../Models/SubscribedInstruments';
 export class BrokerController {
     constructor(
         private readonly brokerCredintialService: BrokerCredintialService,
@@ -223,7 +224,7 @@ export class BrokerController {
                 return next(
                     new ApiError(
                         ErrorMessages.INTEGRATION_NOT_AVAILABLE,
-                        HttpStatusCode.NOT_IMPLEMENTED,
+                        HttpStatusCode.NOT_FOUND,
                     ),
                 );
             }
@@ -242,7 +243,7 @@ export class BrokerController {
                 return next(
                     new ApiError(
                         ErrorMessages.CREDINTIALS_NOT_AVAILABLE,
-                        HttpStatusCode.SERVICE_UNAVAILABLE,
+                        HttpStatusCode.NOT_FOUND,
                     ),
                 );
             }
@@ -256,7 +257,27 @@ export class BrokerController {
                 );
             }
 
-            await broker.establishMarketDataFeed(credintials.accessToken);
+            // get the instruments for this userId and then pass the instrument.
+
+            const instruments = await getInstruments(user);
+
+            if (instruments !== null) {
+                const subscribedInstrument = instruments.instrumentNames.map(
+                    (data) => data.toUpperCase(),
+                );
+                await broker.establishMarketDataFeed(
+                    credintials.accessToken,
+                    subscribedInstrument,
+                );
+            } else {
+                return next(
+                    new ApiError(
+                        ErrorMessages.INTEGRATION_KEYS_NOT_AVAILABLE,
+                        HttpStatusCode.METHOD_NOT_ALLOWED,
+                    ),
+                );
+            }
+
             res.status(Number(HttpStatusCode.OK)).json({
                 success: true,
                 message: SuccessMessages.UPSTOX_WEBSOCKET_ESTABLISHED,
@@ -362,8 +383,9 @@ export class BrokerController {
                         ErrorMessages.UPSTOX_SUBSCRIPTION_FAILED +
                             `: ${errorDetails}`,
                         error.response?.status
-                            ? (error.response
-                                  .status as unknown as HttpStatusCode)
+                            ? (Number(
+                                  error.response.status,
+                              ) as unknown as HttpStatusCode)
                             : HttpStatusCode.INTERNAL_SERVER_ERROR,
                     ),
                 );
@@ -381,7 +403,75 @@ export class BrokerController {
         req: Request,
         res: Response,
         next: NextFunction,
-    ) => {};
+    ) => {
+        const user = (req as any).user;
+        const instrument_key = req.body.instrument_key as string;
+        const broker_name = req.params.broker as keyof ManagerConstructors;
+
+        if (!user || !user.userId) {
+            return next(
+                new ApiError(
+                    ErrorMessages.MALFORMED_JWT,
+                    HttpStatusCode.UNAUTHORIZED,
+                ),
+            );
+        }
+
+        if (!instrument_key) {
+            return next(
+                new ApiError(
+                    ErrorMessages.INSTRUMENT_NAME_REQUIRED,
+                    HttpStatusCode.BAD_REQUEST,
+                ),
+            );
+        }
+
+        if (!broker_name) {
+            return next(
+                new ApiError(
+                    ErrorMessages.BROKER_REQUIRED,
+                    HttpStatusCode.BAD_REQUEST,
+                ),
+            );
+        }
+
+        if (!this.integrationSupport.includes(broker_name)) {
+            return next(
+                new ApiError(
+                    ErrorMessages.INTEGRATION_NOT_AVAILABLE,
+                    HttpStatusCode.NOT_IMPLEMENTED,
+                ),
+            );
+        }
+
+        try {
+            const broker =
+                this.brokerCredintialService.getInitializedBrokerManager(
+                    broker_name,
+                );
+
+            await broker.deleteSubscription(
+                user.userId,
+                instrument_key.toLowerCase(),
+            );
+
+            res.status(Number(HttpStatusCode.OK)).json({
+                success: true,
+                message: SuccessMessages.INSTRUMENT_UNSUBSCRIBED,
+            });
+        } catch (error: any) {
+            console.error('Error unsubscribing instrument:', error);
+            if (error instanceof ApiError) {
+                return next(error);
+            }
+            next(
+                new ApiError(
+                    ErrorMessages.UNSUBSCRIPTION_FAILED,
+                    HttpStatusCode.INTERNAL_SERVER_ERROR,
+                ),
+            );
+        }
+    };
 
     getInstrumentsDetails = async (
         req: Request,
@@ -540,18 +630,129 @@ export class BrokerController {
         req: Request,
         res: Response,
         next: NextFunction,
-    ) => {};
-    getIntegration = async (
-        req: Request,
-        res: Response,
-        next: NextFunction,
-    ) => {};
+    ) => {
+        const broker = req.params.broker as keyof ManagerConstructors;
+        const user = (req as any).user.userId;
+        const updateFields: Partial<IBrokerCredintials> = req.body;
+
+        if (!broker) {
+            return next(
+                new ApiError(
+                    ErrorMessages.BROKER_REQUIRED,
+                    HttpStatusCode.BAD_REQUEST,
+                ),
+            );
+        }
+
+        if (!user) {
+            return next(
+                new ApiError(
+                    ErrorMessages.MALFORMED_JWT,
+                    HttpStatusCode.UNAUTHORIZED,
+                ),
+            );
+        }
+
+        if (Object.keys(updateFields).length === 0) {
+            return next(
+                new ApiError(
+                    ErrorMessages.UPDATE_FIELDS_REQUIRED,
+                    HttpStatusCode.BAD_REQUEST,
+                ),
+            );
+        }
+
+        if (!this.integrationSupport.includes(broker)) {
+            return next(
+                new ApiError(
+                    ErrorMessages.INTEGRATION_NOT_AVAILABLE,
+                    HttpStatusCode.NOT_IMPLEMENTED,
+                ),
+            );
+        }
+
+        try {
+            await this.brokerCredintialService.updateBrokerCredintials(
+                user,
+                broker,
+                updateFields,
+            );
+
+            res.status(Number(HttpStatusCode.OK)).json({
+                success: true,
+                message: `${broker} ${SuccessMessages.BROKER_INTEGRATION_UPDATED}`,
+            });
+        } catch (error) {
+            console.error('Error updating integration:', error);
+            if (error instanceof ApiError) {
+                return next(error);
+            }
+            return next(
+                new ApiError(
+                    ErrorMessages.INTERNAL_SERVER_ERROR,
+                    HttpStatusCode.INTERNAL_SERVER_ERROR,
+                ),
+            );
+        }
+    };
 
     deleteIntegration = async (
         req: Request,
         res: Response,
         next: NextFunction,
-    ) => {};
+    ) => {
+        const broker = req.params.broker as keyof ManagerConstructors;
+        const user = (req as any).user.userId;
+
+        if (!broker) {
+            return next(
+                new ApiError(
+                    ErrorMessages.BROKER_REQUIRED,
+                    HttpStatusCode.BAD_REQUEST,
+                ),
+            );
+        }
+
+        if (!user) {
+            return next(
+                new ApiError(
+                    ErrorMessages.MALFORMED_JWT,
+                    HttpStatusCode.UNAUTHORIZED,
+                ),
+            );
+        }
+
+        if (!this.integrationSupport.includes(broker)) {
+            return next(
+                new ApiError(
+                    ErrorMessages.INTEGRATION_NOT_AVAILABLE,
+                    HttpStatusCode.NOT_IMPLEMENTED,
+                ),
+            );
+        }
+
+        try {
+            await this.brokerCredintialService.deleteBrokerCredintials(
+                user,
+                broker,
+            );
+            res.status(Number(HttpStatusCode.OK)).json({
+                success: true,
+                message: `${broker} ${SuccessMessages.BROKER_INTEGRATION_DELETED}`,
+            });
+        } catch (error) {
+            console.error('Error deleting integration:', error);
+            if (error instanceof ApiError) {
+                return next(error);
+            }
+            return next(
+                new ApiError(
+                    ErrorMessages.INTERNAL_SERVER_ERROR,
+                    HttpStatusCode.INTERNAL_SERVER_ERROR,
+                ),
+            );
+        }
+    };
 
     private integrationSupport: (keyof ManagerConstructors)[] = ['upstox'];
 }

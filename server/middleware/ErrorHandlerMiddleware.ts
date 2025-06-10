@@ -9,6 +9,7 @@ import type {
 import { ApiError } from '../error/apiError';
 import { HttpStatusCode } from '../utils/httpStatusCode';
 import { ErrorMessages } from '../enums/messages';
+import { AuthError } from '../error/authError';
 
 export const errorHandler: ErrorRequestHandler = (
     err: Error | ApiError,
@@ -18,7 +19,8 @@ export const errorHandler: ErrorRequestHandler = (
 ) => {
     console.error(err);
 
-    if (err instanceof ApiError) {
+    if (err instanceof ApiError || err instanceof AuthError) {
+        console.log(err);
         res.status(parseInt(err.statusCode, 10)).json({
             success: false,
             message: err.message,

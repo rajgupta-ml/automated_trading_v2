@@ -75,6 +75,9 @@ export enum ErrorMessages {
     // ... (Broker Specific)
     ACCESS_TOKEN_NOT_AVAILABLE = 'Access Token is required to establish websocket connect',
     INTEGRATION_NOT_AVAILABLE = 'The provide broker at this is not supported. Please contact support team for further clarification.',
+
+    INTEGRATION_KEYS_NOT_AVAILABLE = 'User needs to add instrument to watchlist',
+    UNSUBSCRIPTION_FAILED = 'Instrument unsubscribed failed',
 }
 
 // enums/SuccessMessages.ts
@@ -98,4 +101,7 @@ export enum SuccessMessages {
     UPSTOX_WEBSOCKET_ESTABLISHED = 'Upstox market data websocket connection established.',
     UPSTOX_INSTRUMENT_SUBSCRIBED = 'Successfully subscribed to the instrument on Upstox.',
     UPSTOX_INSTRUMENT_DETAILS_FETCHED = 'Instrument details fetched successfully from Upstox.',
+    INSTRUMENT_UNSUBSCRIBED = 'Instrument unsubscribed successfully',
+    BROKER_INTEGRATION_UPDATED = 'Integration update successfully',
+    BROKER_INTEGRATION_DELETED = 'integration deleted successfully',
 }

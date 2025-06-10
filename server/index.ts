@@ -27,7 +27,7 @@ app.listen(PORT, async () => {
 });
 
 // TODO
-// Subscribing the websocket by getting the instrument Name[]
+// Adding the OHLC to redis and then into BullMQ a service to pooling the queue and save it into mongodb
 // Adding Socket IO for client side
 // Implement Reconnection Logic in Upstox Ws
 // Add CRUD operation for integration
