@@ -1,4 +1,4 @@
-import type { NextFunction, Request, Response } from "express";
+import { request, type NextFunction, type Request, type Response } from "express";
 import jwt, {
   JsonWebTokenError,
   TokenExpiredError,
@@ -13,8 +13,7 @@ import { HttpStatusCode } from "../enums/httpStatusCode";
 export class AuthController {
   generateJWT = (req: Request, res: Response, next: NextFunction) => {
     const serviceSecret = config.jwt.secret;
-    const id: String | undefined = req.service?.id;
-
+    const id: String | undefined = req.headers["x-at-serviceid"] as string | undefined
     if (id !== config.service.id) {
       return next(
         new AuthError(
@@ -28,7 +27,7 @@ export class AuthController {
       serviceId: config.service.id,
     };
 
-    const expiresIn = config.jwt.expiresIn as SignOptions;
+    const expiresIn = {expiresIn: '1d' } as SignOptions;
     try {
       const token = jwt.sign(payload, serviceSecret, expiresIn);
       res.status(200).json({
