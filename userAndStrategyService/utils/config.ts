@@ -4,31 +4,11 @@ export const config = {
         (() => {
             throw new Error('Missing MODE in env');
         })(),
-    access_code: process.env.ACCESS_CODE,
-
     port:
         process.env.PORT ||
         (() => {
             throw new Error('Missing PORT in env');
         })(),
-    upstox: {
-        client_id:
-            process.env.CLIENT_ID ||
-            (() => {
-                throw new Error('Missing CLIENT_ID in env');
-            })(),
-        client_secret:
-            process.env.CLIENT_SECRET ||
-            (() => {
-                throw new Error('Missing CLIENT_SECRET in env');
-            })(),
-
-        redirect_uri:
-            process.env.REDIRECT_URI ||
-            (() => {
-                throw new Error('Missing REDIRECT_URI in env');
-            })(),
-    },
 
     crypto: {
         secret:
@@ -42,7 +22,6 @@ export const config = {
                 throw new Error('Missing CRYPTO HASH ALGO in env');
             })(),
     },
-
     db: {
         uri:
             process.env.DB_URI ||
@@ -63,6 +42,14 @@ export const config = {
             process.env.REDIS_URI ||
             (() => {
                 throw new Error('Missing REDIS_URI in env');
+            })(),
+    },
+
+    ai: {
+        apiKey:
+            process.env.GEMINI_API_KEY ||
+            (() => {
+                throw new Error('Missing GEMINI API KEY in env');
             })(),
     },
 };

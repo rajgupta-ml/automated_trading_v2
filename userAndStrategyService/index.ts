@@ -27,7 +27,9 @@ app.listen(PORT, async () => {
 });
 
 // TODO
-// Adding the OHLC to redis and then into BullMQ a service to pooling the queue and save it into mongodb
-// Adding Socket IO for client side
+// Adding Socket IO for client side interaction
+// Building a rule engine
+// Candle conversion engine
+// Adding formula like RSI and all those thing
 // Implement Reconnection Logic in Upstox Ws
-// Add CRUD operation for integration
+// Paper Trading Feature (Building Order book, Building MTM)
